@@ -575,6 +575,8 @@
         #productModal .product-modal-details {
             flex: 1;
             text-align: left;
+            overflow-y: auto; /* Dodane dla przewijania */
+            max-height: 80vh; /* Ogranicza wysokość na mniejszych ekranach */
         }
 
         #productModal .product-modal-price {
@@ -651,7 +653,7 @@
             #productModal .product-modal-details { text-align: center; }
             #productModal .product-modal-img-container { min-width: auto; max-width: 100%; height: 250px; }
             #productModal .product-modal-specs { text-align: left; }
-            .product { width: 280px; }
+            .product { width: calc(50% - 20px); }
             .products { gap: 20px; }
             header { font-size: 2.5rem; }
             .cart-icon { top: 20px; left: 20px; width: 60px; height: 60px; }
@@ -661,15 +663,31 @@
         }
 
         @media (max-width: 768px) {
-            header { font-size: 2rem; padding: 40px 15px 25px; }
+            header { 
+                font-size: 1.8rem; 
+                padding: 40px 15px 25px; 
+                letter-spacing: 2px;
+            }
             .products { padding: 20px 10px; gap: 15px; }
-            .product { width: 45%; }
+            .product { width: calc(50% - 10px); }
             .scooter-bg, .scooter-bg2 { display: none; }
             .modal { min-width: 90vw; padding: 20px; }
             #productModal { flex-direction: column; gap: 20px; padding: 20px; }
             #productModal h2 { font-size: 1.8rem; }
             #productModal .product-modal-price { font-size: 1.6rem; }
             #productModal .product-modal-add-btn { font-size: 1.2rem; padding: 15px 25px; }
+            #cart-panel { 
+                width: 90vw;
+                left: auto;
+                right: 5vw;
+                padding: 20px;
+                top: 90px;
+                transform: translateX(100%);
+                transition: transform 0.5s ease-out;
+            }
+            #cart-panel.open {
+                transform: translateX(0);
+            }
         }
     </style>
 </head>
@@ -965,7 +983,7 @@
             if (autoClose) {
                 cartTimeout = setTimeout(() => {
                     cartPanel.classList.remove('open');
-                }, 2000);
+                }, 3000); // Zmieniono na 3 sekundy
             }
         }
         function closeCartPanel() {
@@ -973,7 +991,7 @@
             if (cartTimeout) clearTimeout(cartTimeout);
         }
 
-        cartIcon.addEventListener('click', () => openCart(false));
+        cartIcon.addEventListener('click', () => openCart(true)); // Zmieniono na autoClose = true
         closeCart.addEventListener('click', closeCartPanel);
 
         document.addEventListener('mousedown', (e) => {
