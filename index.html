@@ -239,6 +239,7 @@
             opacity: 0;
             pointer-events: none;
             transition: opacity 0.5s ease-out;
+            backdrop-filter: blur(10px);
         }
 
         .cart-modal-bg.open {
@@ -258,7 +259,6 @@
             transition: transform 0.5s ease-out;
             display: flex;
             flex-direction: column;
-            backdrop-filter: blur(10px);
         }
 
         .cart-modal-bg.open #cart-panel {
@@ -425,7 +425,6 @@
             flex-direction: column;
             gap: 15px;
             margin-bottom: 20px;
-            /* Nowe style dla centrowania formularza */
             align-items: center; 
         }
 
@@ -442,7 +441,7 @@
             font-family: 'Electrolize', sans-serif;
             letter-spacing: 1.5px;
             transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-            width: 100%; /* Dodane dla lepszego wyglądu */
+            width: 100%;
         }
         
         .modal .pay-btn:hover, .modal .crypto-btn:hover {
@@ -494,7 +493,7 @@
             font-family: 'Electrolize', sans-serif;
             letter-spacing: 1px;
             transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-            width: 250px; /* Dopasowanie do inputów */
+            width: 250px;
         }
         
         .modal button[type="submit"]:hover {
@@ -692,6 +691,10 @@
                 width: 90%;
                 max-width: 400px;
                 padding: 20px;
+                transform: scale(0.9); /* Utrzymanie animacji */
+            }
+            .cart-modal-bg.open #cart-panel {
+                transform: scale(1);
             }
         }
     </style>
