@@ -225,10 +225,28 @@
             box-shadow: 0 0 10px var(--shadow-dark);
         }
 
-        #cart-panel {
+        .cart-modal-bg {
             position: fixed;
-            top: 40px;
-            left: 130px;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(15, 14, 30, 0.85);
+            z-index: 1002;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease-out;
+        }
+
+        .cart-modal-bg.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        #cart-panel {
             width: 380px;
             background: linear-gradient(135deg, var(--card-bg) 60%, var(--primary-neon) 100%);
             color: var(--text-color);
@@ -236,20 +254,15 @@
             box-shadow: 0 0 40px var(--shadow-light), 0 10px 40px var(--shadow-dark);
             border: 2px solid var(--primary-neon);
             padding: 30px;
-            z-index: 1002;
-            opacity: 0;
-            pointer-events: none;
-            transform: translateY(-40px) scale(0.9);
-            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+            transform: scale(0.9);
+            transition: transform 0.5s ease-out;
             display: flex;
             flex-direction: column;
             backdrop-filter: blur(10px);
         }
 
-        #cart-panel.open {
-            opacity: 1;
-            pointer-events: auto;
-            transform: translateY(0) scale(1);
+        .cart-modal-bg.open #cart-panel {
+            transform: scale(1);
         }
 
         #cart-panel h2 {
@@ -659,9 +672,6 @@
             .cart-icon { top: 20px; left: 20px; width: 60px; height: 60px; }
             .cart-icon svg { width: 32px; height: 32px; }
             .cart-count { top: 10px; left: 40px; }
-            #cart-panel { top: 20px; left: 90px; width: 300px; padding: 25px; }
-            .cart-item span { font-size: 1rem; }
-            .cart-item button { width: 30px; height: 30px; font-size: 1.1rem; }
         }
 
         @media (max-width: 768px) {
@@ -674,17 +684,14 @@
             #productModal h2 { font-size: 1.8rem; }
             #productModal .product-modal-price { font-size: 1.6rem; }
             #productModal .product-modal-add-btn { font-size: 1.2rem; padding: 15px 25px; }
-            #cart-panel { 
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
+            #productModal .product-modal-specs {
+                max-height: 150px;
+                overflow-y: auto;
+            }
+            #cart-panel {
                 width: 90%;
                 max-width: 400px;
                 padding: 20px;
-            }
-            #productModal .product-modal-specs {
-                max-height: 150px; /* Zmniejszenie wysokości okna specyfikacji na telefonach */
-                overflow-y: auto;
             }
         }
     </style>
@@ -700,13 +707,15 @@
         </svg>
         <span class="cart-count" id="cartCount">0</span>
     </div>
-    <div id="cart-panel">
-        <button class="close-cart" id="closeCart" title="Zamknij koszyk">&times;</button>
-        <h2>Koszyk</h2>
-        <div id="cartError"></div>
-        <div id="cartItems"></div>
-        <div class="cart-total" id="cartTotal"></div>
-        <button class="checkout" id="checkoutBtn">Zamów</button>
+    <div class="cart-modal-bg" id="cartModalBg">
+        <div id="cart-panel">
+            <button class="close-cart" id="closeCart" title="Zamknij koszyk">&times;</button>
+            <h2>Koszyk</h2>
+            <div id="cartError"></div>
+            <div id="cartItems"></div>
+            <div class="cart-total" id="cartTotal"></div>
+            <button class="checkout" id="checkoutBtn">Zamów</button>
+        </div>
     </div>
     <div class="modal-bg" id="payModalBg">
         <div class="modal" id="payModal">
@@ -784,13 +793,13 @@
             { 
                 name: "Kukirn G2", 
                 price: 150, 
-                img: "https://www.geekbuying.pl/55635-large_default/skladana-hulajnoga-elektryczna-kukirin-g2-silnik-800w.webp", /* Zmienione zdjęcie */
+                img: "https://www.geekbuying.pl/55635-large_default/skladana-hulajnoga-elektryczna-kukirin-g2-silnik-800w.webp",
                 specs: "Silnik: 800W, Prędkość maks: 45 km/h, Zasięg: 40-50 km, Bateria: 48V 15Ah, Opony: 10 cali, Hamulce: Podwójne tarczowe, Zawieszenie: Przednie i tylne amortyzatory."
             },
             { 
                 name: "Kukirn G2 Pro", 
                 price: 250, 
-                img: "https://tse1.mm.bing.net/th/id/OIP.oZB_RINVA4K_XcvPgHqMnAHaHl?r=0&pid=ImgDet&w=163&h=166&c=7&o=7&rm=3", /* Zmienione zdjęcie */
+                img: "https://tse1.mm.bing.net/th/id/OIP.oZB_RINVA4K_XcvPgHqMnAHaHl?r=0&pid=ImgDet&w=163&h=166&c=7&o=7&rm=3",
                 specs: "Silnik: 1000W, Prędkość maks: 55 km/h, Zasięg: 50-60 km, Bateria: 48V 15Ah, Opony: 10 cali, Hamulce: Podwójne tarczowe, Zawieszenie: Przednie i tylne amortyzatory." 
             },
             { 
@@ -970,22 +979,22 @@
 
         // Otwieranie i zamykanie koszyka
         const cartIcon = document.getElementById('cartIcon');
-        const cartPanel = document.getElementById('cart-panel');
+        const cartModalBg = document.getElementById('cartModalBg');
         const closeCart = document.getElementById('closeCart');
         const cartError = document.getElementById('cartError');
         const checkoutBtn = document.getElementById('checkoutBtn');
 
         function openCart(autoClose = false) {
-            cartPanel.classList.add('open');
+            cartModalBg.classList.add('open');
             if (cartTimeout) clearTimeout(cartTimeout);
             if (autoClose) {
                 cartTimeout = setTimeout(() => {
-                    cartPanel.classList.remove('open');
+                    cartModalBg.classList.remove('open');
                 }, 2000);
             }
         }
         function closeCartPanel() {
-            cartPanel.classList.remove('open');
+            cartModalBg.classList.remove('open');
             if (cartTimeout) clearTimeout(cartTimeout);
         }
 
@@ -993,7 +1002,7 @@
         closeCart.addEventListener('click', closeCartPanel);
 
         document.addEventListener('mousedown', (e) => {
-            if (cartPanel.classList.contains('open') && !cartPanel.contains(e.target) && !cartIcon.contains(e.target)) {
+            if (cartModalBg.classList.contains('open') && !document.getElementById('cart-panel').contains(e.target) && !cartIcon.contains(e.target)) {
                 closeCartPanel();
             }
         });
@@ -1087,7 +1096,7 @@
 
         // Automatyczne dodawanie myślnika w kodzie pocztowym i blokowanie liter
         daneKodPocztowy.addEventListener('input', function(e) {
-            let value = e.target.value.replace(/[^0-9]/g, ''); // Usuwamy wszystko oprócz cyfr
+            let value = e.target.value.replace(/[^0-9]/g, '');
             if (value.length > 2) {
                 value = value.slice(0, 2) + '-' + value.slice(2);
             }
