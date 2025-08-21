@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Electrolize&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
     <title>ElectroBuying ⚡️</title>
+    <link rel="icon" type="image/png" href="favicon.png">
     <style>
         :root {
             --bg-color: #0F0E1E;
@@ -316,7 +317,7 @@
         
         .checkout:hover {
             transform: scale(1.02);
-            box-shadow: 0 8px 25px var(--shadow-dark), 0 4px 15px var(--shadow-light);
+            box-shadow: 8px 25px var(--shadow-dark), 4px 15px var(--shadow-light);
         }
 
         .close-cart {
@@ -644,7 +645,7 @@
         
         #productModal .product-modal-add-btn:hover {
             transform: scale(1.02);
-            box-shadow: 0 8px 25px var(--shadow-dark), 0 4px 15px var(--shadow-light);
+            box-shadow: 0 8px 25px var(--shadow-dark), 4px 15px var(--shadow-light);
         }
 
         @media (max-width: 992px) {
@@ -781,13 +782,13 @@
             { 
                 name: "Kukirn G2", 
                 price: 150, 
-                img: "https://www.geekbuying.pl/55635-large_default/skladana-hulajnoga-elektryczna-kukirin-g2-silnik-800w.webp", /* Zmienione zdjęcie */
+                img: "https://www.geekbuying.pl/55635-large_default/skladana-hulajnoga-elektryczna-kukirin-g2-silnik-800w.webp",
                 specs: "Silnik: 800W, Prędkość maks: 45 km/h, Zasięg: 40-50 km, Bateria: 48V 15Ah, Opony: 10 cali, Hamulce: Podwójne tarczowe, Zawieszenie: Przednie i tylne amortyzatory."
             },
             { 
                 name: "Kukirn G2 Pro", 
                 price: 250, 
-                img: "https://tse1.mm.bing.net/th/id/OIP.oZB_RINVA4K_XcvPgHqMnAHaHl?r=0&pid=ImgDet&w=163&h=166&c=7&o=7&rm=3", /* Zmienione zdjęcie */
+                img: "https://tse1.mm.bing.net/th/id/OIP.oZB_RINVA4K_XcvPgHqMnAHaHl?r=0&pid=ImgDet&w=163&h=166&c=7&o=7&rm=3",
                 specs: "Silnik: 1000W, Prędkość maks: 55 km/h, Zasięg: 50-60 km, Bateria: 48V 15Ah, Opony: 10 cali, Hamulce: Podwójne tarczowe, Zawieszenie: Przednie i tylne amortyzatory." 
             },
             { 
@@ -938,10 +939,15 @@
                 itemDiv.className = 'cart-item';
                 itemDiv.innerHTML = `
                     <span>${item.name}</span>
-                    <button data-action="minus" data-idx="${i}">-</button>
-                    <span>${item.qty}</span>
-                    <button data-action="plus" data-idx="${i}">+</button>
-                    <span>${item.price * item.qty} zł</span>
+                    <div style="display:flex;align-items:center;gap:10px;">
+                        <span>${item.price} zł</span>
+                        <div style="display:flex;align-items:center;">
+                            <button data-action="minus" data-idx="${i}">-</button>
+                            <span>${item.qty}</span>
+                            <button data-action="plus" data-idx="${i}">+</button>
+                        </div>
+                        <span>${item.price * item.qty} zł</span>
+                    </div>
                 `;
                 cartItemsDiv.appendChild(itemDiv);
             });
