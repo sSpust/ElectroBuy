@@ -575,8 +575,6 @@
         #productModal .product-modal-details {
             flex: 1;
             text-align: left;
-            overflow-y: auto; /* Dodane dla przewijania */
-            max-height: 80vh; /* Ogranicza wysokość na mniejszych ekranach */
         }
 
         #productModal .product-modal-price {
@@ -587,14 +585,16 @@
             text-shadow: 0 0 10px var(--secondary-neon);
             font-family: 'Orbitron', sans-serif;
         }
-
+        
         #productModal .product-modal-specs {
             margin: 25px 0;
             font-size: 1.1rem;
             line-height: 1.6;
             color: #ddd;
+            max-height: 200px;
+            overflow-y: auto;
         }
-
+        
         #productModal .product-modal-specs h4 {
             color: var(--primary-neon);
             font-weight: 700;
@@ -653,40 +653,35 @@
             #productModal .product-modal-details { text-align: center; }
             #productModal .product-modal-img-container { min-width: auto; max-width: 100%; height: 250px; }
             #productModal .product-modal-specs { text-align: left; }
-            .product { width: calc(50% - 20px); }
+            .product { width: 280px; }
             .products { gap: 20px; }
             header { font-size: 2.5rem; }
             .cart-icon { top: 20px; left: 20px; width: 60px; height: 60px; }
             .cart-icon svg { width: 32px; height: 32px; }
             .cart-count { top: 10px; left: 40px; }
             #cart-panel { top: 20px; left: 90px; width: 300px; padding: 25px; }
+            .cart-item span { font-size: 1rem; }
+            .cart-item button { width: 30px; height: 30px; font-size: 1.1rem; }
         }
 
         @media (max-width: 768px) {
-            header { 
-                font-size: 1.8rem; 
-                padding: 40px 15px 25px; 
-                letter-spacing: 2px;
-            }
+            header { font-size: 2rem; padding: 40px 15px 25px; }
             .products { padding: 20px 10px; gap: 15px; }
-            .product { width: calc(50% - 10px); }
+            .product { width: 45%; }
             .scooter-bg, .scooter-bg2 { display: none; }
             .modal { min-width: 90vw; padding: 20px; }
             #productModal { flex-direction: column; gap: 20px; padding: 20px; }
             #productModal h2 { font-size: 1.8rem; }
             #productModal .product-modal-price { font-size: 1.6rem; }
             #productModal .product-modal-add-btn { font-size: 1.2rem; padding: 15px 25px; }
+            
             #cart-panel { 
-                width: 90vw;
-                left: auto;
-                right: 5vw;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 90%;
+                max-width: 400px;
                 padding: 20px;
-                top: 90px;
-                transform: translateX(100%);
-                transition: transform 0.5s ease-out;
-            }
-            #cart-panel.open {
-                transform: translateX(0);
             }
         }
     </style>
@@ -983,7 +978,7 @@
             if (autoClose) {
                 cartTimeout = setTimeout(() => {
                     cartPanel.classList.remove('open');
-                }, 3000); // Zmieniono na 3 sekundy
+                }, 2000);
             }
         }
         function closeCartPanel() {
@@ -991,7 +986,7 @@
             if (cartTimeout) clearTimeout(cartTimeout);
         }
 
-        cartIcon.addEventListener('click', () => openCart(true)); // Zmieniono na autoClose = true
+        cartIcon.addEventListener('click', () => openCart(false));
         closeCart.addEventListener('click', closeCartPanel);
 
         document.addEventListener('mousedown', (e) => {
