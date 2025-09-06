@@ -33,15 +33,19 @@
             z-index: 1000;
             padding: 1rem 0;
             transition: all 0.3s ease;
+            display: flex; /* Make nav a flex container */
+            justify-content: center; /* Center its content */
+            align-items: center;
         }
 
         .nav-container {
             max-width: 1200px;
             margin: 0 auto;
             display: flex;
-            justify-content: space-between;
+            justify-content: space-between; /* Space out logo, hamburger, cart */
             align-items: center;
             padding: 0 2rem;
+            width: 100%; /* Ensure it takes full width of nav */
         }
 
         .logo {
@@ -54,11 +58,37 @@
             text-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
         }
 
-        .nav-links {
+        /* New container for hamburger and cart on mobile */
+        .nav-controls {
             display: flex;
+            align-items: center;
+            gap: 1rem; /* Space between hamburger and cart */
+        }
+
+        /* Hamburger menu button - hidden by default on desktop */
+        .hamburger-menu {
+            display: none; /* Hidden on desktop */
+            background: none;
+            border: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            z-index: 1001;
+            padding: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .hamburger-menu:hover {
+            color: #00d4ff;
+        }
+
+        /* Default desktop nav links */
+        .nav-links {
+            display: flex; /* Always flex for desktop */
             gap: 2rem;
             list-style: none;
             align-items: center;
+            /* No position absolute or transform here for desktop */
         }
 
         .nav-links a {
@@ -1108,18 +1138,71 @@
             border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        /* Responsive */
+        /* Mobile specific styles */
         @media (max-width: 768px) {
+            .nav-container {
+                padding: 0 1rem;
+            }
+
+            /* Show hamburger on mobile */
+            .hamburger-menu {
+                display: block;
+            }
+
+            /* Hide desktop nav links on mobile by default, and style for mobile menu */
+            .nav-links {
+                flex-direction: column;
+                position: absolute;
+                top: 100%; /* Position below the nav bar */
+                left: 0;
+                width: 100%;
+                background: rgba(10, 10, 10, 0.95);
+                backdrop-filter: blur(30px);
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+                padding: 0; /* Remove default padding, add to list items */
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+                transition: transform 0.3s ease-out, opacity 0.3s ease-out, max-height 0.3s ease-out;
+                transform: translateY(-100%); /* Start off-screen above */
+                opacity: 0;
+                pointer-events: none; /* Disable interaction when hidden */
+                max-height: 0; /* Collapse height */
+                overflow: hidden; /* Hide overflow during transition */
+                gap: 0; /* Reset gap for vertical menu */
+            }
+
+            .nav-links.open {
+                transform: translateY(0); /* Slide into view */
+                opacity: 1;
+                pointer-events: auto; /* Enable interaction */
+                max-height: 500px; /* Sufficiently large height for transition */
+                padding: 1rem 0; /* Add padding when open */
+            }
+
+            .nav-links li {
+                width: 100%;
+                text-align: center;
+                padding: 0;
+            }
+
+            .nav-links a {
+                display: block;
+                padding: 0.8rem 1rem;
+                border-radius: 0;
+                width: 100%;
+            }
+
+            /* Cart icon is now outside nav-links, so its mobile styling is simpler */
+            .cart-icon {
+                /* Keep existing cart-icon styles, no need for specific mobile overrides here */
+                /* It will be part of .nav-controls flex container */
+            }
+
             .hero h1 {
                 font-size: 3rem;
             }
 
             .hero-subtitle {
                 font-size: 1.4rem;
-            }
-
-            .nav-links {
-                display: none;
             }
 
             .about-content {
@@ -1200,18 +1283,19 @@
     <nav>
         <div class="nav-container">
             <div class="logo">ElectroBuying</div>
-            <ul class="nav-links">
+            <div class="nav-controls"> <!-- New container for hamburger and cart -->
+                <button class="hamburger-menu" id="hamburger-btn">☰</button>
+                <button class="cart-icon" id="cart-icon-btn" onclick="toggleCart()">
+                    🛒
+                    <span class="cart-count" id="cart-count">0</span>
+                </button>
+            </div>
+            <ul class="nav-links" id="mobile-nav-links">
                 <li><a href="#home">Strona główna</a></li>
                 <li><a href="#products">Produkty</a></li>
-                <li><a href="#low-price-secret">Niskie Ceny</a></li> <!-- New link -->
+                <li><a href="#low-price-secret">Niskie Ceny</a></li>
                 <li><a href="#about">O nas</a></li>
                 <li><a href="#reviews">Opinie</a></li>
-                <li>
-                    <button class="cart-icon" id="cart-icon-btn" onclick="toggleCart()">
-                        🛒
-                        <span class="cart-count" id="cart-count">0</span>
-                    </button>
-                </li>
             </ul>
         </div>
     </nav>
@@ -2474,6 +2558,8 @@
             const productModal = document.getElementById('product-modal');
             const cartSidebar = document.getElementById('cart-sidebar');
             const cartIcon = document.getElementById('cart-icon-btn');
+            const mobileNavLinks = document.getElementById('mobile-nav-links');
+            const hamburgerBtn = document.getElementById('hamburger-btn');
 
             // Close productModal on outside click
             if (event.target === productModal) {
@@ -2483,6 +2569,11 @@
             // Close cart sidebar on outside click, but not if clicking the cart icon itself
             if (cartSidebar.classList.contains('open') && !cartSidebar.contains(event.target) && !cartIcon.contains(event.target)) {
                 cartSidebar.classList.remove('open');
+            }
+
+            // Close mobile nav menu on outside click, but not if clicking the hamburger button itself
+            if (mobileNavLinks.classList.contains('open') && !mobileNavLinks.contains(event.target) && !hamburgerBtn.contains(event.target)) {
+                mobileNavLinks.classList.remove('open');
             }
             // The checkoutModal is now only closed by its 'x' button
         }
@@ -2602,6 +2693,30 @@
                     formatPostalCodeInput(e.target);
                 });
             }
+
+            // Add event listener for hamburger menu
+            const hamburgerBtn = document.getElementById('hamburger-btn');
+            const mobileNavLinks = document.getElementById('mobile-nav-links');
+
+            if (hamburgerBtn && mobileNavLinks) {
+                hamburgerBtn.addEventListener('click', function() {
+                    mobileNavLinks.classList.toggle('open');
+                });
+            }
+
+            // Close mobile menu when a link is clicked (optional, but good UX)
+            mobileNavLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', function() {
+                    mobileNavLinks.classList.remove('open');
+                });
+            });
+
+            // Close mobile menu if window is resized to desktop size
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > 768) {
+                    mobileNavLinks.classList.remove('open');
+                }
+            });
         });
     </script>
 </body>
